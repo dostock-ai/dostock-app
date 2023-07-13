@@ -1,0 +1,7 @@
+{
+  "name": "dostock-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

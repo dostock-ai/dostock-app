@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="login()" [formGroup]="credentials">
+        <ion-item>
+          <ion-input label="Correo electrónico" type="email" labelPlacement="floating" placeholder="email@domain.com" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Contraseña" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" strong="true" expand="block" [disabled]="credentials.invalid" (click)="navigateTo('menu')">Iniciar sesión</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

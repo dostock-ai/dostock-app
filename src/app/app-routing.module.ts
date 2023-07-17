@@ -8,17 +8,25 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'sales',
-    loadChildren: () => import('./pages/sales/sales.module').then( m => m.SalesPageModule)
-  },  {
-    path: 'products',
-    loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/menu/settings/settings.module').then( m => m.SettingsPageModule)
   },
-
+  {
+    path: 'sales',
+    loadChildren: () => import('./pages/menu/sales/sales.module').then( m => m.SalesPageModule)
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./pages/menu/products/products.module').then( m => m.ProductsPageModule)
+  },
 ];
 
 @NgModule({

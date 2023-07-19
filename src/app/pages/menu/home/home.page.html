@@ -1,15 +1,10 @@
-<ion-content [fullscreen]="true">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start" id="main-content">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>{{title}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-menu contentId="main-content" (ionDidOpen)="appMenuSwipeGesture = false" [swipeGesture]="appMenuSwipeGesture"
-  (ionDidClose)="appMenuSwipeGesture = true" auto-hide="false">
+<ion-menu 
+  contentId="main-content"
+  auto-hide="false"
+  [swipeGesture]="appMenuSwipeGesture"
+  (ionDidOpen)="appMenuSwipeGesture = false"
+  (ionDidClose)="appMenuSwipeGesture = true"
+>
     <ion-header>
       <ion-toolbar>
         <ion-title>Menu Content</ion-title>
@@ -24,4 +19,5 @@
       </ion-menu-toggle>
     </ion-content>
   </ion-menu>
-</ion-content>
+
+<ion-router-outlet id="main-content" main></ion-router-outlet>

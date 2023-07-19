@@ -37,6 +37,6 @@ export class LoginPage implements OnInit {
   async login() {}
 
   navigateTo(link: string) {
-    this.router.navigate(['/' + link]);
+    this.router.navigate([link]);
   }
 }

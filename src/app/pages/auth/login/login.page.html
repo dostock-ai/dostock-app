@@ -14,7 +14,8 @@
         <ion-item>
           <ion-input label="Contraseña" type="password" labelPlacement="floating" formControlName="password"></ion-input>
         </ion-item>
-        <ion-button type="submit" strong="true" expand="block" [disabled]="credentials.invalid" (click)="navigateTo('menu')">Iniciar sesión</ion-button>
+        <ion-button type="submit" strong="true" expand="block" (click)="navigateTo('/home/sales')">Iniciar sesión</ion-button>
+        <!-- [disabled]="credentials.invalid" -->
       </form>
     </ion-card-content>
   </ion-card>

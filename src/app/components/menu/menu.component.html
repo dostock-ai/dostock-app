@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start" id="main-content">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-menu contentId="main-content" (ionDidOpen)="appMenuSwipeGesture = false" [swipeGesture]="appMenuSwipeGesture"
+  (ionDidClose)="appMenuSwipeGesture = true" auto-hide="false">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+</ion-content>

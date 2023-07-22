@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Crear cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="createAccount()" [formGroup]="credentials">
+        <ion-item>
+          <ion-input label="Correo electrónico" type="email" labelPlacement="floating" placeholder="email@domain.com" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Contraseña" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" strong="true" expand="block" (click)="navigateTo('/home/sales')" [disabled]="credentials.invalid">Crear mi cuenta</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <div style="display: flex; width: 100%; justify-content: center; align-items: center; cursor: pointer;">
+    <ion-text (click)="navigateTo('/login')">
+      Ya tienes una cuenta? Inicia sesión
+    </ion-text>
+  </div>
+</ion-content>

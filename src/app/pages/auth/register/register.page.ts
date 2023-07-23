@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { AuthSupabaseService } from '../services/auth-supabase.service';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterPage {
   credentials = this.fb.nonNullable.group({
+    full_name: ['', [Validators.required, Validators.minLength(3)]],
+    business_name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
@@ -21,7 +24,8 @@ export class RegisterPage {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private authSupabaseSvc: AuthSupabaseService
   ) {}
 
   get email() {
@@ -32,22 +36,42 @@ export class RegisterPage {
     return this.credentials.controls.password;
   }
 
+  get full_name() {
+    return this.credentials.controls.full_name;
+  }
+
+  get business_name() {
+    return this.credentials.controls.business_name;
+  }
+
   async createAccount() {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.authService.signUp(this.credentials.getRawValue()).then(async (data) => {
-      await loading.dismiss();
-      console.log('data: ', data);
+    const data:any = await this.authService.signUp(this.credentials.getRawValue());
+    if (data.error) {
+      this.showAlert('Registro fallido', data.error.message);
+    } else {
+      const uuid = data?.data?.user.id;
+      const full_name = this.full_name.value;
+      const business_name = this.business_name.value;
 
-      if (data.error) {
-        this.showAlert('Registro fallido', data.error.message);
+      console.log(this.authService.getCurrentUserId());
+
+      const info = await this.authSupabaseSvc.createUser(full_name, business_name, uuid);
+      
+      if (info.error) {
+        this.showAlert('Registro fallido', 'Vuelva a intentarlo mas tarde');
       } else {
         this.showAlert('Registro completado', 'Porfavor, confirma tu correo electronico ahora!');
-        this.navCtrl.navigateBack('');
       }
-    });
+    }
+
+    await loading.dismiss();
+    this.credentials.reset();
+    this.navCtrl.navigateBack('');
   }
+
 
   async showAlert(title: string, msg: string) {
     const alert = await this.alertController.create({

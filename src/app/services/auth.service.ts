@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private supabase: SupabaseClient;
+  public supabase: SupabaseClient;
   private currentUser: BehaviorSubject<User | any> = new BehaviorSubject(null);
 
   constructor(private router: Router) {

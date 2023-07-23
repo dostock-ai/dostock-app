@@ -1,0 +1,15 @@
+.search {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+
+    ion-searchbar {
+        padding-right: 0px;
+    }
+
+    ion-icon {
+        margin: .5rem; 
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}

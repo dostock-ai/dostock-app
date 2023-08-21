@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Agregar producto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Nombre del producto" labelPlacement="floating"
+        placeholder="Nombre del producto" [(ngModel)]="productData.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Precio de compra" labelPlacement="floating" [(ngModel)]="productData.buy_price"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Precio de venta" labelPlacement="floating" [(ngModel)]="productData.sale_price"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Selecciona una categoría" label-placement="floating" [(ngModel)]="productData.category">
+          <ion-select-option value="ropa">Ropa</ion-select-option>
+          <ion-select-option value="cocina">Cocina</ion-select-option>
+          <ion-select-option value="deportes">Deportes</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Descripción" labelPlacement="floating" [(ngModel)]="productData.description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Código de barras" labelPlacement="floating" [(ngModel)]="productData.barcode"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-toggle justify="space-between" [(ngModel)]="productData.available_for_sale"><ion-text>Disponible para venta</ion-text></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Seleccione el tipo de venta" label-placement="floating" [(ngModel)]="productData.type_sale">
+          <ion-select-option value="unidad">Unidad</ion-select-option>
+          <ion-select-option value="gramo">Gramo</ion-select-option>
+          <ion-select-option value="kilogramo">Kilogramo</ion-select-option>
+          <ion-select-option value="litro">Litro</ion-select-option>
+          <ion-select-option value="metro">Metro</ion-select-option>
+          <ion-select-option value="metro_cubico">Metro cubico</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-toggle justify="space-between" [(ngModel)]="productData.control_stock"><ion-text>Controlar existencias</ion-text></ion-toggle>
+      </ion-item>
+      <ion-item *ngIf="productData.control_stock">
+        <ion-input label="Cantidad total de existencias" labelPlacement="floating" [(ngModel)]="productData.current_stock"></ion-input>
+      </ion-item>
+      <ion-button type="submit" strong="true" expand="block" (click)="saveProduct()">
+        Agregar producto
+      </ion-button>
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>

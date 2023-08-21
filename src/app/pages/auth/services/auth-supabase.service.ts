@@ -9,7 +9,7 @@ export class AuthSupabaseService {
   constructor(private authSvc: AuthService) { }
 
   async createUser(full_name: string, business_name: string, uuid: any) {
-    const { data, error } = await this.authSvc.supabase.from('user-data')
+    const { data, error } = await this.authSvc.supabase.from('user-info')
     .insert({
       full_name: full_name,
       business_name: business_name,

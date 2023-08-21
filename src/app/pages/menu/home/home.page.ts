@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { SelectTemplateComponent } from 'src/app/components/select-template/select-template.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  template: any;
   appMenuSwipeGesture: any;
   public appPages = [
     { title: 'Venta', url: '/home/sales', icon: 'bag-check' },
@@ -15,9 +17,13 @@ export class HomePage implements OnInit {
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
 
-  constructor(private authSvc: AuthService, private alertController: AlertController, private loadingController: LoadingController,) { }
+  constructor(private authSvc: AuthService, private alertController: AlertController, private loadingController: LoadingController, private modalController: ModalController) { }
 
   ngOnInit() {
+    this.template = localStorage.getItem('selectedTemplate');
+    if(!this.template) {
+      this.selectTemplate();
+    }
   }
 
   async signOut() {
@@ -41,5 +47,19 @@ export class HomePage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  selectTemplate() {
+    this.openSelectTemplateModal();
+  }
+
+  async openSelectTemplateModal() {
+    const modal = await this.modalController.create({
+      component: SelectTemplateComponent,
+      backdropDismiss: false,
+      componentProps: { }
+    });
+  
+    await modal.present();
   }
 }

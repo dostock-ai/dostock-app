@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthSupabaseService } from '../services/auth-supabase.service';
+import { AuxFnsService } from 'src/app/services/aux-fns.service';
 
 @Component({
   selector: 'app-register',
@@ -22,10 +23,10 @@ export class RegisterPage {
     private fb: FormBuilder,
     private authService: AuthService,
     private loadingController: LoadingController,
-    private alertController: AlertController,
     private navCtrl: NavController,
     private router: Router,
-    private authSupabaseSvc: AuthSupabaseService
+    private authSupabaseSvc: AuthSupabaseService,
+    public auxFns: AuxFnsService
   ) {}
 
   get email() {
@@ -50,7 +51,7 @@ export class RegisterPage {
 
     const data:any = await this.authService.signUp(this.credentials.getRawValue());
     if (data.error) {
-      this.showAlert('Registro fallido', data.error.message);
+      this.auxFns.showAlert('Registro fallido', data.error.message);
     } else {
       const uuid = data?.data?.user.id;
       const full_name = this.full_name.value;
@@ -61,28 +62,14 @@ export class RegisterPage {
       const info = await this.authSupabaseSvc.createUser(full_name, business_name, uuid);
       
       if (info.error) {
-        this.showAlert('Registro fallido', 'Vuelva a intentarlo mas tarde');
+        this.auxFns.showAlert('Registro fallido', 'Vuelva a intentarlo mas tarde');
       } else {
-        this.showAlert('Registro completado', 'Porfavor, confirma tu correo electronico ahora!');
+        this.auxFns.showAlert('Registro completado', 'Porfavor, confirma tu correo electronico ahora!');
       }
     }
 
     await loading.dismiss();
     this.credentials.reset();
     this.navCtrl.navigateBack('');
-  }
-
-
-  async showAlert(title: string, msg: string) {
-    const alert = await this.alertController.create({
-      header: title,
-      message: msg,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  navigateTo(link: string) {
-    this.router.navigate([link]);
   }
 }

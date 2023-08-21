@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AuxFnsService } from 'src/app/services/aux-fns.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
     private authSvc: AuthService, 
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private router: Router
+    private router: Router,
+    public auxFns: AuxFnsService
     ) {
       this.authSvc.getCurrentUser().subscribe((user) => {
         if(user) {
@@ -50,7 +52,7 @@ export class LoginPage implements OnInit {
 
         if(data.error) {
           this.credentials.reset();
-          this.showAlert('Inicio de sesión fallida', 'Correo electrónico o contraseña incorrecto');
+          this.auxFns.showAlert('Inicio de sesión fallida', 'Correo electrónico o contraseña incorrecto');
         }
       },
     );
@@ -81,27 +83,14 @@ export class LoginPage implements OnInit {
             await loading.dismiss();
 
             if(error) {
-              this.showAlert('Error', error.message);
+              this.auxFns.showAlert('Error', error.message);
             } else {
-              this.showAlert('Restablecer contraseña', 'Se ha enviado un enlace de restablecimiento de contraseña a tu correo electrónico');
+              this.auxFns.showAlert('Restablecer contraseña', 'Se ha enviado un enlace de restablecimiento de contraseña a tu correo electrónico');
             }
           }
         }
       ],
     });
     await alert.present();
-  }
-
-  async showAlert(title: string, msg: string) {
-    const alert = await this.alertController.create({
-      header: title,
-      message: msg,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  navigateTo(link: string) {
-    this.router.navigate([link]);
   }
 }

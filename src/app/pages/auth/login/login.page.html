@@ -17,7 +17,7 @@
           formControlName="password"></ion-input>
         </ion-item>
         <ion-button type="submit" strong="true" expand="block" 
-        (click)="navigateTo('/home/sales')" [disabled]="credentials.invalid"
+        (click)="auxFns.navigateTo('/home/sales')" [disabled]="credentials.invalid"
         >
           Iniciar sesión
         </ion-button>
@@ -30,7 +30,7 @@
     </ion-text>
   </div>
   <div class="create-account">
-    <ion-text (click)="navigateTo('/register')">
+    <ion-text (click)="auxFns.navigateTo('/register')">
       Crear cuenta
     </ion-text>
   </div>

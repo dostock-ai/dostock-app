@@ -32,4 +32,15 @@ export class SupabaseService {
     const { data, error } = await this.authSvc.supabase.from('stock').select().eq('user_id', user_id);
     return data;
   }
+
+  async saveImage(blob: any) {
+    const { data, error } = await this.authSvc.supabase.storage.from('products').upload('my-image.jpg', blob);
+    if (error) {
+      console.log('Error uploading image:', error.message)
+    } else {
+      console.log('Image uploaded successfully:', data)
+    }
+    // const { data, error } = await this.authSvc.supabase.storage.from('products').download('my-image.jpg');
+    return data;
+  }
 }

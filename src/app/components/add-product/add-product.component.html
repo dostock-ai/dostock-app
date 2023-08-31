@@ -15,6 +15,14 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
+        <ion-button fill="clear" expand="full" (click)="selectImage()">
+          <ion-icon id="iconCamera" slot="start" name="camera"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item *ngIf="productData.imageURL">
+        <ion-img [src]="productData.imageURL"></ion-img>
+      </ion-item>
+      <ion-item>
         <ion-input label="Nombre del producto" labelPlacement="floating"
         placeholder="Nombre del producto" [(ngModel)]="productData.name"></ion-input>
       </ion-item>

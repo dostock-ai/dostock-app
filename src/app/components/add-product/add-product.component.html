@@ -14,13 +14,15 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <ion-item>
+      <!-- <ion-item>
         <ion-button fill="clear" expand="full" (click)="selectImage()">
           <ion-icon id="iconCamera" slot="start" name="camera"></ion-icon>
         </ion-button>
-      </ion-item>
-      <ion-item *ngIf="productData.imageURL">
-        <ion-img [src]="productData.imageURL"></ion-img>
+      </ion-item> -->
+      <ion-item *ngIf="productData.imageURL" id="selectImage">
+        <div style="width: 100%; justify-content: center; display: flex; align-items: center;">
+          <ion-img class="product-image" (click)="selectImage()" [src]="productData.imageURL"></ion-img>
+        </div>
       </ion-item>
       <ion-item>
         <ion-input label="Nombre del producto" labelPlacement="floating"

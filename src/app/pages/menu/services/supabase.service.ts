@@ -33,14 +33,25 @@ export class SupabaseService {
     return data;
   }
 
-  async saveImage(blob: any) {
-    const { data, error } = await this.authSvc.supabase.storage.from('products').upload('my-image.jpg', blob);
+  async saveImage(blob: any, fileName: string) {
+    const { data, error } = await this.authSvc.supabase.storage.from('products').upload(fileName, blob);
     if (error) {
       console.log('Error uploading image:', error.message)
     } else {
       console.log('Image uploaded successfully:', data)
     }
     // const { data, error } = await this.authSvc.supabase.storage.from('products').download('my-image.jpg');
+    return data;
+  }
+
+  async getProductImages(currentId: string) {
+    const { data, error } = await this.authSvc.supabase.storage.from('products').list(currentId);
+    // const { data, error } = await this.authSvc.supabase.storage.from('products').download(currentId + '/Balon de basket.jpeg');
+    if (error) {
+      console.log('Error uploading image:', error.message)
+    } else {
+      console.log('Image uploaded successfully:', data)
+    }
     return data;
   }
 }

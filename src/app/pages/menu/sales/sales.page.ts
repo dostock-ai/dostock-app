@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sales',
@@ -11,6 +12,8 @@ import { SupabaseService } from '../services/supabase.service';
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
   products: any;
+  productImages: any;
+  currentUserID: any;
   public actionSheetButtons = [
     {
       text: 'Delete',
@@ -37,11 +40,19 @@ export class SalesPage implements OnInit {
   constructor(
     private modalController: ModalController, 
     private supabase: SupabaseService,
+    private authSvc: AuthService
   ) { }
 
   async ngOnInit() {
+    this.currentUserID = this.authSvc.getCurrentUserId();
+
     this.products = await this.supabase.getProducts();
     console.log(this.products);
+
+    this.productImages = await this.supabase.getProductImages(this.currentUserID);
+    console.log('Product images: ', this.productImages);
+    
+    // realizar pipe, que junte products con products images y ahi mismo poner el url de cada producto para que se vea la imagen
   }
 
   async addProduct() {

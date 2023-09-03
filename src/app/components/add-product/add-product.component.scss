@@ -1,3 +1,15 @@
 #iconCamera {
     font-size: 25px;
 }
+
+#selectImage {
+    width: 100%;
+}
+  
+.product-image {
+    // width: 100%;
+    // padding-top: 100%; /* Crear un aspecto cuadrado */
+    // object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+    width: 150px;
+    height: 150px;
+}

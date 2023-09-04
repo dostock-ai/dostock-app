@@ -44,14 +44,8 @@ export class SupabaseService {
     return data;
   }
 
-  async getProductImages(currentId: string) {
-    const { data, error } = await this.authSvc.supabase.storage.from('products').list(currentId);
-    // const { data, error } = await this.authSvc.supabase.storage.from('products').download(currentId + '/Balon de basket.jpeg');
-    if (error) {
-      console.log('Error uploading image:', error.message)
-    } else {
-      console.log('Image uploaded successfully:', data)
-    }
+  async getImageUrl(fileName: string) {
+    const { data } = await this.authSvc.supabase.storage.from('products').getPublicUrl(fileName)
     return data;
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SalesPageRoutingModule } from './sales-routing.module';
+import { AddImagesToProductsPipe } from '../pipes/add-images-to-products.pipe';
 
 import { SalesPage } from './sales.page';
 @NgModule({
@@ -14,6 +15,6 @@ import { SalesPage } from './sales.page';
     IonicModule,
     SalesPageRoutingModule,
   ],
-  declarations: [SalesPage]
+  declarations: [SalesPage, AddImagesToProductsPipe]
 })
 export class SalesPageModule {}

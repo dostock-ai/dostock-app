@@ -39,6 +39,8 @@ export class AddProductComponent  implements OnInit {
     const data = await this.supabaseSvc.saveImage(this.productData.blob, fileName);
     console.log('data', data);
 
+    this.productData.image_url = (await this.supabaseSvc.getImageUrl(fileName)).publicUrl;
+
     //! Optimziar despues para crar otro objeto para imagenes
     delete this.productData.blob;
     delete this.productData.imageURL;

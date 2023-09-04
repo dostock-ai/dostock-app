@@ -33,10 +33,10 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col>
-            <ion-item *ngFor="let product of products">
+          <ion-col *ngFor="let product of productsData">
+            <ion-item>
               <ion-thumbnail slot="start">
-                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                <img alt="{{product.name}}" [src]="product.image_url" />
               </ion-thumbnail>
               <ion-label>{{product.name}}</ion-label>
               <ion-icon class="productOptions" name="ellipsis-vertical-outline" slot="end"></ion-icon>
@@ -49,3 +49,5 @@
 </ion-content>
 
 <ion-action-sheet trigger="open-action-sheet" header="Actions" [buttons]="actionSheetButtons"></ion-action-sheet>
+
+<!-- call pipe with parameters < *ngFor="[] | addImagesToProducts : productsData : productImages as products">   *ngFor="let product of productsData" -->

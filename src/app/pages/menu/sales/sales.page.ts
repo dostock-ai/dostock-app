@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
-  products: any;
+  productsData: any;
   productImages: any;
   currentUserID: any;
   public actionSheetButtons = [
@@ -46,13 +46,8 @@ export class SalesPage implements OnInit {
   async ngOnInit() {
     this.currentUserID = this.authSvc.getCurrentUserId();
 
-    this.products = await this.supabase.getProducts();
-    console.log(this.products);
-
-    this.productImages = await this.supabase.getProductImages(this.currentUserID);
-    console.log('Product images: ', this.productImages);
-    
-    // realizar pipe, que junte products con products images y ahi mismo poner el url de cada producto para que se vea la imagen
+    this.productsData = await this.supabase.getProducts();
+    console.log(this.productsData);
   }
 
   async addProduct() {

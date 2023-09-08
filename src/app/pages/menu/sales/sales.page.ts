@@ -14,28 +14,6 @@ export class SalesPage implements OnInit {
   productsData: any;
   productImages: any;
   currentUserID: any;
-  public actionSheetButtons = [
-    {
-      text: 'Delete',
-      role: 'destructive',
-      data: {
-        action: 'delete',
-      },
-    },
-    {
-      text: 'Share',
-      data: {
-        action: 'share',
-      },
-    },
-    {
-      text: 'Cancel',
-      role: 'cancel',
-      data: {
-        action: 'cancel',
-      },
-    },
-  ];
 
   constructor(
     private modalController: ModalController, 

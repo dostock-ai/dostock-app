@@ -12,6 +12,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
   categoriesData: any = {};
+  categoryInfo: any = {
+    inside: false,
+    data: [],
+    name: ''
+  };
 
   constructor(
     private modalController: ModalController, 
@@ -49,5 +54,23 @@ export class SalesPage implements OnInit {
     // const { data } = await modal.onDidDismiss();
     // Aquí puedes manejar los datos que puedan devolverse cuando se cierre el modal (si lo necesitas)
     // Ejemplo: const resultado = data.resultado;
+  }
+
+  openCategory(categoryKey: string) {
+    this.categoryInfo.inside = true;
+    this.categoryInfo.data = this.categoriesData[categoryKey];
+    this.categoryInfo.name = categoryKey;
+  }
+
+  getString(input:any) {
+    return String(input);
+  }
+
+  backToCategoriesSeccion() {
+    this.categoryInfo = {
+      inside: false,
+      data: [],
+      name: ''
+    };
   }
 }

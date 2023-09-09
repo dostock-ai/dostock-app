@@ -34,12 +34,20 @@
       <ion-item>
         <ion-input label="Precio de venta" labelPlacement="floating" [(ngModel)]="productData.sale_price"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-select label="Selecciona una categoría" label-placement="floating" [(ngModel)]="productData.category">
+      <ion-item class="itemSelectCategory">
+        <!-- <ion-select label="Selecciona una categoría" label-placement="floating" [(ngModel)]="productData.category">
           <ion-select-option value="ropa">Ropa</ion-select-option>
           <ion-select-option value="cocina">Cocina</ion-select-option>
           <ion-select-option value="deportes">Deportes</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+        <!-- <div (click)="openAddCategoryModal()">
+          <ion-text>Seleccionar categoria</ion-text>
+          <ion-icon name="caret-down-outline"></ion-icon>
+        </div> -->
+        <div (click)="openAddCategoryModal()" class="selectCategory">
+          <ion-text>Seleccionar categoria</ion-text>
+          <ion-icon name="caret-down-outline" class="icon"></ion-icon>
+        </div>        
       </ion-item>
       <ion-item>
         <ion-input label="Descripción" labelPlacement="floating" [(ngModel)]="productData.description"></ion-input>

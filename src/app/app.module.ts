@@ -10,10 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { SelectTemplateComponent } from './components/select-template/select-template.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, AddProductComponent, SelectTemplateComponent],
+  declarations: [AppComponent, AddProductComponent, SelectTemplateComponent, AddCategoryComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

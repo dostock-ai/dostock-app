@@ -13,3 +13,29 @@
     width: 150px;
     height: 150px;
 }
+
+.selectCategory {
+    display: flex;
+    /* Utilizar un contenedor flexible */
+    align-items: center;
+    /* Centrar verticalmente los elementos */
+    width: 100%;
+    
+}
+
+.icon {
+    margin-left: auto;
+    color: #808080;
+    font-size: .88rem;
+}
+
+.itemSelectCategory {
+    cursor: pointer;
+    transition: --background 0.3s;
+    --min-height: 60px
+}
+
+.itemSelectCategory:hover {
+    --background: #42424238;
+}
+

@@ -11,21 +11,29 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
-  productsData: any;
-  productImages: any;
-  currentUserID: any;
+  categoriesData: any = {};
 
   constructor(
     private modalController: ModalController, 
-    private supabase: SupabaseService,
-    private authSvc: AuthService
+    private supabaseSvc: SupabaseService,
   ) { }
 
   async ngOnInit() {
-    this.currentUserID = this.authSvc.getCurrentUserId();
+    await this.getCategoriesData();
+  }
 
-    this.productsData = await this.supabase.getProducts();
-    console.log(this.productsData);
+  async getCategoriesData() {
+    const productsData = await this.supabaseSvc.getProducts();
+
+    (productsData || [])?.forEach((product) => {
+      const category = product.category;
+
+      if (!this.categoriesData[category]) {
+        this.categoriesData[category] = [];
+      }
+      this.categoriesData[category].push(product);
+    })
+    console.log(this.categoriesData);
   }
 
   async addProduct() {

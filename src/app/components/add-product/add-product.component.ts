@@ -6,6 +6,7 @@ import { AuxFnsService } from 'src/app/services/aux-fns.service';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AuthService } from 'src/app/services/auth.service';
+import { AddCategoryComponent } from '../add-category/add-category.component';
 
 @Component({
   selector: 'app-add-product',
@@ -102,5 +103,20 @@ export class AddProductComponent  implements OnInit {
     
   
     return blob;
+  }
+  
+  async openAddCategoryModal() {
+    const modal = await this.modalController.create({
+      component: AddCategoryComponent,
+      componentProps: {
+        // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
+        // Ejemplo: data: { prop1: valor1, prop2: valor2 }
+      }
+    });
+  
+    await modal.present();
+    // const { data } = await modal.onDidDismiss();
+    // Aquí puedes manejar los datos que puedan devolverse cuando se cierre el modal (si lo necesitas)
+    // Ejemplo: const resultado = data.resultado;
   }
 }

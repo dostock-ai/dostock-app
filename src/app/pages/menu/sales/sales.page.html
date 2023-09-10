@@ -41,20 +41,21 @@
       <ion-row>
         <ion-col *ngFor="let category of categoriesData | keyvalue">
           <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key))">
-            <!-- <ion-thumbnail slot="start">
-              <img alt="{{product.name}}" [src]="product.image_url" />
-            </ion-thumbnail> -->
             <ion-label>{{ category.key }}</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
 
-    <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; align-items: center;">
-      <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem;"></ion-icon>
-      <ion-text style="padding-left: 0.5rem;">
-        <h1 style="margin: 0px;">Categoria {{ categoryInfo.name }}</h1>
-      </ion-text>
+    <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div style="    align-self: flex-end;">
+        <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem;"></ion-icon>
+      </div>
+      <div>
+        <ion-text>
+          <h1 style="margin: 0px;">{{ categoryInfo.name }}</h1>
+        </ion-text>
+      </div>
     </div>
 
     <ion-grid *ngIf="categoryInfo.inside">

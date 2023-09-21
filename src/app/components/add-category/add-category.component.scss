@@ -1,0 +1,37 @@
+.containerButtons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 30%;
+    
+    #acceptButton {
+        margin-left: 10px;
+    }
+
+}
+
+#addCategoryButton {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+#radioCheckbox {
+    font-size: 1.2em;
+}
+
+#addCategoryButton {
+    width: 30px; /* Ancho del botón */
+    height: 30px; /* Altura del botón */
+    border-radius: 50%; /* Esto crea un botón redondo */
+    background-color: transparent; /* Fondo transparente por defecto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    color: #808080;
+  }
+
+#addCategoryButton:hover {
+    background-color: #42424238; /* Cambiar el color de fondo a gris en hover */
+    cursor: pointer;
+}

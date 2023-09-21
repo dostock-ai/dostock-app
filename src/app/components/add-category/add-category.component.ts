@@ -20,6 +20,7 @@ export class AddCategoryComponent  implements OnInit {
     }
    }
   */
+   addCategorySection = false;
 
   constructor(private modalController: ModalController, private supabaseSvc: SupabaseService,) {}
 
@@ -43,7 +44,7 @@ export class AddCategoryComponent  implements OnInit {
     });
   }
 
-  async getCategories(){
+  async getCategories() {
     const categories : any = {}
     const categoriesDB=await this.supabaseSvc.getCategories();
     categoriesDB.forEach((category:any) => {
@@ -56,4 +57,11 @@ export class AddCategoryComponent  implements OnInit {
     return categories;
   }
 
+  activeAddCategorySection() {
+    this.addCategorySection = true;
+  }
+
+  desactiveAddCategorySection() {
+    this.addCategorySection = false;
+  }
 }

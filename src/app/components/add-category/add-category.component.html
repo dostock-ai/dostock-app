@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" *ngIf="!addCategorySection">
       <ion-button (click)="closeModal()">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
@@ -8,27 +8,47 @@
     <ion-title>
       Seleccionar Categoria
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-icon (click)="activeAddCategorySection()" id="addCategoryButton" name="add-outline"></ion-icon>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
+        <!-- <ion-checkbox labelPlacement="end" (ionChange) ="selectCategory(categoryName)">{{categoryName}}</ion-checkbox>  -->
 
 <ion-content>
-  <ion-grid>
-    <ion-row *ngFor="let categoryName of categories | keyvalue">
-      <ion-col>
-        <!-- <ion-checkbox labelPlacement="end" (ionChange) ="selectCategory(categoryName)">{{categoryName}}</ion-checkbox>  -->
-        <ion-checkbox labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategory(categoryName.key)">{{categoryName.key}}</ion-checkbox>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div style="height: 100%;">
+    <ion-grid  style="height: 70%;">
+      <ion-row *ngIf="addCategorySection">
+        <ion-col>
+          <ion-item>
+            <ion-input label="Nombre de la categoria" labelPlacement="floating" placeholder="Enter text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ng-container *ngIf="!addCategorySection">
+        <ion-row *ngFor="let categoryName of categories | keyvalue">
+          <ion-col>
+             <ion-checkbox mode="ios" id="radioCheckbox" labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategory(categoryName.key)">{{categoryName.key}}</ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+      
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button>Cancelar</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button>Aceptar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    </ion-grid>
+  
+    <ion-grid class="containerButtons">
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="addCategorySection ? desactiveAddCategorySection() : closeModal()"  >Cancelar</ion-button>
+          <ion-button id="acceptButton">Aceptar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
 </ion-content>
+
+<!-- Cuando le de click al + en el ion-toolbar se remplaze el texto "agregar categoria", que no aparezca regresar y el + -->

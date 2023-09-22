@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class AddCategoryComponent  implements OnInit {
 
-  constructor( private modalController: ModalController) {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
 

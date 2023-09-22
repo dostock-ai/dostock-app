@@ -6,7 +6,29 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Agregar categoria
+      Seleccionar Categoria
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let categoryName of categories | keyvalue">
+      <ion-col>
+        <!-- <ion-checkbox labelPlacement="end" (ionChange) ="selectCategory(categoryName)">{{categoryName}}</ion-checkbox>  -->
+        <ion-checkbox labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategory(categoryName.key)">{{categoryName.key}}</ion-checkbox>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button>Cancelar</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button>Aceptar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

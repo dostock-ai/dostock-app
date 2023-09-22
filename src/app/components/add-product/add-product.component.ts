@@ -42,7 +42,7 @@ export class AddProductComponent  implements OnInit {
     const fileName = currentUserID + '/' + this.productData.name + '.jpeg';
 
     const data = await this.supabaseSvc.saveImage(this.productData.blob, fileName);
-    console.log('data', data);
+    
 
     this.productData.image_url = (await this.supabaseSvc.getImageUrl(fileName)).publicUrl;
 

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Seleccione una cantidad
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="height: 70%;">
+      <ion-col style="display: flex; align-items: center; justify-content: end;">
+        <ion-icon name="remove-circle-outline" style="font-size: 2em; cursor: pointer;" (click)="removeAmount()"></ion-icon>
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center;">
+        <ion-input value="{{numberOfProducts}}" placeholder="Enter text" style=" text-align: center;" [(ngModel)]="numberOfProducts"></ion-input>
+      </ion-col>
+      <ion-col style="display: flex; align-items: center; justify-content: start;">
+        <ion-icon name="add-circle-outline" style="font-size: 2em; cursor: pointer;" (click)="addAmount()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 30%;">
+      <ion-col style="display: flex; align-items: center; justify-content: end;">
+        <ion-button (click)="closeModal('cancel')">Cancelar</ion-button>
+        <ion-button (click)="closeModal('accept')" style="padding-left: 0.5em;">Aceptar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

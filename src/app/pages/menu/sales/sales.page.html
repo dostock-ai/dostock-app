@@ -1,11 +1,17 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+          <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        
-        <ion-title>Venta</ion-title>
-    </ion-toolbar>
+        <ion-title style="width: auto; margin: 0;">Venta</ion-title>
+
+  
+        <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
+          <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
+          <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+          <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
+        </ion-buttons>
+    </ion-toolbar>    
 </ion-header>
 
 <ion-content>
@@ -49,7 +55,7 @@
 
     <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
       <div style="    align-self: flex-end;">
-        <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem;"></ion-icon>
+        <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
       </div>
       <div>
         <ion-text>
@@ -61,7 +67,7 @@
     <ion-grid *ngIf="categoryInfo.inside">
       <ion-row>
         <ion-col *ngFor="let product of categoryInfo.data">
-          <ion-item style="cursor: pointer;">
+          <ion-item style="cursor: pointer;" (click)="selectQuantityOfProduct(product)">
             <ion-thumbnail slot="start">
               <img alt="{{product.name}}" [src]="product.image_url" />
             </ion-thumbnail>

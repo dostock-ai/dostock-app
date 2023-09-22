@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { SupabaseService } from 'src/app/pages/menu/services/supabase.service';
 import { LoadingController } from '@ionic/angular';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
@@ -8,12 +8,15 @@ import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddCategoryComponent } from '../add-category/add-category.component';
 
+declare var cordova: any;
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent  implements OnInit {
+
   productData: any = {
     imageURL: './../../assets/img/default.png',
     // name, buy_price, sale_price, category, description, barcode
@@ -25,10 +28,11 @@ export class AddProductComponent  implements OnInit {
     private supabaseSvc: SupabaseService,
     private loadingController: LoadingController,
     private auxFns: AuxFnsService,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private alertController: AlertController
     ) { }
 
-  ngOnInit() {}
+  async ngOnInit() {}
 
   async saveProduct() {
     const loading = await this.loadingController.create();

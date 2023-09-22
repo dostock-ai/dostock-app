@@ -6,10 +6,10 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Seleccionar Categoria
+      {{addCategorySection ? 'Nueva categoria' : 'Categorias'}}
     </ion-title>
 
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="!addCategorySection">
       <ion-icon (click)="activeAddCategorySection()" id="addCategoryButton" name="add-outline"></ion-icon>
     </ion-buttons>
 
@@ -30,7 +30,9 @@
       <ng-container *ngIf="!addCategorySection">
         <ion-row *ngFor="let categoryName of categories | keyvalue">
           <ion-col>
-             <ion-checkbox mode="ios" id="radioCheckbox" labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategory(categoryName.key)">{{categoryName.key}}</ion-checkbox>
+             <ion-checkbox mode="ios" id="radioCheckbox" labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategoryAction(categoryName.key)">
+              {{categoryName.key}}
+             </ion-checkbox>
           </ion-col>
         </ion-row>
       </ng-container>
@@ -42,7 +44,7 @@
       <ion-row>
         <ion-col>
           <ion-button (click)="addCategorySection ? desactiveAddCategorySection() : closeModal()"  >Cancelar</ion-button>
-          <ion-button id="acceptButton">Aceptar</ion-button>
+          <ion-button id="acceptButton" (click)="selectCategoryComplete()">Aceptar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

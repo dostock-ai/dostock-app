@@ -113,12 +113,20 @@ export class AddProductComponent  implements OnInit {
     const modal = await this.modalController.create({
       component: AddCategoryComponent,
       backdropDismiss: true,
+      cssClass: 'modal-open-select-category',
       componentProps: {
         // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
         // Ejemplo: data: { prop1: valor1, prop2: valor2 }
         // backdrop es para que no te salgas
       }
     });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        const selectedCategory = data['data'];
+        this.productData.category = selectedCategory;
+    });
+  
   
     await modal.present();
     // const { data } = await modal.onDidDismiss();

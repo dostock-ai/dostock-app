@@ -28,6 +28,16 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'suppliers',
+        loadChildren: () => import('../suppliers/suppliers.module').then( m => m.SuppliersPageModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'chat-ai',
+        loadChildren: () => import('../chat-ai/chat-ai.module').then( m => m.ChatAIPageModule),
+        canActivate: [AuthGuard]
       }
     ]
   }

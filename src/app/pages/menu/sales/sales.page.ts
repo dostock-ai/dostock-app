@@ -85,7 +85,7 @@ export class SalesPage implements OnInit {
   async selectQuantityOfProduct(product: any) {
     const modal = await this.modalController.create({
       component: SelectQuantityOfProductComponent,
-      cssClass: 'my-custom-class',
+      cssClass: 'modal-select-quantity-product',
       componentProps: {
         // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
         // Ejemplo: data: { prop1: valor1, prop2: valor2 }

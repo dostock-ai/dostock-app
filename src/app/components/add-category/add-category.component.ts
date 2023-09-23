@@ -9,14 +9,14 @@ import { Categories } from 'src/app/interfaces/category';
   styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent  implements OnInit {
+  addCategorySection = false;
+  currentCategory = '';
   categories!: Categories;
   /*
    categories:any = {
     ropa: {
-      config:{
-        disabled: true/false,
-        isChecked: true/false
-      }
+      disabled: true/false,
+      isChecked: true/false
     }
    }
   */
@@ -28,22 +28,33 @@ export class AddCategoryComponent  implements OnInit {
     console.log(this.categories);
   }
 
-  closeModal() {
-    this.modalController.dismiss();
+  closeModal(value?: any) {
+    value ? this.modalController.dismiss(value) : this.modalController.dismiss();
   }
 
-  selectCategory(categoryName: any) {
-    console.log(this.categories[categoryName], categoryName, this.categories);
+  selectCategoryAction(categoryName: any) {
+    /*
+      *Cuando se le da clic al checkboux automaticamente this.categories[categoryName].isChecked 
+      *cambia de valor a true, o sea que no se ocupa cambiar a true aqui en el TypeScript
+    */
     const isChecked= this.categories[categoryName].isChecked;
     const categoriesCopy = JSON.parse(JSON.stringify(this.categories));
-    Object.keys(categoriesCopy).forEach((categoryKey) => {
-      if (categoryKey != categoryName){
+
+    // Si es true es porque se le dio clic y lo cambio a true, si es false es porque deselecciono el checkbox
+    this.currentCategory =  this.categories[categoryName].isChecked ? categoryName : '';    
+    this.disableOrActivateOtherCategories(categoriesCopy, categoryName, isChecked);
+  }
+
+  disableOrActivateOtherCategories(categoriesCopy: any, categoryName: any, isChecked: any) {
+    Object.keys(categoriesCopy || {}).forEach((categoryKey) => {
+      const isDifferentCategory = categoryKey != categoryName;
+      if (isDifferentCategory){
         this.categories[categoryKey].disabled = isChecked ? true : false;
       }
     });
   }
 
-  async getCategories(){
+  async getCategories() {
     const categories : any = {}
     const categoriesDB=await this.supabaseSvc.getCategories();
     categoriesDB.forEach((category:any) => {
@@ -56,4 +67,15 @@ export class AddCategoryComponent  implements OnInit {
     return categories;
   }
 
+  activeAddCategorySection() {
+    this.addCategorySection = true;
+  }
+
+  desactiveAddCategorySection() {
+    this.addCategorySection = false;
+  }
+
+  selectCategoryComplete() {
+    this.closeModal(this.currentCategory);
+  }
 }

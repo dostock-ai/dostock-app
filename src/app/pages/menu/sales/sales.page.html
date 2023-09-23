@@ -16,7 +16,8 @@
 
 <ion-content>
   <div class="search">
-      <ion-searchbar animated="true" placeholder="Producto"></ion-searchbar>
+      <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
+      </ion-searchbar>
       <ion-icon name="funnel-outline"></ion-icon>
   </div>
 
@@ -37,20 +38,29 @@
       </ion-fab-list>
     </ion-fab>
 
-    <div *ngIf="!categoryInfo.inside" style="padding: 8px;">
+    <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px;">
       <ion-text>
         <h1 style="margin: 0px;">Categorias</h1>
       </ion-text>
     </div>
 
     <ion-grid *ngIf="!categoryInfo.inside">
-      <ion-row>
+      <ion-row *ngIf="!querySearchBar">
         <ion-col *ngFor="let category of categoriesData | keyvalue">
           <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key))">
             <ion-label>{{ category.key }}</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
+      <ng-container *ngIf="querySearchBar">
+        <ion-row *ngFor="let product of resultsSearchBar">
+          <ion-col>
+            <ion-item style="cursor: pointer;" (click)="openCategory(getString(product.category))">
+              <ion-label>{{ product.name }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ng-container>
     </ion-grid>
 
     <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">

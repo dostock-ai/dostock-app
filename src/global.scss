@@ -24,3 +24,12 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.modal-select-quantity-product {
+    --max-height: 15em;
+}
+
+.modal-open-select-category {
+    --max-height: 28em;
+    --max-width: 20em;
+}

@@ -14,6 +14,16 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
+      <!-- <ion-item>
+        <ion-button fill="clear" expand="full" (click)="selectImage()">
+          <ion-icon id="iconCamera" slot="start" name="camera"></ion-icon>
+        </ion-button>
+      </ion-item> -->
+      <ion-item *ngIf="productData.imageURL" id="selectImage">
+        <div style="width: 100%; justify-content: center; display: flex; align-items: center;">
+          <ion-img class="product-image" (click)="selectImage()" [src]="productData.imageURL"></ion-img>
+        </div>
+      </ion-item>
       <ion-item>
         <ion-input label="Nombre del producto" labelPlacement="floating"
         placeholder="Nombre del producto" [(ngModel)]="productData.name"></ion-input>
@@ -24,12 +34,20 @@
       <ion-item>
         <ion-input label="Precio de venta" labelPlacement="floating" [(ngModel)]="productData.sale_price"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-select label="Selecciona una categoría" label-placement="floating" [(ngModel)]="productData.category">
+      <ion-item class="itemSelectCategory" (click)="openAddCategoryModal()" >
+        <!-- <ion-select label="Selecciona una categoría" label-placement="floating" [(ngModel)]="productData.category">
           <ion-select-option value="ropa">Ropa</ion-select-option>
           <ion-select-option value="cocina">Cocina</ion-select-option>
           <ion-select-option value="deportes">Deportes</ion-select-option>
-        </ion-select>
+        </ion-select> -->
+        <!-- <div (click)="openAddCategoryModal()">
+          <ion-text>Seleccionar categoria</ion-text>
+          <ion-icon name="caret-down-outline"></ion-icon>
+        </div> -->
+        <div  class="selectCategory">
+          <ion-text>{{productData.category ? productData.category : 'Seleccionar categoria'}}</ion-text>
+          <ion-icon name="caret-down-outline" class="icon"></ion-icon>
+        </div>        
       </ion-item>
       <ion-item>
         <ion-input label="Descripción" labelPlacement="floating" [(ngModel)]="productData.description"></ion-input>

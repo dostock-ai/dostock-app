@@ -25,7 +25,11 @@ const routes: Routes = [
     path: 'recover-password',
     loadChildren: () => import('./pages/auth/recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'chat-ai',
+    loadChildren: () => import('./pages/menu/chat-ai/chat-ai.module').then( m => m.ChatAIPageModule)
   },
+
 ];
 
 @NgModule({

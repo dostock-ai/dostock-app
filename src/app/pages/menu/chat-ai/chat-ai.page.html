@@ -8,15 +8,30 @@
 </ion-header>
 
 <ion-content>
-    <div class="chat-container">
-      <div *ngFor="let message of messages" class="message" [ngClass]="{'user-message': message.sender === 'Usuario', 'bot-message': message.sender === 'IA'}">
-        <div class="message-sender">{{ message.sender }}:</div>
-        <div class="message-text">{{ message.text }}</div>
-      </div>
+  <ion-grid>
+    <ion-row *ngFor="let message of messages" [ngClass]="message.sender === 'chat-user-message' ? 'chat-user-message' : 'chat-ai-message'">
+      <ion-col>
+        <ion-text> {{ message.sender }}: {{ message.text }} </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input id="writeMessageInput" [(ngModel)]="newMessage" placeholder="Escribe un mensaje"></ion-input>
+      </ion-col>
+      <ion-col class="ion-col-send-msg">
+        <ion-icon name="send-outline" (click)="enviarMensaje()" id="sendMessageIcon"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div>
+    <div *ngFor="let message of messages" class="message" [ngClass]="message.sender === 'chat-user-message' ? 'chat-user-message' : 'chat-ai-message'">
+      <div>{{ message.sender }}:{{ message.text }}</div>
     </div>
+  </div> -->
     
-    <div class="message-input">
-      <ion-input [(ngModel)]="newMessage" placeholder="Escribe un mensaje"></ion-input>
-      <ion-button expand="full" (click)="enviarMensaje()">Enviar</ion-button>
-    </div>
+  <!-- <div>
+    <ion-input id="writeMessageInput" [(ngModel)]="newMessage" placeholder="Escribe un mensaje"></ion-input>
+    <ion-icon name="send-outline" (click)="enviarMensaje()" id="sendMessageIcon"></ion-icon>
+  </div> -->
 </ion-content>

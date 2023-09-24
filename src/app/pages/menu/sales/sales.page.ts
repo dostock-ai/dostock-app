@@ -13,6 +13,7 @@ import { SelectQuantityOfProductComponent } from 'src/app/components/select-quan
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
   categoriesData: any = {};
+  allProducts: any = [];
   categoryInfo: any = {
     inside: false,
     data: [],
@@ -24,6 +25,8 @@ export class SalesPage implements OnInit {
     totalProducts: 0,
     active: false
   }
+  querySearchBar: string = '';
+  resultsSearchBar: any = [];
 
   constructor(
     private modalController: ModalController, 
@@ -36,9 +39,9 @@ export class SalesPage implements OnInit {
   }
 
   async getCategoriesData() {
-    const productsData = await this.supabaseSvc.getProducts();
+    this.allProducts = await this.supabaseSvc.getProducts();
 
-    (productsData || [])?.forEach((product) => {
+    (this.allProducts || [])?.forEach((product: any) => {
       const category = product.category;
 
       if (!this.categoriesData[category]) {
@@ -116,5 +119,10 @@ export class SalesPage implements OnInit {
     } else {
       this.shoppingCartInfo.active = false;
     }
+  }
+
+  handleInputSearchProduct(event: any) {
+    this.querySearchBar = event.target.value.toLowerCase();
+    this.resultsSearchBar = this.allProducts.filter((product: any) => product.name.toLowerCase().indexOf(this.querySearchBar) > -1);
   }
 }

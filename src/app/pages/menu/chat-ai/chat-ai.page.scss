@@ -1,31 +1,13 @@
-/* Añade un color de fondo gris al cuadro de chat */
-.chat-ai-container {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #363636; /* Cambia este valor al color gris que prefieras */
+#writeMessageInput {
+  background-color: #333333;
+}
+
+.ion-col-send-msg {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+
+  #sendMessageIcon {
+    cursor: pointer;
   }
-  
-  /* Estilos adicionales para los mensajes y el cuadro de entrada */
-  .message.user-message, .message.bot-message {
-    max-width: 80%;
-    margin: 10px;
-    background-color: #ffffff; /* Color de fondo para los mensajes */
-    padding: 10px; /* Añade un espacio de relleno para separar los mensajes del fondo */
-  }
-  
-  .message-input ion-input {
-    width: 80%;
-    max-width: 80%;
-    margin: 80px;
-    background-color: #333333; /* Color de fondo para el cuadro de entrada */
-    padding: 10px; /* Añade un espacio de relleno para separar el contenido del cuadro de entrada del fondo */
-    
-    /* Clase para mensajes del usuario */
-.user-message {
-    background-color: #007bff; /* Color de fondo para mensajes del usuario */
-    color: white; /* Color del texto en mensajes del usuario */
-    align-self: flex-end; /* Alinea los mensajes del usuario a la derecha */
-  }
-  
-  }
-  
+}

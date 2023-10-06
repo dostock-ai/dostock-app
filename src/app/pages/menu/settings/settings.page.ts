@@ -13,4 +13,8 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'settings');
+  }
+
 }

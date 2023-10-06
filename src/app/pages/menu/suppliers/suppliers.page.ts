@@ -15,6 +15,10 @@ export class SuppliersPage implements OnInit {
     this.loadSuppliers();
   }
 
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'suppliers');
+  }
+
   // Ejemplo de una función para cargar proveedores
   loadSuppliers() {
     // Aquí puedes hacer una llamada a un servicio o cargar datos

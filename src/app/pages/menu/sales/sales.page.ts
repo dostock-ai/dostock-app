@@ -39,6 +39,10 @@ export class SalesPage implements OnInit {
     await this.getCategoriesData();
   }
 
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'sales');
+  }
+
   async getCategoriesData() {
     this.allProducts = await this.supabaseSvc.getProducts();
 
@@ -50,7 +54,7 @@ export class SalesPage implements OnInit {
       }
       this.categoriesData[category].push(product);
     })
-    console.log(this.categoriesData);
+    // console.log(this.categoriesData);
   }
 
   async addProduct() {

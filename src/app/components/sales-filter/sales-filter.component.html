@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title style="text-align: center;">
+          Filtro de ventas
+        </ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="display: flex; align-items: center;">
+        <ion-icon name="close-outline" *ngIf="filterSelected === 'products'" style="font-size: 1.5rem;"></ion-icon>
+        Productos
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Categorías
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Mayor precio
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Menor precio
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Por existencias
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

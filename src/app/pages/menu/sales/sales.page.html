@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <!-- <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -9,16 +9,19 @@
         <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
           <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
           <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
-          <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
+          <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text>
         </ion-buttons>
-    </ion-toolbar>    
+    </ion-toolbar> -->
+    <ion-toolbar>
+      <app-navigation-toolbar></app-navigation-toolbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="search">
       <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
       </ion-searchbar>
-      <ion-icon name="funnel-outline"></ion-icon>
+      <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end">
@@ -38,13 +41,13 @@
       </ion-fab-list>
     </ion-fab>
 
-    <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px;">
+    <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
       <ion-text>
         <h1 style="margin: 0px;">Categorias</h1>
       </ion-text>
     </div>
 
-    <ion-grid *ngIf="!categoryInfo.inside">
+    <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
       <ion-row *ngIf="!querySearchBar">
         <ion-col *ngFor="let category of categoriesData | keyvalue">
           <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key))">

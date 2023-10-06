@@ -17,19 +17,35 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/menu/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'recover-password',
     loadChildren: () => import('./pages/auth/recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule),
     canActivate: [AuthGuard]
-  },  {
-    path: 'chat-ai',
-    loadChildren: () => import('./pages/menu/chat-ai/chat-ai.module').then( m => m.ChatAIPageModule)
   },
-
+  {
+    path: 'chat-ai',
+    loadChildren: () => import('./pages/menu/chat-ai/chat-ai.module').then( m => m.ChatAIPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales',
+    loadChildren: () => import('./pages/menu/sales/sales.module').then( m => m.SalesPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./pages/menu/products/products.module').then( m => m.ProductsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/menu/settings/settings.module').then( m => m.SettingsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'suppliers',
+    loadChildren: () => import('./pages/menu/suppliers/suppliers.module').then( m => m.SuppliersPageModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

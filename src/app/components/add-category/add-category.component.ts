@@ -25,7 +25,7 @@ export class AddCategoryComponent  implements OnInit {
 
   async ngOnInit() {
     this.categories = await this.getCategories();
-    console.log(this.categories);
+    // console.log(this.categories);
   }
 
   closeModal(value?: any) {

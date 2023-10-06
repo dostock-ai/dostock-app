@@ -1,0 +1,29 @@
+<ion-menu 
+  contentId="main-content"
+  auto-hide="false"
+  [swipeGesture]="appMenuSwipeGesture"
+  (ionDidOpen)="appMenuSwipeGesture = false"
+  (ionDidClose)="appMenuSwipeGesture = true"
+>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>doStock AI</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+      <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" 
+        detail="false" routerLinkActive="selected">
+        <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+        <ion-label>{{ p.title }}</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-item class="sing-out" routerDirection="root" lines="none" 
+    detail="false" routerLinkActive="selected" (click)="signOut()"  color="danger">
+      <ion-icon aria-hidden="true" slot="start" [ios]="'log-out' + '-outline'" [md]="'log-out' + '-sharp'"></ion-icon>
+      <ion-label>Cerrar sesión</ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content" main></ion-router-outlet>

@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ProductsPage implements OnInit {
   productsTitle = 'Productos';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'products');
+  }
 }

@@ -1,10 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Iniciar sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-card>
     <ion-card-content>
       <form (ngSubmit)="login()" [formGroup]="credentials">
@@ -17,7 +17,7 @@
           formControlName="password"></ion-input>
         </ion-item>
         <ion-button type="submit" strong="true" expand="block" 
-        (click)="auxFns.navigateTo('/sales')" [disabled]="credentials.invalid"
+        (click)="auxFns.navigateTo('/home/sales')" [disabled]="credentials.invalid"
         >
           Iniciar sesión
         </ion-button>

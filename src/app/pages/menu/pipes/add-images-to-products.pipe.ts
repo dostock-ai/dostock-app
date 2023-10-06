@@ -10,3 +10,5 @@ export class AddImagesToProductsPipe implements PipeTransform {
   }
 
 }
+
+// call pipe with parameters < *ngFor="[] | addImagesToProducts : productsData : productImages as products">   *ngFor="let product of productsData"

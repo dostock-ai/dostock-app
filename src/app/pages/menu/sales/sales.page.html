@@ -1,17 +1,4 @@
 <ion-header>
-    <!-- <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title style="width: auto; margin: 0;">Venta</ion-title>
-
-  
-        <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
-          <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
-          <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
-          <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text>
-        </ion-buttons>
-    </ion-toolbar> -->
     <ion-toolbar>
       <app-navigation-toolbar></app-navigation-toolbar>
     </ion-toolbar>
@@ -90,4 +77,17 @@
       </ion-row>
     </ion-grid>
 </ion-content>
-<!-- call pipe with parameters < *ngFor="[] | addImagesToProducts : productsData : productImages as products">   *ngFor="let product of productsData" -->
+
+<!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="width: auto; margin: 0;">Venta</ion-title>
+
+
+    <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
+      <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
+      <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+      <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text>
+    </ion-buttons>
+</ion-toolbar> -->

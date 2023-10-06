@@ -130,6 +130,7 @@ export class SalesPage implements OnInit {
   async openSalesFilterModal() {
     const modal = await this.modalController.create({
       component: SalesFilterComponent,
+      cssClass: 'small-modal',
       componentProps: {}
     });
 

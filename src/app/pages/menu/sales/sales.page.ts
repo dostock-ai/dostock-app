@@ -4,6 +4,7 @@ import { AddProductComponent } from 'src/app/components/add-product/add-product.
 import { SupabaseService } from '../services/supabase.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
+import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 
 @Component({
   selector: 'app-sales',
@@ -124,5 +125,14 @@ export class SalesPage implements OnInit {
   handleInputSearchProduct(event: any) {
     this.querySearchBar = event.target.value.toLowerCase();
     this.resultsSearchBar = this.allProducts.filter((product: any) => product.name.toLowerCase().indexOf(this.querySearchBar) > -1);
+  }
+
+  async openSalesFilterModal() {
+    const modal = await this.modalController.create({
+      component: SalesFilterComponent,
+      componentProps: {}
+    });
+
+    await modal.present();
   }
 }

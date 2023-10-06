@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
     ) {
       this.authSvc.getCurrentUser().subscribe((user) => {
         if(user) {
-          this.router.navigateByUrl('/home', { replaceUrl: true });
+          this.router.navigateByUrl('/sales', { replaceUrl: true });
         }
       });
   }

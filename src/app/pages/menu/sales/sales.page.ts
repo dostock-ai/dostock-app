@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
@@ -14,26 +14,39 @@ import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filt
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
   categoriesData: any = {};
+
   allProducts: any = [];
   categoryInfo: any = {
     inside: false,
     data: [],
     name: ''
   };
+
   shoppingCartInfo: any = {
     amount: 0,
     products: {},
     totalProducts: 0,
     active: false
   }
+
   querySearchBar: string = '';
   resultsSearchBar: any = [];
 
+  screenWidth: number;
+  
   constructor(
     private modalController: ModalController, 
     private supabaseSvc: SupabaseService,
     public popoverController: PopoverController,
-  ) { }
+  ) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }
+  
 
   async ngOnInit() {
     await this.getCategoriesData();

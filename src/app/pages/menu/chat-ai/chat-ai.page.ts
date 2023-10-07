@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-chat-ai',
@@ -9,7 +9,16 @@ export class ChatAIPage implements OnInit{
   messages: any[] = []; // Aquí defines una propiedad "messages" que será un arreglo para almacenar los mensajes.
   newMessage: string = ''; // Aquí defines una propiedad "newMessage" para almacenar el nuevo mensaje que el usuario escribirá.
 
-  constructor() { }
+  screenWidth: number;
+
+  constructor() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }
 
   ngOnInit(): void {
     

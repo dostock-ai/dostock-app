@@ -7,8 +7,7 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddCategoryComponent } from '../add-category/add-category.component';
-
-declare var cordova: any;
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'app-add-product',
@@ -29,10 +28,12 @@ export class AddProductComponent  implements OnInit {
     private loadingController: LoadingController,
     private auxFns: AuxFnsService,
     private authSvc: AuthService,
-    private alertController: AlertController
-    ) { }
+    private alertController: AlertController,
+    ) {
+    }
 
-  async ngOnInit() {}
+  async ngOnInit() {
+  }
 
   async saveProduct() {
     const loading = await this.loadingController.create();
@@ -132,5 +133,16 @@ export class AddProductComponent  implements OnInit {
     // const { data } = await modal.onDidDismiss();
     // Aquí puedes manejar los datos que puedan devolverse cuando se cierre el modal (si lo necesitas)
     // Ejemplo: const resultado = data.resultado;
+  }
+
+  scan() {
+    BarcodeScanner.scan().then((result) => {
+      // Handle the result
+      console.log('scan: ', result);
+      this.productData.barcode = result.text;
+    }).catch((error) => {
+      // Handle the error
+      console.log('error: ', error);
+    });
   }
 }

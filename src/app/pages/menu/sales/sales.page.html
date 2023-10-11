@@ -16,13 +16,19 @@
 </ion-header>
 
 <ion-content>
+  <div class="optionsSales">
+    <ion-icon name="add-outline" (click)="addProduct()"></ion-icon>
+    <ion-icon name="scan-outline" (click)="scan()"></ion-icon>
+    <ion-icon name="cash-outline"></ion-icon>
+  </div>
+
   <div class="search">
       <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
       </ion-searchbar>
       <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end">
+  <!-- <ion-fab vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="chevron-up"></ion-icon>
       </ion-fab-button>
@@ -37,7 +43,7 @@
           <ion-icon name="add-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
 
     <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
       <ion-text>

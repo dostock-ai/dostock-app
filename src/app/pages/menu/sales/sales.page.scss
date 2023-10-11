@@ -18,3 +18,17 @@
         cursor: pointer;
     }
 }
+
+.optionsSales {
+    display: flex; 
+    width: 100%; 
+    justify-content: end; 
+    align-items: center;
+    padding: .5rem 1rem 0 1rem;
+
+    ion-icon {
+        font-size: 1.5rem;
+        margin: .5rem;
+        cursor: pointer;
+    }
+}

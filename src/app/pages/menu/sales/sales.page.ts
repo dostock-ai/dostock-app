@@ -5,6 +5,7 @@ import { SupabaseService } from '../services/supabase.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
+import { ScanService } from 'src/app/services/scan.service';
 
 @Component({
   selector: 'app-sales',
@@ -38,6 +39,7 @@ export class SalesPage implements OnInit {
     private modalController: ModalController, 
     private supabaseSvc: SupabaseService,
     public popoverController: PopoverController,
+    private scanSvc: ScanService,
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -149,6 +151,22 @@ export class SalesPage implements OnInit {
       component: SalesFilterComponent,
       cssClass: 'small-modal',
       componentProps: {}
+    });
+
+    await modal.present();
+  }
+
+  async scan() {
+    const barcode = await this.scanSvc.scan();
+
+    // Despues de obtener el codigo abrir el modal de 
+    // add-product y enviarle el barcode como parametro
+
+    const modal = await this.modalController.create({
+      component: AddProductComponent,
+      componentProps: {
+        barcode: barcode
+      }
     });
 
     await modal.present();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { SupabaseService } from 'src/app/pages/menu/services/supabase.service';
 import { LoadingController } from '@ionic/angular';
@@ -7,7 +7,7 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddCategoryComponent } from '../add-category/add-category.component';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ScanService } from 'src/app/services/scan.service';
 
 @Component({
   selector: 'app-add-product',
@@ -15,6 +15,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent  implements OnInit {
+  @Input() barcode: any;
 
   productData: any = {
     imageURL: './../../assets/img/default.png',
@@ -28,11 +29,13 @@ export class AddProductComponent  implements OnInit {
     private loadingController: LoadingController,
     private auxFns: AuxFnsService,
     private authSvc: AuthService,
+    private scanSvc: ScanService,
     private alertController: AlertController,
     ) {
     }
 
   async ngOnInit() {
+    this.productData.barcode = this.barcode;
   }
 
   async saveProduct() {
@@ -135,14 +138,7 @@ export class AddProductComponent  implements OnInit {
     // Ejemplo: const resultado = data.resultado;
   }
 
-  scan() {
-    BarcodeScanner.scan().then((result) => {
-      // Handle the result
-      console.log('scan: ', result);
-      this.productData.barcode = result.text;
-    }).catch((error) => {
-      // Handle the error
-      console.log('error: ', error);
-    });
+  async scan() {
+    this.productData.barcode = await this.scanSvc.scan();
   }
 }

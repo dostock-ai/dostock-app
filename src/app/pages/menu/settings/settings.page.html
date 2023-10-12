@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     
-    <ion-title>Configuración</ion-title>
+    <ion-title *ngIf="screenWidth < 1000">Configuración</ion-title>
+
+    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 </ion-content>

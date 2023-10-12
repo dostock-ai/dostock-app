@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { SupabaseService } from 'src/app/pages/menu/services/supabase.service';
 import { LoadingController } from '@ionic/angular';
@@ -7,8 +7,7 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddCategoryComponent } from '../add-category/add-category.component';
-
-declare var cordova: any;
+import { ScanService } from 'src/app/services/scan.service';
 
 @Component({
   selector: 'app-add-product',
@@ -16,6 +15,7 @@ declare var cordova: any;
   styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent  implements OnInit {
+  @Input() barcode: any;
 
   productData: any = {
     imageURL: './../../assets/img/default.png',
@@ -29,10 +29,14 @@ export class AddProductComponent  implements OnInit {
     private loadingController: LoadingController,
     private auxFns: AuxFnsService,
     private authSvc: AuthService,
-    private alertController: AlertController
-    ) { }
+    private scanSvc: ScanService,
+    private alertController: AlertController,
+    ) {
+    }
 
-  async ngOnInit() {}
+  async ngOnInit() {
+    this.productData.barcode = this.barcode;
+  }
 
   async saveProduct() {
     const loading = await this.loadingController.create();
@@ -132,5 +136,9 @@ export class AddProductComponent  implements OnInit {
     // const { data } = await modal.onDidDismiss();
     // Aquí puedes manejar los datos que puedan devolverse cuando se cierre el modal (si lo necesitas)
     // Ejemplo: const resultado = data.resultado;
+  }
+
+  async scan() {
+    this.productData.barcode = await this.scanSvc.scan();
   }
 }

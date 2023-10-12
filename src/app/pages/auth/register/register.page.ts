@@ -57,7 +57,7 @@ export class RegisterPage {
       const full_name = this.full_name.value;
       const business_name = this.business_name.value;
 
-      console.log(this.authService.getCurrentUserId());
+      // console.log(this.authService.getCurrentUserId());
 
       const info = await this.authSupabaseSvc.createUser(full_name, business_name, uuid);
       

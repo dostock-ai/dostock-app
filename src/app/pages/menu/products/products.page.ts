@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-products',
@@ -7,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsPage implements OnInit {
   productsTitle = 'Productos';
+  screenWidth: number;
 
-  constructor() { }
+  constructor() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }
 
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'products');
+  }
 }

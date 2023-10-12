@@ -1,27 +1,34 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title style="width: auto; margin: 0;">Venta</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">Venta</ion-title>
 
-  
-        <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
-          <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
-          <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
-          <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
-        </ion-buttons>
-    </ion-toolbar>    
+    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
+
+    <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
+      <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
+      <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+      <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="optionsSales">
+    <ion-icon name="add-outline" (click)="addProduct()"></ion-icon>
+    <ion-icon name="scan-outline" (click)="scan()"></ion-icon>
+    <ion-icon name="cash-outline"></ion-icon>
+  </div>
+
   <div class="search">
       <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
       </ion-searchbar>
-      <ion-icon name="funnel-outline"></ion-icon>
+      <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end">
+  <!-- <ion-fab vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="chevron-up"></ion-icon>
       </ion-fab-button>
@@ -36,15 +43,15 @@
           <ion-icon name="add-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
 
-    <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px;">
+    <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
       <ion-text>
         <h1 style="margin: 0px;">Categorias</h1>
       </ion-text>
     </div>
 
-    <ion-grid *ngIf="!categoryInfo.inside">
+    <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
       <ion-row *ngIf="!querySearchBar">
         <ion-col *ngFor="let category of categoriesData | keyvalue">
           <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key))">
@@ -87,4 +94,17 @@
       </ion-row>
     </ion-grid>
 </ion-content>
-<!-- call pipe with parameters < *ngFor="[] | addImagesToProducts : productsData : productImages as products">   *ngFor="let product of productsData" -->
+
+<!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="width: auto; margin: 0;">Venta</ion-title>
+
+
+    <ion-buttons color="primary" slot="end" *ngIf="shoppingCartInfo.active" style=" display: flex; justify-content: center; align-items: center; cursor: pointer;">
+      <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
+      <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+      <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text>
+    </ion-buttons>
+</ion-toolbar> -->

@@ -54,6 +54,7 @@
       </ion-item>
       <ion-item>
         <ion-input label="Código de barras" labelPlacement="floating" [(ngModel)]="productData.barcode"></ion-input>
+        <ion-icon name="scan-outline" style="cursor: pointer;" (click)="scan()"></ion-icon>
       </ion-item>
       <ion-item>
         <ion-toggle justify="space-between" [(ngModel)]="productData.available_for_sale"><ion-text>Disponible para venta</ion-text></ion-toggle>

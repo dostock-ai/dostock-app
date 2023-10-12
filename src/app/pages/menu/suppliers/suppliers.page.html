@@ -1,17 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar> 
+    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
       <ion-menu-button></ion-menu-button>
-  </ion-buttons>
+    </ion-buttons>
   
-    <ion-title>Proveedores</ion-title>
+    <ion-title *ngIf="screenWidth < 1000">Proveedores</ion-title>
+    
+    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Proveedores</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 </ion-content>

@@ -21,7 +21,7 @@ export class SupabaseService {
 
   async setTemplate(selectedTemplate: string) {
     const user_id = this.authSvc.getCurrentUserId();
-    console.log(this.authSvc.getCurrentUser());
+    // console.log(this.authSvc.getCurrentUser());
     
     const { error } = await this.authSvc.supabase.from('user-data').update({ template: selectedTemplate }).eq('user_id', user_id);
     console.log(error);

@@ -64,4 +64,4 @@ export class HomePage implements OnInit {
   
     await modal.present();
   }
-}
+} 

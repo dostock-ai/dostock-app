@@ -26,7 +26,10 @@ export class LoginPage implements OnInit {
     ) {
       this.authSvc.getCurrentUser().subscribe((user) => {
         if(user) {
-          this.router.navigateByUrl('/home', { replaceUrl: true });
+          const redirectUrl = localStorage.getItem('redirectUrl') || 'sales';
+          console.log('redirectUrl', redirectUrl);
+          
+          this.router.navigateByUrl('/home/' + redirectUrl, { replaceUrl: true });
         }
       });
   }

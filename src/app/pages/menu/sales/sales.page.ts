@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
+import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
+import { ScanService } from 'src/app/services/scan.service';
 
 @Component({
   selector: 'app-sales',
@@ -13,29 +15,47 @@ import { SelectQuantityOfProductComponent } from 'src/app/components/select-quan
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
   categoriesData: any = {};
+
   allProducts: any = [];
   categoryInfo: any = {
     inside: false,
     data: [],
     name: ''
   };
+
   shoppingCartInfo: any = {
     amount: 0,
     products: {},
     totalProducts: 0,
     active: false
   }
+
   querySearchBar: string = '';
   resultsSearchBar: any = [];
 
+  screenWidth: number;
+  
   constructor(
     private modalController: ModalController, 
     private supabaseSvc: SupabaseService,
     public popoverController: PopoverController,
-  ) { }
+    private scanSvc: ScanService,
+  ) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }
+  
 
   async ngOnInit() {
     await this.getCategoriesData();
+  }
+
+  ionViewWillEnter() {
+    localStorage.setItem('redirectUrl', 'sales');
   }
 
   async getCategoriesData() {
@@ -49,7 +69,7 @@ export class SalesPage implements OnInit {
       }
       this.categoriesData[category].push(product);
     })
-    console.log(this.categoriesData);
+    // console.log(this.categoriesData);
   }
 
   async addProduct() {
@@ -124,5 +144,31 @@ export class SalesPage implements OnInit {
   handleInputSearchProduct(event: any) {
     this.querySearchBar = event.target.value.toLowerCase();
     this.resultsSearchBar = this.allProducts.filter((product: any) => product.name.toLowerCase().indexOf(this.querySearchBar) > -1);
+  }
+
+  async openSalesFilterModal() {
+    const modal = await this.modalController.create({
+      component: SalesFilterComponent,
+      cssClass: 'small-modal',
+      componentProps: {}
+    });
+
+    await modal.present();
+  }
+
+  async scan() {
+    const barcode = await this.scanSvc.scan();
+
+    // Despues de obtener el codigo abrir el modal de 
+    // add-product y enviarle el barcode como parametro
+
+    const modal = await this.modalController.create({
+      component: AddProductComponent,
+      componentProps: {
+        barcode: barcode
+      }
+    });
+
+    await modal.present();
   }
 }

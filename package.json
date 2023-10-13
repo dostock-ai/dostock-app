@@ -31,11 +31,13 @@
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@ionic-native/core": "^5.36.0",
-    "@ionic/angular": "^7.0.0",
+    "@ionic/angular": "^7.5.0",
+    "@ionic/angular-server": "^7.5.0",
     "@ionic/pwa-elements": "^3.2.2",
     "@supabase/supabase-js": "^2.26.0",
     "ionicons": "^7.0.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
+    "rxjs": "^7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
@@ -69,7 +71,6 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-
     "ts-node": "^8.3.0",
     "typescript": "~5.0.2"
   },

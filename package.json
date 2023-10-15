@@ -30,7 +30,6 @@
     "@capacitor/ios": "^5.4.0",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
-    "@ionic-native/core": "^5.36.0",
     "@ionic/angular": "^7.5.0",
     "@ionic/angular-server": "^7.5.0",
     "@ionic/pwa-elements": "^3.2.2",

@@ -8,7 +8,7 @@ export class ScanService {
 
   constructor() { }
 
-  async scan() {
+  async scan1() {
     // let result;
     // try {
     //   result = await BarcodeScanner.scan(); 

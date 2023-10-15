@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseClient, User, createClient } from '@supabase/supabase-js';
 import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs/';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

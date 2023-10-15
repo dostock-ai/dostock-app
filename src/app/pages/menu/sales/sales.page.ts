@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
@@ -6,6 +6,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 import { ScanService } from 'src/app/services/scan.service';
+
+import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
+import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
+import { DialogService } from 'src/app/core/dialog.service';
+
 
 @Component({
   selector: 'app-sales',
@@ -34,12 +39,15 @@ export class SalesPage implements OnInit {
   resultsSearchBar: any = [];
 
   screenWidth: number;
-  
+
   constructor(
     private modalController: ModalController, 
     private supabaseSvc: SupabaseService,
     public popoverController: PopoverController,
     private scanSvc: ScanService,
+
+    private readonly dialogService: DialogService,
+    private readonly ngZone: NgZone
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -156,8 +164,8 @@ export class SalesPage implements OnInit {
     await modal.present();
   }
 
-  async scan() {
-    const barcode = await this.scanSvc.scan();
+  async scan1() {
+    const barcode = await this.scanSvc.scan1();
 
     // Despues de obtener el codigo abrir el modal de 
     // add-product y enviarle el barcode como parametro
@@ -170,5 +178,49 @@ export class SalesPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  async scan() {
+    let isSupportedRes, isPermissionGrantedRes;
+    try {
+      isSupportedRes = await BarcodeScanner.isSupported();
+      isPermissionGrantedRes = await BarcodeScanner.checkPermissions();
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log('IsSupported: ', isSupportedRes?.supported);
+
+    if(isPermissionGrantedRes?.camera === 'granted') {
+      console.log('isPermissionGranted: ', isPermissionGrantedRes);
+    }
+
+    const formats:any = [];
+    const lensFacing = LensFacing.Back;
+    const element = await this.dialogService.showModal({
+      component: BarcodeScanningModalComponent,
+      // Set `visibility` to `visible` to show the modal (see `src/theme/variables.scss`)
+      cssClass: 'barcode-scanning-modal',
+      showBackdrop: false,
+      componentProps: {
+        formats: formats,
+        lensFacing: lensFacing,
+      },
+    });
+    element.onDidDismiss().then(async (result:any) => {
+      const barcode = result.data?.barcode;
+      if (barcode) {
+        console.log('barcode: ', barcode);
+
+        const modal = await this.modalController.create({
+          component: AddProductComponent,
+          componentProps: {
+            barcode: barcode.displayValue
+          }
+        });
+    
+        await modal.present();
+      }
+    });
   }
 }

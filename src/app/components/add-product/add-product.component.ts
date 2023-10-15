@@ -139,6 +139,6 @@ export class AddProductComponent  implements OnInit {
   }
 
   async scan() {
-    this.productData.barcode = await this.scanSvc.scan();
+    this.productData.barcode = await this.scanSvc.scan1();
   }
 }

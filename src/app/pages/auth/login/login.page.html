@@ -1,37 +1,103 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <form (ngSubmit)="login()" [formGroup]="credentials">
-        <ion-item>
-          <ion-input label="Correo electrónico" type="email" labelPlacement="floating" 
-          placeholder="email@domain.com" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Contraseña" type="password" labelPlacement="floating" 
-          formControlName="password"></ion-input>
-        </ion-item>
-        <ion-button type="submit" strong="true" expand="block" 
-        (click)="auxFns.navigateTo('/home/sales')" [disabled]="credentials.invalid"
-        >
-          Iniciar sesión
-        </ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
-  <div class="recover-password">
-    <ion-text (click)="forgotPassword()">
-      ¿Olvidaste la contraseña?
-    </ion-text>
-  </div>
-  <div class="create-account">
-    <ion-text (click)="auxFns.navigateTo('/register')">
-      Crear cuenta
-    </ion-text>
+  <div id="main-content">
+    <div id="center-content">
+      <ion-grid>
+        <ion-row id="row-desktop">
+          <ion-col size="{{screenWidth > 1121 ? 'auto' : ''}}" id="col-img">
+            <ion-img src="../../../../assets/img/logo.png"></ion-img>
+          </ion-col>
+
+          <ion-col size="auto" id="col-form" *ngIf="screenWidth > 1121">
+            <div id="form-content">
+              <div id="form-title-content">
+                <ion-title>
+                  DoStock AI
+                </ion-title>
+              </div>
+  
+              <div id="center-form">
+                <form (ngSubmit)="login()" [formGroup]="credentials">
+                  <div>
+                    <ion-item>
+                      <ion-input label="Correo electrónico" type="email" labelPlacement="floating" 
+                      placeholder="email@domain.com" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-input label="Contraseña" type="password" labelPlacement="floating" 
+                      formControlName="password"></ion-input>
+                    </ion-item>
+    
+                    <div class="recover-password">
+                      <ion-text (click)="forgotPassword()">
+                        ¿Olvidaste la contraseña?
+                      </ion-text>
+                    </div>
+                  </div>
+
+                  <div>
+                    <ion-button type="submit" strong="true" expand="block" style="padding-bottom: .5rem;"
+                    (click)="auxFns.navigateTo('/home/sales')" [disabled]="credentials.invalid">
+                      Iniciar sesión
+                    </ion-button>
+    
+                    <div class="create-account">
+                      <ion-text (click)="auxFns.navigateTo('/register')">
+                        ¿No tienes una cuenta? <span>Crear cuenta</span>
+                      </ion-text>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="screenWidth <= 1121" style="height: 70%;">
+          <ion-col>
+            <div style="height: 100%;">
+              <div style="height: 15%;">
+                <ion-title>
+                  DoStock AI
+                </ion-title>
+              </div>
+  
+              <div style="height: 85%;">
+                <form (ngSubmit)="login()" [formGroup]="credentials" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                  <div>
+                    <ion-item>
+                      <ion-input label="Correo electrónico" type="email" labelPlacement="floating" 
+                      placeholder="email@domain.com" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-input label="Contraseña" type="password" labelPlacement="floating" 
+                      formControlName="password"></ion-input>
+                    </ion-item>
+    
+                    <div class="recover-password">
+                      <ion-text (click)="forgotPassword()">
+                        ¿Olvidaste la contraseña?
+                      </ion-text>
+                    </div>
+                  </div>
+
+                  <div>
+                    <ion-button type="submit" strong="true" expand="block" style="padding-bottom: .5rem;"
+                    (click)="auxFns.navigateTo('/home/sales')" [disabled]="credentials.invalid">
+                      Iniciar sesión
+                    </ion-button>
+    
+                    <div class="create-account">
+                      <ion-text (click)="auxFns.navigateTo('/register')">
+                        ¿No tienes una cuenta? <span>Crear cuenta</span>
+                      </ion-text>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 </ion-content>

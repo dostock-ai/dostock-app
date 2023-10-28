@@ -16,6 +16,8 @@ export class LoginPage implements OnInit {
     password: ['', Validators.required],
   });
 
+  screenWidth: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private authSvc: AuthService, 
@@ -35,6 +37,13 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.screenWidth = window.innerWidth;
+
+    // Escuchar cambios en el ancho de la ventana
+    window.addEventListener('resize', () => {
+      this.screenWidth = window.innerWidth;
+      // Puedes realizar acciones basadas en el valor de this.screenWidth
+    });
   }
 
   get email() {

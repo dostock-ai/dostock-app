@@ -1,0 +1,25 @@
+.card-hover {
+    transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
+}
+  
+.card-hover:hover {
+    transform: scale(1.05); /* Hace zoom al 105% */
+}
+
+.card-hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Ancho completo del card */
+    height: 3px; /* Altura del borde inferior */
+    background: #00ff00; /* Borde que brilla en verde (#00ff00) */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s, width 0.3s;
+  }
+  
+  .card-hover:hover::after {
+    width: 100%; /* Ancho completo del card */
+    transform: scaleX(1);
+  }

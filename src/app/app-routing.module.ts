@@ -50,7 +50,11 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/menu/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'templates',
+    loadChildren: () => import('./pages/menu/templates/templates.module').then( m => m.TemplatesPageModule)
   },
+
 ];
 
 @NgModule({

@@ -37,6 +37,11 @@ const routes: Routes = [
         path: 'chat-ai',
         loadChildren: () => import('../chat-ai/chat-ai.module').then( m => m.ChatAIPageModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'templates',
+        loadChildren: () => import('../templates/templates.module').then( m => m.TemplatesPageModule),
+        canActivate: [AuthGuard]
       }
     ]
   }

@@ -12,43 +12,15 @@ export class SelectTemplateComponent  implements OnInit {
   templates = [
     {
       src: './../../assets/img/templates/default.png',
-      title: 'Default',
-      subtitle: 'Plantilla por defecto',
-      alt: 'Default'
+      title: 'Sin plantilla',
     },
     {
-      src: './../../assets/img/templates/clothes.png',
-      title: 'Ropa',
-      subtitle: 'Pantalones, camisetas, vestidos...',
-      alt: 'Ropa'
-    },
-    {
-      src: './../../assets/img/templates/restaurant.png',
-      title: 'Restaurante',
-      subtitle: 'Platos, bebidas, postres...',
-      alt: 'Restaurante'
-    },
-    {
-      src: './../../assets/img/templates/fruit_store.png',
-      title: 'Fruteria',
-      subtitle: 'Manzana, pera, platano...',
-      alt: 'Fruteria'
-    },
-    {
-      src: './../../assets/img/templates/accessories.png',
-      title: 'Accesorios',
-      subtitle: 'Pulseras, collares, pendientes...',
-      alt: 'Accesorios'
-    },
-    {
-      src: './../../assets/img/templates/vulka.png',
-      title: 'Vulka',
-      subtitle: 'Llantas nuevas, reparación...',
-      alt: 'Vulka'
+      src: './../../assets/img/templates/coffee.png',
+      title: 'Cafetería',
     },
   ]
 
-  constructor(private modalController: ModalController, private supabase: SupabaseService, private loadingController: LoadingController,) { }
+  constructor(private modalController: ModalController, private supabase: SupabaseService, private loadingController: LoadingController) { }
 
   ngOnInit() {}
 

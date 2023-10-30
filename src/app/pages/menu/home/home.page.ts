@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { SelectTemplateComponent } from 'src/app/components/select-template/select-template.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { AuxFnsService } from 'src/app/services/aux-fns.service';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,20 @@ export class HomePage implements OnInit {
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
 
-  constructor(private authSvc: AuthService, private alertController: AlertController, private loadingController: LoadingController, private modalController: ModalController) { }
+  constructor(
+    private authSvc: AuthService, 
+    private alertController: AlertController, 
+    private loadingController: LoadingController, 
+    private modalController: ModalController,
+    public auxFns: AuxFnsService
+  ) { }
 
   ngOnInit() {
+    localStorage.setItem('selectedTemplate', '');
     this.template = localStorage.getItem('selectedTemplate');
     if(!this.template) {
-      this.selectTemplate();
+      this.auxFns.navigateTo('/home/templates');
+      // this.selectTemplate();
     }
   }
 
@@ -51,11 +60,7 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-  selectTemplate() {
-    this.openSelectTemplateModal();
-  }
-
-  async openSelectTemplateModal() {
+  async selectTemplate() {
     const modal = await this.modalController.create({
       component: SelectTemplateComponent,
       backdropDismiss: false,

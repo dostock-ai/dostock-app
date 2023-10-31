@@ -55,7 +55,7 @@ export class AddProductComponent  implements OnInit {
     delete this.productData.imageURL;
     const error = await this.supabaseSvc.addProduct(this.productData);
     if (error) {
-      console.log('Ocurrió un error al guardar el producto');
+      this.auxFns.showAlert('Error', 'Ocurrió un error al guardar el producto');
     } else {
       this.auxFns.showAlert('Producto guardado', 'El producto se guardó correctamente');
       this.closeModal();

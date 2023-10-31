@@ -19,12 +19,25 @@ export class SupabaseService {
     productData.user_id = uuid;
   }
 
-  async setTemplate(selectedTemplate: string) {
+  async setTemplate(products: any) {
     const user_id = this.authSvc.getCurrentUserId();
-    // console.log(this.authSvc.getCurrentUser());
-    
-    const { error } = await this.authSvc.supabase.from('user-data').update({ template: selectedTemplate }).eq('user_id', user_id);
-    console.log(error);
+    const { error } = await this.authSvc.supabase.from('user-data').update({ template: true }).eq('user_id', user_id);
+
+    for (let index = 0; index < products.length; index++) {
+      const product = products[index];
+      await this.authSvc.supabase.from('stock').insert({ user_id: user_id, ...product });
+    }
+  }
+
+  async getSelectedTemplate() {
+    const user_id = this.authSvc.getCurrentUserId();
+
+    const { data, error } = await this.authSvc.supabase.from('user-data').select().eq('user_id', user_id);
+    let selectedTemplate;
+    if(data?.length === 1) {
+      selectedTemplate = data[0]?.selectedTemplate;
+    }
+    return selectedTemplate;
   }
 
   async getProducts() {

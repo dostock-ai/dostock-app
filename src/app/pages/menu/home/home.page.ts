@@ -3,6 +3,7 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { SelectTemplateComponent } from 'src/app/components/select-template/select-template.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
+import { SupabaseService } from '../services/supabase.service';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +26,13 @@ export class HomePage implements OnInit {
     private alertController: AlertController, 
     private loadingController: LoadingController, 
     private modalController: ModalController,
-    public auxFns: AuxFnsService
+    public auxFns: AuxFnsService,
+    private supabase: SupabaseService, 
   ) { }
 
-  ngOnInit() {
-    localStorage.setItem('selectedTemplate', '');
-    this.template = localStorage.getItem('selectedTemplate');
+  async ngOnInit() {
+    const currentUserId = this.authSvc.getCurrentUserId();
+    this.template = localStorage.getItem(currentUserId + '/selectedTemplate') || await this.supabase.getSelectedTemplate();
     if(!this.template) {
       this.auxFns.navigateTo('/home/templates');
       // this.selectTemplate();

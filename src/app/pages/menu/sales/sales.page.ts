@@ -69,8 +69,8 @@ export class SalesPage implements OnInit {
   async getCategoriesData() {
     this.allProducts = await this.supabaseSvc.getProducts();
 
-    (this.allProducts || [])?.forEach((product: any) => {
-      const category = product.category;
+    (this.allProducts || []).forEach((product: any) => {
+      const category = product.category || 'Sin categoría';
 
       if (!this.categoriesData[category]) {
         this.categoriesData[category] = [];

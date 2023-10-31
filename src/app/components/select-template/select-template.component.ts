@@ -30,7 +30,7 @@ export class SelectTemplateComponent  implements OnInit {
 
     this.selectedTemplate = selectedTemplate;
     this.setTemplateToCache(selectedTemplate);
-    this.setTemplateToSupabase(selectedTemplate);
+    // this.setTemplateToSupabase(selectedTemplate);
 
     this.closeModal();
     await loading.dismiss();
@@ -40,9 +40,9 @@ export class SelectTemplateComponent  implements OnInit {
     localStorage.setItem('selectedTemplate', selectedTemplate);
   }
 
-  setTemplateToSupabase(selectedTemplate: string) {
-    this.supabase.setTemplate(selectedTemplate);
-  }
+  // setTemplateToSupabase(selectedTemplate: string) {
+  //   this.supabase.setTemplate();
+  // }
 
   closeModal() {
     this.modalController.dismiss();

@@ -20,6 +20,15 @@
   }
   
   .card-hover:hover::after {
-    width: 100%; /* Ancho completo del card */
+    width: 100%;
     transform: scaleX(1);
   }
+
+#confirmTemplate {
+  padding-right: 1rem; 
+  cursor: pointer;
+}
+
+#confirmTemplate:hover {
+  color: #00ff00;
+}

@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Plantillas</ion-title>
+
+    <ion-buttons slot="end" *ngIf="!templatesSeccion" id="confirmTemplate" (click)="setTemplate()">
+      Aplicar plantilla
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

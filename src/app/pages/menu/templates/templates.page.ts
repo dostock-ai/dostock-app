@@ -23,132 +23,132 @@ export class TemplatesPage implements OnInit {
       src: './../../assets/img/templates/coffee.png',
       title: 'Cafetería',
       categories: {
-        // 'Bebidas frías': [
-        //   {
-        //     name: 'Malteada de pay de limón',
-        //     sale_price: 68,
-        //     category: 'Bebidas frías',
-        //     buy_price: 30,
-        //     description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
-        //     barcode: '4567191221',
-        //     type_sale: 'Unidad',
-        //     available_for_sale: true,
-        //     control_stock: true,
-        //     current_stock: 50,
-        //     image_url: 'set image in supabase in folder templates?, and set a option to change the img'
-        //   },
-        //   {
-        //     name: 'Frappé'
-        //   },
-        //   {
-        //     name: 'Malteada de Óreo'
-        //   },
-        //   {
-        //     name: 'Chamoyada'
-        //   },
-        //   {
-        //     name: 'Capuccino helado saborizado'
-        //   },
-        //   {
-        //     name: 'Soda italiana'
-        //   },
-        //   {
-        //     name: 'Tisana helada'
-        //   },
-        //   {
-        //     name: 'Smoothie'
-        //   }
-        // ],
-        // 'Bebidas calientes': [
-        //   {
-        //     name: "Espresso"
-        //   },
-        //   {
-        //     name: "Americano"
-        //   },
-        //   {
-        //     name: "Capuccino"
-        //   },
-        //   {
-        //     name: "Capuccino con chocolate blanco"
-        //   },
-        //   {
-        //     name: "Taro"
-        //   },
-        //   {
-        //     name: "Chocolate"
-        //   },
-        //   {
-        //     name: "Latte"
-        //   },
-        //   {
-        //     name: "Matcha latte"
-        //   },
-        //   {
-        //     name: "Cocteles con café"
-        //   },
-        //   {
-        //     name: "Carajillo"
-        //   },
-        //   {
-        //     name: "Café irlandés"
-        //   },
-        //   {
-        //     name: "Gin tonic con café"
-        //   },
-        //   {
-        //     name: "Café vienés"
-        //   }
-        // ],
-        // 'Bocadillos': [
-        //   {
-        //     name: "Emparedados"
-        //   },
-        //   {
-        //     name: "Huevos al gusto"
-        //   },
-        //   {
-        //     name: "Sincronizadas"
-        //   },
-        //   {
-        //     name: "Hamburguesas"
-        //   },
-        //   {
-        //     name: "Hot dogs"
-        //   },
-        //   {
-        //     name: "Chilaquiles"
-        //   },
-        //   {
-        //     name: "Enchiladas"
-        //   },
-        //   {
-        //     name: "Tostadas"
-        //   },
-        //   {
-        //     name: "Hot cakes"
-        //   },
-        //   {
-        //     name: "Waffles"
-        //   },
-        //   {
-        //     name: "Crepas"
-        //   }
-        // ],
-        // 'Postres': [
-        //   {
-        //     name: "Rosca de churros"
-        //   },
-        //   {
-        //     name: "Donas"
-        //   },
-        //   {
-        //     name: "Brownies"
-        //   },
-        //   {
-        //     name: "Pays"
-        //   }
-        // ],
+        'Bebidas frías': [
+          {
+            name: 'Malteada de pay de limón',
+            sale_price: 68,
+            category: 'Bebidas frías',
+            buy_price: 30,
+            description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
+            barcode: '4567191221',
+            type_sale: 'Unidad',
+            available_for_sale: true,
+            control_stock: true,
+            current_stock: 50,
+            image_url: 'set image in supabase in folder templates?, and set a option to change the img'
+          },
+          {
+            name: 'Frappé'
+          },
+          {
+            name: 'Malteada de Óreo'
+          },
+          {
+            name: 'Chamoyada'
+          },
+          {
+            name: 'Capuccino helado saborizado'
+          },
+          {
+            name: 'Soda italiana'
+          },
+          {
+            name: 'Tisana helada'
+          },
+          {
+            name: 'Smoothie'
+          }
+        ],
+        'Bebidas calientes': [
+          {
+            name: "Espresso"
+          },
+          {
+            name: "Americano"
+          },
+          {
+            name: "Capuccino"
+          },
+          {
+            name: "Capuccino con chocolate blanco"
+          },
+          {
+            name: "Taro"
+          },
+          {
+            name: "Chocolate"
+          },
+          {
+            name: "Latte"
+          },
+          {
+            name: "Matcha latte"
+          },
+          {
+            name: "Cocteles con café"
+          },
+          {
+            name: "Carajillo"
+          },
+          {
+            name: "Café irlandés"
+          },
+          {
+            name: "Gin tonic con café"
+          },
+          {
+            name: "Café vienés"
+          }
+        ],
+        'Bocadillos': [
+          {
+            name: "Emparedados"
+          },
+          {
+            name: "Huevos al gusto"
+          },
+          {
+            name: "Sincronizadas"
+          },
+          {
+            name: "Hamburguesas"
+          },
+          {
+            name: "Hot dogs"
+          },
+          {
+            name: "Chilaquiles"
+          },
+          {
+            name: "Enchiladas"
+          },
+          {
+            name: "Tostadas"
+          },
+          {
+            name: "Hot cakes"
+          },
+          {
+            name: "Waffles"
+          },
+          {
+            name: "Crepas"
+          }
+        ],
+        'Postres': [
+          {
+            name: "Rosca de churros"
+          },
+          {
+            name: "Donas"
+          },
+          {
+            name: "Brownies"
+          },
+          {
+            name: "Pays"
+          }
+        ],
         'Productos sin categoría': [
           {
             name: "Agua",
@@ -198,42 +198,42 @@ export class TemplatesPage implements OnInit {
             current_stock: 120,
             image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/caramelo.jpg'
           },
-          // {
-          //   name: "Leche de almendra",
-          //   sale_price: 20,
-          //   buy_price: 8,
-          //   description: 'Agua purificada',
-          //   barcode: '9823748232',
-          //   type_sale: 'Unidad',
-          //   available_for_sale: true,
-          //   control_stock: true,
-          //   current_stock: 120,
-          //   image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/agua.jpg'
-          // },
-          // {
-          //   name: "Azúcar",
-          //   sale_price: 20,
-          //   buy_price: 8,
-          //   description: 'Agua purificada',
-          //   barcode: '9823748232',
-          //   type_sale: 'Unidad',
-          //   available_for_sale: true,
-          //   control_stock: true,
-          //   current_stock: 120,
-          //   image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/agua.jpg'
-          // },
-          // {
-          //   name: 'Chocolate',
-          //   sale_price: 20,
-          //   buy_price: 8,
-          //   description: 'Agua purificada',
-          //   barcode: '9823748232',
-          //   type_sale: 'Unidad',
-          //   available_for_sale: true,
-          //   control_stock: true,
-          //   current_stock: 120,
-          //   image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/agua.jpg'
-          // }
+          {
+            name: "Leche de almendra",
+            sale_price: 20,
+            buy_price: 8,
+            description: 'Agua purificada',
+            barcode: '9823748232',
+            type_sale: 'Unidad',
+            available_for_sale: true,
+            control_stock: true,
+            current_stock: 120,
+            image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/leche_de_almendras.jpg?t=2023-11-01T15%3A58%3A04.627Z'
+          },
+          {
+            name: "Azúcar",
+            sale_price: 20,
+            buy_price: 8,
+            description: 'Agua purificada',
+            barcode: '9823748232',
+            type_sale: 'Unidad',
+            available_for_sale: true,
+            control_stock: true,
+            current_stock: 120,
+            image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/azucar.jpg'
+          },
+          {
+            name: 'Chocolate',
+            sale_price: 20,
+            buy_price: 8,
+            description: 'Agua purificada',
+            barcode: '9823748232',
+            type_sale: 'Unidad',
+            available_for_sale: true,
+            control_stock: true,
+            current_stock: 120,
+            image_url: 'https://ocawxswurzuxadztfqtw.supabase.co/storage/v1/object/public/templates/coffee/chocolate.jpeg?t=2023-11-01T16%3A04%3A05.592Z'
+          }
         ]
       }
     },

@@ -31,7 +31,7 @@
       </ion-col>
     </ion-row>
 
-    <ng-container *ngIf="!templatesSeccion and currentSelectedTemplate" style="width: 100%;">
+    <ng-container *ngIf="!templatesSeccion && currentSelectedTemplate" style="width: 100%;">
       <ng-container *ngFor="let category of currentSelectedTemplate | keyvalue">
         <ion-row style="width: 100%;">
           <ion-col style="padding: 1rem;">

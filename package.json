@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-builders/custom-webpack": "^16.0.1",
     "@angular/animations": "^16.0.0",
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
@@ -35,9 +36,14 @@
     "@ionic/angular-server": "^7.5.0",
     "@ionic/pwa-elements": "^3.2.2",
     "@supabase/supabase-js": "^2.26.0",
+    "browserify-fs": "^1.0.0",
+    "dotenv": "^16.3.1",
     "ionicons": "^7.0.0",
+    "openai": "^4.15.3",
+    "process": "^0.11.10",
     "rxjs": "^7.4.0",
     "tslib": "^2.3.0",
+    "webpack": "^5.89.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
@@ -57,6 +63,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^7.26.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",

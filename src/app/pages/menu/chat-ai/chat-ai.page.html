@@ -10,11 +10,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid style="width: 100%; height: 80%;  overflow-y: auto; padding: 1rem 5rem;">
+  <ion-grid style="width: 85%; height: 80%; overflow-y: auto; padding: 1rem 0rem;">
     <ion-content #content>
-      <ion-row *ngFor="let message of messages" [ngClass]="message.sender === 'chat-user-message' ? 'chat-user-message' : 'chat-ai-message'">
-        <ion-col>
-          <ion-text> {{ message.sender }}: {{ message.text }} </ion-text>
+      <ion-row *ngFor="let message of messages">
+        <ion-col [ngClass]="message.sender === 'chat-user-message' ? 'chat-user-message' : 'chat-ai-message'">
+          <div>
+            <ion-text> {{ message.sender === 'chat-user-message' ? 'Yo: ' : 'Tory AI' }}: {{ message.text }} </ion-text>
+          </div>
         </ion-col>
       </ion-row>
     </ion-content>

@@ -11,3 +11,31 @@
     cursor: pointer;
   }
 }
+
+.chat-user-message {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  div {
+    width: 65%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    min-height: 5rem;
+  }
+}
+
+.chat-ai-message {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  div {
+    width: 65%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-height: 5rem;
+  }
+}

@@ -15,6 +15,9 @@ export class AuthSupabaseService {
       business_name: business_name,
       user_id: uuid
     });
+    const data1 = await this.authSvc.supabase.from('user-data').insert({ user_id: uuid});
+    console.log('user-data', data1);
+    
     return { data: data, error: error };
   }
 }

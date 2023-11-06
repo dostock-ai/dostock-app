@@ -57,7 +57,7 @@ export class AddCategoryComponent  implements OnInit {
   async getCategories() {
     const categories : any = {}
     const categoriesDB=await this.supabaseSvc.getCategories();
-    categoriesDB.forEach((category:any) => {
+    (categoriesDB || []).forEach((category:any) => {
       categories[category] = {
 
           disabled: false,

@@ -19,7 +19,9 @@ import { DialogService } from 'src/app/core/dialog.service';
 })
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
+
   categoriesData: any = {};
+  productsWithoutCategory: any = {}
 
   allProducts: any = [];
   categoryInfo: any = {
@@ -69,15 +71,21 @@ export class SalesPage implements OnInit {
   async getCategoriesData() {
     this.allProducts = await this.supabaseSvc.getProducts();
 
-    (this.allProducts || [])?.forEach((product: any) => {
-      const category = product.category;
+    (this.allProducts || []).forEach((product: any) => {
+      const category = product.category || 'Productos sin categoría';
 
-      if (!this.categoriesData[category]) {
-        this.categoriesData[category] = [];
+      if(category === 'Productos sin categoría') {
+        if (!this.productsWithoutCategory[category]) {
+          this.productsWithoutCategory[category] = [];
+        }
+        this.productsWithoutCategory[category].push(product);
+      } else {
+        if (!this.categoriesData[category]) {
+          this.categoriesData[category] = [];
+        }
+        this.categoriesData[category].push(product);
       }
-      this.categoriesData[category].push(product);
-    })
-    // console.log(this.categoriesData);
+    });
   }
 
   async addProduct() {

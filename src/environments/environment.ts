@@ -4,10 +4,4 @@
 
 export const environment = {
     production: false,
-    supabase: {
-      auth: {
-        supabaseURL: 'test',
-        supabaseKey: 'test',
-      }
-    }
   };

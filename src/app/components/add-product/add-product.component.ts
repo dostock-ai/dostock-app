@@ -18,7 +18,7 @@ export class AddProductComponent  implements OnInit {
   @Input() barcode: any;
 
   productData: any = {
-    imageURL: './../../assets/img/default.png',
+    image_url: './../../assets/img/default.png',
     // name, buy_price, sale_price, category, description, barcode
     // available_for_sale, type_sale, control_stock, current_stock
   };
@@ -46,13 +46,10 @@ export class AddProductComponent  implements OnInit {
     const fileName = currentUserID + '/' + this.productData.name + '.jpeg';
 
     const data = await this.supabaseSvc.saveImage(this.productData.blob, fileName);
-    
-
     this.productData.image_url = (await this.supabaseSvc.getImageUrl(fileName)).publicUrl;
 
     //! Optimziar despues para crar otro objeto para imagenes
     delete this.productData.blob;
-    delete this.productData.imageURL;
     const error = await this.supabaseSvc.addProduct(this.productData);
     if (error) {
       this.auxFns.showAlert('Error', 'Ocurrió un error al guardar el producto');
@@ -62,7 +59,7 @@ export class AddProductComponent  implements OnInit {
     }
 
     this.productData = {
-      imageURL: './../../assets/img/default.png',
+      image_url: './../../assets/img/default.png',
     };
     await loading.dismiss();
   }
@@ -95,7 +92,7 @@ export class AddProductComponent  implements OnInit {
 
     const blob = await this.readAsBlob(photo);
 
-    this.productData.imageURL = URL.createObjectURL(blob);
+    this.productData.image_url = URL.createObjectURL(blob);
     this.productData.blob = blob;  
     // return {
     //   filepath: fileName,

@@ -18,8 +18,6 @@ import { DialogService } from 'src/app/core/dialog.service';
 })
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
-
-  categoriesData: any = {};
   productsWithoutCategory: any = {}
 
   allProducts: any = [];
@@ -86,10 +84,12 @@ export class SalesPage implements OnInit {
     // Ejemplo: const resultado = data.resultado;
   }
 
-  openCategory(categoryKey: string) {
+  openCategory(categoryKey: string, categoryValue: any) {
     this.categoryInfo.inside = true;
-    this.categoryInfo.data = this.categoriesData[categoryKey];
+    this.categoryInfo.data = categoryValue;
     this.categoryInfo.name = categoryKey;
+
+    console.log(categoryValue, this.categoryInfo.data);
   }
 
   getString(input:any) {

@@ -46,19 +46,40 @@
     </ion-fab> -->
 
     <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
-      <ion-text>
-        <h1 style="margin: 0px;">Categorias</h1>
-      </ion-text>
+      @if ((allProducts | products: true)?.hasCategories) {
+        <ion-text>
+          <h1 style="margin: 0px;">Categorias</h1>
+        </ion-text>
+      }
     </div>
 
     <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
       <ion-row *ngIf="!querySearchBar">
-        <ion-col *ngFor="let category of categoriesData | keyvalue">
+        <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue">
           <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key))">
             <ion-label>{{ category.key }}</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
+
+      <ion-row>
+        <ion-col> 
+          <div class="separator"></div>
+        </ion-col>
+      </ion-row>
+
+      @if (!querySearchBar) {
+        <ion-row>
+          @for (product of (allProducts | products: false)?.data; track $index) {
+            <ion-col>
+              <ion-item style="cursor: pointer;">
+                <ion-label>{{ product.name }}</ion-label>
+              </ion-item>
+            </ion-col>
+          }
+        </ion-row>
+      }
+
       <ng-container *ngIf="querySearchBar">
         <ion-row *ngFor="let product of resultsSearchBar">
           <ion-col>

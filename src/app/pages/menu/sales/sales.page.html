@@ -40,7 +40,9 @@
     <ion-row *ngIf="!querySearchBar">
       <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory">
         <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key), category.value)">
-          <ion-label>{{ category.key }}</ion-label>
+          <ion-card-content>
+            <ion-label>{{ category.key }}</ion-label>
+          </ion-card-content>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -54,11 +56,7 @@
     @if (!querySearchBar) {
       <ion-row>
         @for (product of (allProducts | products: false)?.data; track $index) {
-          <ion-col>
-            <ion-item style="cursor: pointer;">
-              <ion-label>{{ product.name }}</ion-label>
-            </ion-item>
-          </ion-col>
+          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
         }
       </ion-row>
     }

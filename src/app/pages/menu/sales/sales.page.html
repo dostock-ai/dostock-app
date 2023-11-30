@@ -38,11 +38,13 @@
 
   <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
     <ion-row *ngIf="!querySearchBar">
-      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size="6">
+      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size="3">
         <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key), category.value)">
-          <ion-card-content>
-            <ion-label>{{ category.key }}</ion-label>
-          </ion-card-content>
+          <ion-label style="display: flex; justify-content: center; align-items: center;">
+            <ion-text>
+              {{ category.key }}
+            </ion-text>
+          </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>

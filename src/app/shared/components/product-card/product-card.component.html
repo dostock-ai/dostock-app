@@ -1,10 +1,9 @@
-<ion-col size="auto">
-  <ion-card style="cursor: pointer;">
-    <img alt="{{productName}}" [src]="productImageURL" />
-    <ion-card-header>
-      <ion-card-title>
-        {{ productName }}
-      </ion-card-title>
-    </ion-card-header>
-  </ion-card>
-</ion-col>
+<ion-card style="cursor: pointer; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <img alt="{{productName}}" [src]="productImageURL" height="220px" width="380px" style="object-fit: cover;"/>
+  <ion-card-header>
+    <ion-card-title>
+      {{ productName }}
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
+

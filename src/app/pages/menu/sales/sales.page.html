@@ -38,7 +38,7 @@
 
   <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
     <ion-row *ngIf="!querySearchBar">
-      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory">
+      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size="6">
         <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key), category.value)">
           <ion-card-content>
             <ion-label>{{ category.key }}</ion-label>
@@ -56,7 +56,9 @@
     @if (!querySearchBar) {
       <ion-row>
         @for (product of (allProducts | products: false)?.data; track $index) {
-          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+          <ion-col size="auto">
+            <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+          </ion-col>
         }
       </ion-row>
     }
@@ -85,14 +87,17 @@
 
   <ion-grid *ngIf="categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
     <ion-row>
-      <ion-col *ngFor="let product of categoryInfo.data">
+      @for (product of categoryInfo.data; track $index) {
+        <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+      }
+      <!-- <ion-col *ngFor="let product of categoryInfo.data">
         <ion-item style="cursor: pointer;" (click)="selectQuantityOfProduct(product)">
           <ion-thumbnail slot="start">
             <img alt="{{product.name}}" [src]="product.image_url" />
           </ion-thumbnail>
           <ion-label>{{ product.name }}</ion-label>
         </ion-item>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>

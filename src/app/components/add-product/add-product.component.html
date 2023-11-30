@@ -19,9 +19,9 @@
           <ion-icon id="iconCamera" slot="start" name="camera"></ion-icon>
         </ion-button>
       </ion-item> -->
-      <ion-item *ngIf="productData.imageURL" id="selectImage">
+      <ion-item *ngIf="productData.image_url" id="selectImage">
         <div style="width: 100%; justify-content: center; display: flex; align-items: center;">
-          <ion-img class="product-image" (click)="selectImage()" [src]="productData.imageURL"></ion-img>
+          <ion-img class="product-image" (click)="selectImage()" [src]="productData.image_url"></ion-img>
         </div>
       </ion-item>
       <ion-item>

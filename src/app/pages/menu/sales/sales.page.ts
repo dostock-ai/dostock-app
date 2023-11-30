@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 import { ScanService } from 'src/app/services/scan.service';
-
 import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { DialogService } from 'src/app/core/dialog.service';
@@ -19,8 +18,6 @@ import { DialogService } from 'src/app/core/dialog.service';
 })
 export class SalesPage implements OnInit {
   salesTitle = 'Ventas';
-
-  categoriesData: any = {};
   productsWithoutCategory: any = {}
 
   allProducts: any = [];
@@ -70,22 +67,6 @@ export class SalesPage implements OnInit {
 
   async getCategoriesData() {
     this.allProducts = await this.supabaseSvc.getProducts();
-
-    (this.allProducts || []).forEach((product: any) => {
-      const category = product.category || 'Productos sin categoría';
-
-      if(category === 'Productos sin categoría') {
-        if (!this.productsWithoutCategory[category]) {
-          this.productsWithoutCategory[category] = [];
-        }
-        this.productsWithoutCategory[category].push(product);
-      } else {
-        if (!this.categoriesData[category]) {
-          this.categoriesData[category] = [];
-        }
-        this.categoriesData[category].push(product);
-      }
-    });
   }
 
   async addProduct() {
@@ -103,10 +84,12 @@ export class SalesPage implements OnInit {
     // Ejemplo: const resultado = data.resultado;
   }
 
-  openCategory(categoryKey: string) {
+  openCategory(categoryKey: string, categoryValue: any) {
     this.categoryInfo.inside = true;
-    this.categoryInfo.data = this.categoriesData[categoryKey];
+    this.categoryInfo.data = categoryValue;
     this.categoryInfo.name = categoryKey;
+
+    console.log(categoryValue, this.categoryInfo.data);
   }
 
   getString(input:any) {

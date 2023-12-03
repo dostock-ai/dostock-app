@@ -1,3 +1,11 @@
+.containerButtons {
+    height: 25%;
+    
+    #acceptButton {
+        margin-left: 10px;
+    }
+}
+
 #addCategoryButton {
     font-size: 1.5em;
     margin-right: 10px;
@@ -24,3 +32,9 @@
     background-color: #42424238; /* Cambiar el color de fondo a gris en hover */
     cursor: pointer;
 }
+
+.separator {
+    height: 1px;
+    background-color: #ccc; /* Color de la línea separadora */
+    margin: 10px 0; /* Ajusta el margen según tus preferencias */
+}  

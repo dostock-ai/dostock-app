@@ -305,7 +305,7 @@ export class TemplatesPage {
 
   async setTemplateToSupabase() {
     const products = this.filterAllProducts();
-    await this.supabase.setTemplate(products);
+    await this.supabase.setProductsOfTemplate(products);
   }
 
   filterAllProducts() {

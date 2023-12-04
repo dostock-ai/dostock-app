@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Plantillas</ion-title>
 
-    <ion-buttons slot="end" *ngIf="templatesSeccion" id="confirmTemplate">
+    <ion-buttons slot="end" *ngIf="templatesSeccion" id="confirmTemplate" (click)="setTemplate()">
       Continuar sin plantilla
     </ion-buttons>
 

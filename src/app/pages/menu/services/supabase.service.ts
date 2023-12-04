@@ -35,7 +35,7 @@ export class SupabaseService {
     const { data, error } = await this.authSvc.supabase.from('user-data').select().eq('user_id', user_id);
     let selectedTemplate;
     if(data?.length === 1) {
-      selectedTemplate = data[0]?.selectedTemplate;
+      selectedTemplate = data[0]?.template;
     }
     return selectedTemplate;
   }

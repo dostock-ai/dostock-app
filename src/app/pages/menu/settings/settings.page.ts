@@ -41,6 +41,7 @@ export class SettingsPage implements OnInit {
             const loading = await this.loadingController.create();
             await loading.present();
 
+            localStorage.setItem('redirectUrl', 'sales');
             await this.authSvc.signOut();
             await loading.dismiss();
           }

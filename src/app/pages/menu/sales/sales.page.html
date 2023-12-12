@@ -25,7 +25,7 @@
   <div class="search">
       <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
       </ion-searchbar>
-      <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon>
+      <!-- <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon> -->
   </div>
 
   <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
@@ -38,7 +38,7 @@
 
   <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
     <ion-row *ngIf="!querySearchBar">
-      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size="3">
+      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size-xs="12" size-sm="6" size-md="3">
         <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key), category.value)">
           <ion-label style="display: flex; justify-content: center; align-items: center;">
             <ion-text>
@@ -56,7 +56,7 @@
     </ion-row>
 
     @if (!querySearchBar) {
-      <ion-row>
+      <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;" >
         @for (product of (allProducts | products: false)?.data; track $index) {
           <ion-col size="auto">
             <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
@@ -65,15 +65,15 @@
       </ion-row>
     }
 
-    <ng-container *ngIf="querySearchBar">
-      <ion-row *ngFor="let product of resultsSearchBar">
-        <ion-col>
-          <ion-item style="cursor: pointer;">
-            <ion-label>{{ product.name }}</ion-label>
-          </ion-item>
-        </ion-col>
+    @if (querySearchBar) {
+      <ion-row>
+        @for (product of resultsSearchBar; track product) {
+          <ion-col size="auto">
+            <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+          </ion-col>
+        }
       </ion-row>
-    </ng-container>
+    }
   </ion-grid>
 
   <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
@@ -88,9 +88,11 @@
   </div>
 
   <ion-grid *ngIf="categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
-    <ion-row>
+    <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;">
       @for (product of categoryInfo.data; track $index) {
-        <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+        <ion-col size="auto">
+          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+        </ion-col>
       }
       <!-- <ion-col *ngFor="let product of categoryInfo.data">
         <ion-item style="cursor: pointer;" (click)="selectQuantityOfProduct(product)">

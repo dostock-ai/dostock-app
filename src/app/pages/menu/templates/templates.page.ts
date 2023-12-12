@@ -627,7 +627,11 @@ export class TemplatesPage {
 
   async setTemplateToSupabase() {
     const products = this.filterAllProducts();
+
+    // Agregamos todos los productos a su inventario
     await this.supabase.setProductsOfTemplate(products);
+
+    // Agregamos todas las categorias
   }
 
   filterAllProducts() {

@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   public appPages = [
     { title: 'Venta', url: '/home/sales', icon: 'bag-check' },
     { title: 'Productos', url: '/home/products', icon: 'cube' },
-    { title: 'Proveedores', url: '/home/suppliers', icon: 'airplane' },
+    // { title: 'Proveedores', url: '/home/suppliers', icon: 'airplane' },
     { title: 'Chat-IA (Tory)', url: '/home/chat-ai', icon: 'chatbox-ellipses' },
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
@@ -32,6 +32,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     const currentUserId = this.authSvc.getCurrentUserId();
+    // localStorage.setItem(currentUserId + '/selectedTemplate', '');
     this.template = localStorage.getItem(currentUserId + '/selectedTemplate') || await this.supabase.getSelectedTemplate();
     if(!this.template) {
       this.auxFns.navigateTo('/home/templates');

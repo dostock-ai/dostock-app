@@ -31,7 +31,7 @@ export class SalesPage implements OnInit {
     amount: 0,
     products: {},
     totalProducts: 0,
-    active: false
+    // active: false
   }
 
   querySearchBar: string = '';
@@ -133,11 +133,11 @@ export class SalesPage implements OnInit {
     this.shoppingCartInfo.amount += product.sale_price * numberOfProducts;
     this.shoppingCartInfo.totalProducts += numberOfProducts;
 
-    if(Object.keys(this.shoppingCartInfo.products).length > 0) {
-      this.shoppingCartInfo.active = true;
-    } else {
-      this.shoppingCartInfo.active = false;
-    }
+    // if(Object.keys(this.shoppingCartInfo.products).length > 0) {
+    //   this.shoppingCartInfo.active = true;
+    // } else {
+    //   this.shoppingCartInfo.active = false;
+    // }
   }
 
   handleInputSearchProduct(event: any) {

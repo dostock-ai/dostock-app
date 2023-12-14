@@ -11,7 +11,7 @@ import { Categories } from 'src/app/interfaces/category';
 export class AddCategoryComponent  implements OnInit {
   addCategorySection = false;
   currentCategory = '';
-  categories!: Categories;
+  categories: Categories = {};
   /*
    categories:any = {
     ropa: {

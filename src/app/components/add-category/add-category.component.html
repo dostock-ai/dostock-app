@@ -1,11 +1,10 @@
-<!--!Change name of this component to select-category -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="!addCategorySection">
+    <!-- <ion-buttons slot="start" *ngIf="!addCategorySection">
       <ion-button (click)="closeModal()">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>
       {{addCategorySection ? 'Nueva categoria' : 'Categorias'}}
     </ion-title>
@@ -16,11 +15,11 @@
 
   </ion-toolbar>
 </ion-header>
-        <!-- <ion-checkbox labelPlacement="end" (ionChange) ="selectCategory(categoryName)">{{categoryName}}</ion-checkbox>  -->
+<!-- <ion-checkbox labelPlacement="end" (ionChange) ="selectCategory(categoryName)">{{categoryName}}</ion-checkbox>  -->
 
 <ion-content>
   <div style="height: 100%;">
-    <ion-grid  style="height: 70%;">
+    <ion-grid  style="height: 75%;">
       <ion-row *ngIf="addCategorySection">
         <ion-col>
           <ion-item>
@@ -37,11 +36,14 @@
           </ion-col>
         </ion-row>
       </ng-container>
-      
-
     </ion-grid>
   
     <ion-grid class="containerButtons">
+      <ion-row>
+        <ion-col> 
+          <div class="separator"></div>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col>
           <ion-button (click)="addCategorySection ? desactiveAddCategorySection() : closeModal()"  >Cancelar</ion-button>
@@ -50,8 +52,6 @@
       </ion-row>
     </ion-grid>
   </div>
-
-
 </ion-content>
 
 <!-- Cuando le de click al + en el ion-toolbar se remplaze el texto "agregar categoria", que no aparezca regresar y el + -->

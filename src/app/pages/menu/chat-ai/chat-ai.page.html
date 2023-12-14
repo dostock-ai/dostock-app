@@ -1,13 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title *ngIf="screenWidth < 1000">Chat-AI</ion-title>
-
-    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
-  </ion-toolbar>
-</ion-header>
+<ion-header style="min-height: 5rem;"></ion-header>
 
 <ion-content>
   <ion-grid style="width: 85%; height: 80%; overflow-y: auto; padding: 1rem 0rem;">

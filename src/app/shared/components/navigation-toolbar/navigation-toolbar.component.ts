@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,14 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './navigation-toolbar.component.html',
   styleUrls: ['./navigation-toolbar.component.scss'],
 })
-export class NavigationToolbarComponent  implements OnInit {
+export class NavigationToolbarComponent {
+  @Input() shoppingCartInfo: any = {};
 
   constructor(private router: Router) { }
-
-  ngOnInit() {}
 
   navigateTo(link: string) {
     this.router.navigate([link]);
   }
-
 }

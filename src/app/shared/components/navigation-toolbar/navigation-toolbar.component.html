@@ -1,17 +1,22 @@
 <ion-toolbar>
-    <ion-buttons slot="end" (click)="navigateTo('/home/sales')">
+    <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/sales')">
       Ventas
     </ion-buttons>
-  <ion-buttons slot="end" (click)="navigateTo('/home/products')">
+  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/products')">
     Productos
   </ion-buttons>
-  <ion-buttons slot="end" (click)="navigateTo('/home/suppliers')">
+  <!-- <ion-buttons slot="end" (click)="navigateTo('/home/suppliers')">
     Proveedores
-  </ion-buttons>
-  <ion-buttons slot="end" (click)="navigateTo('/home/chat-ai')">
+  </ion-buttons> -->
+  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/chat-ai')">
     Chat AI Tory
   </ion-buttons>
-  <ion-buttons slot="end" (click)="navigateTo('/home/settings')">
+  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/settings')">
     Configuración
+  </ion-buttons>
+  <ion-buttons color="primary" slot="end" class="shoppingCartSeccion">
+    <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
+    <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+    <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
   </ion-buttons>
 </ion-toolbar>

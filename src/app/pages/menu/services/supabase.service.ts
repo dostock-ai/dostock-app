@@ -19,7 +19,7 @@ export class SupabaseService {
     productData.user_id = uuid;
   }
 
-  async setTemplate(products: any) {
+  async setProductsOfTemplate(products: any) {
     const user_id = this.authSvc.getCurrentUserId();
     const { error } = await this.authSvc.supabase.from('user-data').update({ template: true }).eq('user_id', user_id);
 
@@ -35,7 +35,7 @@ export class SupabaseService {
     const { data, error } = await this.authSvc.supabase.from('user-data').select().eq('user_id', user_id);
     let selectedTemplate;
     if(data?.length === 1) {
-      selectedTemplate = data[0]?.selectedTemplate;
+      selectedTemplate = data[0]?.template;
     }
     return selectedTemplate;
   }
@@ -81,4 +81,6 @@ export class SupabaseService {
     const { data, error } = await this.authSvc.supabase.from('user-data').update({categories: categories}).eq('user_id', user_id);
     return data;
   }
+
+
 }

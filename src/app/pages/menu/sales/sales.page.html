@@ -1,31 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">Venta</ion-title>
-
-    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
-
-    <ion-buttons color="primary" slot="end" class="shoppingCartSeccion" *ngIf="shoppingCartInfo.active">
-      <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>
-      <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
-      <!-- <ion-text style="padding: 0 8px 0 8px;">${{shoppingCartInfo.amount}}</ion-text> -->
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-header style="min-height: 5rem;"></ion-header>
 
 <ion-content>
   <div class="optionsSales">
     <ion-icon name="add-outline" (click)="addProduct()"></ion-icon>
     <ion-icon name="scan-outline" (click)="scan()"></ion-icon>
-    <ion-icon name="cash-outline"></ion-icon>
+    <!-- <ion-icon name="cash-outline"></ion-icon> -->
   </div>
 
   <div class="search">
       <ion-searchbar animated="true" placeholder="Producto" show-clear-button="focus" [debounce]="1000" (ionInput)="handleInputSearchProduct($event)">
       </ion-searchbar>
-      <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon>
+      <!-- <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon> -->
   </div>
 
   <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
@@ -37,12 +22,16 @@
   </div>
 
   <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
+
+    <!-- CATEGORIAS -->
     <ion-row *ngIf="!querySearchBar">
-      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size="6">
+      <ion-col *ngFor="let category of (allProducts | products: true)?.data | keyvalue as productsWithCategory" size-xs="12" size-sm="6" size-md="3">
         <ion-item style="cursor: pointer;" (click)="openCategory(getString(category.key), category.value)">
-          <ion-card-content>
-            <ion-label>{{ category.key }}</ion-label>
-          </ion-card-content>
+          <ion-label style="display: flex; justify-content: center; align-items: center;">
+            <ion-text>
+              {{ category.key }}
+            </ion-text>
+          </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -53,27 +42,36 @@
       </ion-col>
     </ion-row>
 
+    <!-- PRODUCTOS SIN CATEGORIA -->
     @if (!querySearchBar) {
-      <ion-row>
+      <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;" >
         @for (product of (allProducts | products: false)?.data; track $index) {
+          <ion-col size="auto">
+            <app-product-card 
+              [productName]="product.name" 
+              [productImageURL]="product.image_url"
+              (click)="selectQuantityOfProduct(product)"
+            >
+            </app-product-card>
+          </ion-col>
+        }
+      </ion-row>
+    }
+
+    <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE BUSCA ALGUN PRODUCTO -->
+    @if (querySearchBar) {
+      <ion-row>
+        @for (product of resultsSearchBar; track product) {
           <ion-col size="auto">
             <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
           </ion-col>
         }
       </ion-row>
     }
-
-    <ng-container *ngIf="querySearchBar">
-      <ion-row *ngFor="let product of resultsSearchBar">
-        <ion-col>
-          <ion-item style="cursor: pointer;">
-            <ion-label>{{ product.name }}</ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ng-container>
   </ion-grid>
 
+
+  <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
   <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
     <div style="    align-self: flex-end;">
       <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
@@ -86,9 +84,11 @@
   </div>
 
   <ion-grid *ngIf="categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
-    <ion-row>
+    <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;">
       @for (product of categoryInfo.data; track $index) {
-        <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+        <ion-col size="auto">
+          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+        </ion-col>
       }
       <!-- <ion-col *ngFor="let product of categoryInfo.data">
         <ion-item style="cursor: pointer;" (click)="selectQuantityOfProduct(product)">

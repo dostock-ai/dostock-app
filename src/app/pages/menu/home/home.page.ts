@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { SelectTemplateComponent } from 'src/app/components/select-template/select-template.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
 import { SupabaseService } from '../services/supabase.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,12 @@ export class HomePage implements OnInit {
   public appPages = [
     { title: 'Venta', url: '/home/sales', icon: 'bag-check' },
     { title: 'Productos', url: '/home/products', icon: 'cube' },
-    { title: 'Proveedores', url: '/home/suppliers', icon: 'airplane' },
+    // { title: 'Proveedores', url: '/home/suppliers', icon: 'airplane' },
     { title: 'Chat-IA (Tory)', url: '/home/chat-ai', icon: 'chatbox-ellipses' },
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
+
+  screenWidth: number;
 
   constructor(
     private authSvc: AuthService, 
@@ -27,11 +30,20 @@ export class HomePage implements OnInit {
     private loadingController: LoadingController, 
     private modalController: ModalController,
     public auxFns: AuxFnsService,
-    private supabase: SupabaseService, 
-  ) { }
+    private supabase: SupabaseService,
+    public shoppCartSvc: ShoppingCartService
+  ) { 
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }  
 
   async ngOnInit() {
     const currentUserId = this.authSvc.getCurrentUserId();
+    // localStorage.setItem(currentUserId + '/selectedTemplate', '');
     this.template = localStorage.getItem(currentUserId + '/selectedTemplate') || await this.supabase.getSelectedTemplate();
     if(!this.template) {
       this.auxFns.navigateTo('/home/templates');
@@ -53,6 +65,7 @@ export class HomePage implements OnInit {
             const loading = await this.loadingController.create();
             await loading.present();
 
+            localStorage.setItem('redirectUrl', 'sales');
             await this.authSvc.signOut();
             await loading.dismiss();
           }

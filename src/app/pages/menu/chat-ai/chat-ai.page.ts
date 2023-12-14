@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ChatgptService } from '../services/chatgpt.service'
 
 @Component({
@@ -6,27 +6,14 @@ import { ChatgptService } from '../services/chatgpt.service'
   templateUrl: './chat-ai.page.html',
   styleUrls: ['./chat-ai.page.scss'],
 })
-export class ChatAIPage implements OnInit{
+export class ChatAIPage {
   @ViewChild('content') content: any;
   @ViewChild('writeMessageInput') writeMessageInput: any;
 
   messages: any[] = []; // Aquí defines una propiedad "messages" que será un arreglo para almacenar los mensajes.
   newMessage: string = ''; // Aquí defines una propiedad "newMessage" para almacenar el nuevo mensaje que el usuario escribirá.
 
-  screenWidth: number;
-
-  constructor(private chatgptSvc: ChatgptService) {
-    this.screenWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.screenWidth = window.innerWidth;
-  }
-
-  ngOnInit(): void {
-    
-  }
+  constructor(private chatgptSvc: ChatgptService) { }
 
   ionViewWillEnter() {
     localStorage.setItem('redirectUrl', 'chat-ai');

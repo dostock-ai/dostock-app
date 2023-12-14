@@ -2,6 +2,10 @@
   <ion-toolbar>
     <ion-title>Plantillas</ion-title>
 
+    <ion-buttons slot="end" *ngIf="templatesSeccion" id="confirmTemplate" (click)="setTemplate()">
+      Continuar sin plantilla
+    </ion-buttons>
+
     <ion-buttons slot="end" *ngIf="!templatesSeccion" id="confirmTemplate" (click)="setTemplate()">
       Aplicar plantilla
     </ion-buttons>
@@ -42,10 +46,10 @@
         </ion-row> 
 
         <ion-row style="display: flex; justify-content: center; align-items: center;">
-            <ion-col size="auto" *ngFor="let product of category.value">
-            <ion-card class="card-hover" style="cursor: pointer;" style="width: 15rem; height: 15rem; display: flex; justify-content: center; align-items: center;">
-              <!-- <img alt="{{product.name}}" [src]="product.image_url" style="width: 250px; height: 250px;"/> -->
-              <ion-card-header>
+          <ion-col size="auto" *ngFor="let product of category.value">
+            <ion-card class="card-hover" style=" cursor:pointer; width: 15rem; height: 15rem; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+              <img alt="{{product.name}}" [src]="product.image_url" style="width: 100%; height: 75%; object-fit: cover;"/>
+              <ion-card-header style="padding: 0; height: 25%; width: 100%; display: flex; justify-content: center; align-items: center;">
                 <ion-card-title style="text-align: center;">{{product.name}}</ion-card-title>
               </ion-card-header>
             </ion-card>

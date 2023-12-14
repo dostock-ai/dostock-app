@@ -1,12 +1,13 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChatgptService } from '../services/chatgpt.service'
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-chat-ai',
   templateUrl: './chat-ai.page.html',
   styleUrls: ['./chat-ai.page.scss'],
 })
-export class ChatAIPage implements OnInit{
+export class ChatAIPage {
   @ViewChild('content') content: any;
   @ViewChild('writeMessageInput') writeMessageInput: any;
 
@@ -15,17 +16,13 @@ export class ChatAIPage implements OnInit{
 
   screenWidth: number;
 
-  constructor(private chatgptSvc: ChatgptService) {
+  constructor(private chatgptSvc: ChatgptService, public shoppCartSvc: ShoppingCartService) {
     this.screenWidth = window.innerWidth;
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.screenWidth = window.innerWidth;
-  }
-
-  ngOnInit(): void {
-    
   }
 
   ionViewWillEnter() {

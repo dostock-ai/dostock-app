@@ -6,7 +6,7 @@
   
     <ion-title *ngIf="screenWidth < 1000">Productos</ion-title>
 
-    <app-navigation-toolbar *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
+    <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()" *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
   </ion-toolbar>
 </ion-header>
 

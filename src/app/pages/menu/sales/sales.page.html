@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">Venta</ion-title>
 
-    <app-navigation-toolbar [shoppingCartInfo]="shoppingCartInfo"  *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
+    <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()"  *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
 <!-- 
     <ion-buttons color="primary" slot="end" class="shoppingCartSeccion">
       <ion-text >{{shoppingCartInfo.totalProducts}}</ion-text>

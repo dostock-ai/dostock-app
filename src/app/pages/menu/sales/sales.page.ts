@@ -1,4 +1,4 @@
-import { Component, HostListener, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, NgZone, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
@@ -9,6 +9,7 @@ import { ScanService } from 'src/app/services/scan.service';
 import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { DialogService } from 'src/app/core/dialog.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 
 @Component({
@@ -27,12 +28,11 @@ export class SalesPage implements OnInit {
     name: ''
   };
 
-  shoppingCartInfo: any = {
-    amount: 0,
-    products: {},
-    totalProducts: 0,
-    // active: false
-  }
+  // shoppingCartInfo: any = {
+  //   amount: 0,
+  //   products: {},
+  //   totalProducts: 0,
+  // }
 
   querySearchBar: string = '';
   resultsSearchBar: any = [];
@@ -46,7 +46,7 @@ export class SalesPage implements OnInit {
     private scanSvc: ScanService,
 
     private readonly dialogService: DialogService,
-    private readonly ngZone: NgZone
+    public shoppCartSvc: ShoppingCartService
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -126,18 +126,7 @@ export class SalesPage implements OnInit {
   }
     
   addProductToShoppingCart(product: any, numberOfProducts: number) {
-    if(!this.shoppingCartInfo.products[product.id]) {
-      this.shoppingCartInfo.products[product.id] = product;
-    }
-
-    this.shoppingCartInfo.amount += product.sale_price * numberOfProducts;
-    this.shoppingCartInfo.totalProducts += numberOfProducts;
-
-    // if(Object.keys(this.shoppingCartInfo.products).length > 0) {
-    //   this.shoppingCartInfo.active = true;
-    // } else {
-    //   this.shoppingCartInfo.active = false;
-    // }
+    this.shoppCartSvc.addProductToShoppingCart(product, numberOfProducts);
   }
 
   handleInputSearchProduct(event: any) {

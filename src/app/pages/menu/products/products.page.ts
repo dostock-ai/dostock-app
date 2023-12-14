@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,7 @@ export class ProductsPage implements OnInit {
   productsTitle = 'Productos';
   screenWidth: number;
 
-  constructor() {
+  constructor(public shoppCartSvc: ShoppingCartService) {
     this.screenWidth = window.innerWidth;
   }
 

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-suppliers',
@@ -8,17 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class SuppliersPage implements OnInit {
   suppliers: any[] = []; // Aquí puedes definir una lista de proveedores
 
-  screenWidth: number;
-
-  constructor() {
-    this.screenWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.screenWidth = window.innerWidth;
-  }
-  
+  constructor() { }
 
   ngOnInit() {
     // Puedes realizar inicializaciones o cargar datos aquí

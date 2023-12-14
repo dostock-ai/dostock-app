@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -6,21 +6,10 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage {
   productsTitle = 'Productos';
-  screenWidth: number;
 
-  constructor(public shoppCartSvc: ShoppingCartService) {
-    this.screenWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.screenWidth = window.innerWidth;
-  }
-
-  ngOnInit() {
-  }
+  constructor(public shoppCartSvc: ShoppingCartService) { }
 
   ionViewWillEnter() {
     localStorage.setItem('redirectUrl', 'products');

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { SupabaseService } from '../services/supabase.service';
@@ -37,8 +37,6 @@ export class SalesPage implements OnInit {
   querySearchBar: string = '';
   resultsSearchBar: any = [];
 
-  screenWidth: number;
-
   constructor(
     private modalController: ModalController, 
     private supabaseSvc: SupabaseService,
@@ -47,15 +45,7 @@ export class SalesPage implements OnInit {
 
     private readonly dialogService: DialogService,
     public shoppCartSvc: ShoppingCartService
-  ) {
-    this.screenWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.screenWidth = window.innerWidth;
-  }
-  
+  ) { }
 
   async ngOnInit() {
     await this.getCategoriesData();

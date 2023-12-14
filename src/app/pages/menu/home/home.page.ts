@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { SelectTemplateComponent } from 'src/app/components/select-template/select-template.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
 import { SupabaseService } from '../services/supabase.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-home',
@@ -21,14 +22,24 @@ export class HomePage implements OnInit {
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
 
+  screenWidth: number;
+
   constructor(
     private authSvc: AuthService, 
     private alertController: AlertController, 
     private loadingController: LoadingController, 
     private modalController: ModalController,
     public auxFns: AuxFnsService,
-    private supabase: SupabaseService, 
-  ) { }
+    private supabase: SupabaseService,
+    public shoppCartSvc: ShoppingCartService
+  ) { 
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+  }  
 
   async ngOnInit() {
     const currentUserId = this.authSvc.getCurrentUserId();

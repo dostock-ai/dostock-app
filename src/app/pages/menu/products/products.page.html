@@ -1,14 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  
-    <ion-title *ngIf="screenWidth < 1000">Productos</ion-title>
-
-    <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()" *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
-  </ion-toolbar>
-</ion-header>
+<ion-header style="min-height: 5rem;"></ion-header>
 
 <ion-content>
   

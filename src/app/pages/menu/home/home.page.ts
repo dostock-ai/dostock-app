@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
     { title: 'Chat-IA (Tory)', url: '/home/chat-ai', icon: 'chatbox-ellipses' },
     { title: 'Configuración', url: '/home/settings', icon: 'settings' },
   ];
+  currentPage = 'Venta';
 
   screenWidth: number;
 
@@ -49,6 +50,10 @@ export class HomePage implements OnInit {
       this.auxFns.navigateTo('/home/templates');
       // this.selectTemplate();
     }
+  }
+
+  changeCurrentPage(currentPage: string) {
+    this.currentPage = currentPage;
   }
 
   async signOut() {

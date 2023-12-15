@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,21 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage implements OnInit {
-  settingsTitle = 'Configuración';
-  screenWidth: number;
+export class SettingsPage {
 
-  constructor(private authSvc: AuthService, private alertController: AlertController, private loadingController: LoadingController) {
-    this.screenWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.screenWidth = window.innerWidth;
-  }
-
-  ngOnInit() {
-  }
+  constructor(private authSvc: AuthService, private alertController: AlertController, private loadingController: LoadingController) { }
 
   ionViewWillEnter() {
     localStorage.setItem('redirectUrl', 'settings');

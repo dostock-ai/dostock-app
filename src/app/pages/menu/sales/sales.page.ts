@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
-import { SupabaseService } from '../services/supabase.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 import { ScanService } from 'src/app/services/scan.service';
@@ -10,6 +8,7 @@ import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barc
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { DialogService } from 'src/app/core/dialog.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ProductsService } from '../services/products.service';
 
 
 @Component({
@@ -18,7 +17,6 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   styleUrls: ['./sales.page.scss'],
 })
 export class SalesPage implements OnInit {
-  salesTitle = 'Ventas';
   productsWithoutCategory: any = {}
 
   allProducts: any = [];
@@ -38,13 +36,12 @@ export class SalesPage implements OnInit {
   resultsSearchBar: any = [];
 
   constructor(
-    private modalController: ModalController, 
-    private supabaseSvc: SupabaseService,
+    private modalController: ModalController,
     public popoverController: PopoverController,
     private scanSvc: ScanService,
-
     private readonly dialogService: DialogService,
-    public shoppCartSvc: ShoppingCartService
+    public shoppCartSvc: ShoppingCartService,
+    public productsSvc: ProductsService
   ) { }
 
   async ngOnInit() {
@@ -56,7 +53,7 @@ export class SalesPage implements OnInit {
   }
 
   async getCategoriesData() {
-    this.allProducts = await this.supabaseSvc.getProducts();
+    this.allProducts = await this.productsSvc.getAllUserProducts();
   }
 
   async addProduct() {

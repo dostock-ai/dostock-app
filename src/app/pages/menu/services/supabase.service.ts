@@ -65,22 +65,16 @@ export class SupabaseService {
   async getCategories() {
     const user_id = this.authSvc.getCurrentUserId();
     const { data, error } = await this.authSvc.supabase.from('user-data').select().eq('user_id', user_id);
-    let categories;
     if(data) {
-      categories = data[0]?.categories;
+      return JSON.parse(data[0]?.categories);
     }
-    return categories;
+    return null;
   }
 
   //! Implementar cache para no llamar a la base de datos cada vez que se agregue una nueva categoria
-  async addCategory(category: any) {
+  async setCategories(categories: string) {
     const user_id = this.authSvc.getCurrentUserId();
-    let categories = await this.getCategories();
-    categories.push(category);
-
     const { data, error } = await this.authSvc.supabase.from('user-data').update({categories: categories}).eq('user_id', user_id);
     return data;
   }
-
-
 }

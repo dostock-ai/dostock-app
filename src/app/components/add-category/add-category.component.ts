@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { SupabaseService } from 'src/app/pages/menu/services/supabase.service';
 import { Categories } from 'src/app/interfaces/category';
 
@@ -11,6 +11,7 @@ import { Categories } from 'src/app/interfaces/category';
 export class AddCategoryComponent  implements OnInit {
   addCategorySection = false;
   currentCategory = '';
+  categoriesArray:any = [];
   categories: Categories = {};
   /*
    categories:any = {
@@ -20,12 +21,21 @@ export class AddCategoryComponent  implements OnInit {
     }
    }
   */
+  newCategory:any = '';
 
-  constructor(private modalController: ModalController, private supabaseSvc: SupabaseService,) {}
+  constructor(
+    private modalController: ModalController, 
+    private supabaseSvc: SupabaseService,
+    private loadingController: LoadingController
+    ) {}
 
   async ngOnInit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
     this.categories = await this.getCategories();
-    // console.log(this.categories);
+
+    await loading.dismiss();
   }
 
   closeModal(value?: any) {
@@ -55,9 +65,9 @@ export class AddCategoryComponent  implements OnInit {
   }
 
   async getCategories() {
-    const categories : any = {}
-    const categoriesDB=await this.supabaseSvc.getCategories();
-    (categoriesDB || []).forEach((category:any) => {
+    const categories:any = {}
+    this.categoriesArray = await this.supabaseSvc.getCategories();
+    (this.categoriesArray || []).forEach((category:any) => {
       categories[category] = {
 
           disabled: false,
@@ -77,5 +87,22 @@ export class AddCategoryComponent  implements OnInit {
 
   selectCategoryComplete() {
     this.closeModal(this.currentCategory);
+  }
+
+  async addCategory() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    this.categoriesArray.push(this.newCategory);
+    await this.supabaseSvc.setCategories(this.categoriesArray);
+    this.categories[this.newCategory] = {
+      disabled: false,
+      isChecked: false
+    }
+
+    this.newCategory = '';
+    this.desactiveAddCategorySection();
+
+    await loading.dismiss();
   }
 }

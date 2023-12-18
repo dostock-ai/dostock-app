@@ -1,9 +1,18 @@
 .containerButtons {
-    height: 25%;
+    height: 20%;
     
-    #acceptButton {
+    #okButton {
         margin-left: 10px;
+        cursor: pointer;
     }
+
+    #cancelButton {
+        cursor: pointer;
+    }
+}
+
+#okButton:hover, #cancelButton:hover {
+    color: #4087F5;
 }
 
 #addCategoryButton {

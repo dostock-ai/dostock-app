@@ -19,15 +19,15 @@
 
 <ion-content>
   <div style="height: 100%;">
-    <ion-grid  style="height: 75%;">
+    <ion-grid  style="height: 80%;">
       <ion-row *ngIf="addCategorySection">
         <ion-col>
           <ion-item>
-            <ion-input label="Nombre de la categoria" labelPlacement="floating" placeholder="Enter text"></ion-input>
+            <ion-input label="Nombre de la categoria" labelPlacement="floating" placeholder="Enter text" [(ngModel)]="newCategory"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ng-container *ngIf="!addCategorySection">
+      <ion-content *ngIf="!addCategorySection">
         <ion-row *ngFor="let categoryName of categories | keyvalue">
           <ion-col>
              <ion-checkbox mode="ios" id="radioCheckbox" labelPlacement="end" [(ngModel)]="categoryName.value.isChecked" [disabled]="categoryName.value.disabled" (ionChange)="selectCategoryAction(categoryName.key)">
@@ -35,7 +35,7 @@
              </ion-checkbox>
           </ion-col>
         </ion-row>
-      </ng-container>
+      </ion-content>
     </ion-grid>
   
     <ion-grid class="containerButtons">
@@ -45,9 +45,9 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          <ion-button (click)="addCategorySection ? desactiveAddCategorySection() : closeModal()"  >Cancelar</ion-button>
-          <ion-button id="acceptButton" (click)="selectCategoryComplete()">Aceptar</ion-button>
+        <ion-col style="display: flex; justify-content: end; align-items: center;">
+          <ion-buttons (click)="addCategorySection ? desactiveAddCategorySection() : closeModal()"  id="cancelButton">Cancelar</ion-buttons>
+          <ion-buttons id="okButton" (click)="addCategorySection ? addCategory() : selectCategoryComplete()">Aceptar</ion-buttons>
         </ion-col>
       </ion-row>
     </ion-grid>

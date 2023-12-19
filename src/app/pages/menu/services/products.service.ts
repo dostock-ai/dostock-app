@@ -6,6 +6,11 @@ import { SupabaseService } from './supabase.service';
 })
 export class ProductsService {
   allProducts: any = [];
+  currentCategory: any = {
+    inside: false,
+    data: [],
+    nameCategory: ''
+  };
 
   constructor(private supabaseSvc: SupabaseService) { }
 
@@ -22,5 +27,31 @@ export class ProductsService {
 
   setProduct(product: any) {
     this.allProducts.push(product);
+  }
+
+  setCurrentCategory(categoryKey: string, categoryValue: any) {
+    this.currentCategory.inside = true;
+    this.currentCategory.data = categoryValue;
+    this.currentCategory.nameCategory = categoryKey;
+  }
+
+  getCurrentCategory() {
+    return this.currentCategory;
+  }
+
+  deleteCurrentCategory() {
+    this.currentCategory = {
+      inside: false,
+      data: [],
+      nameCategory: ''
+    };
+  }
+
+  setNewProductInCurrentCategory(product: any) {
+    if(!this.currentCategory.inside || this.currentCategory.nameCategory !== product.category) {
+      return;
+    }
+
+    this.currentCategory.data.push(product);
   }
 }

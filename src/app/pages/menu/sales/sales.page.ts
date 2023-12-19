@@ -20,11 +20,7 @@ export class SalesPage implements OnInit {
   productsWithoutCategory: any = {}
 
   allProducts: any = [];
-  categoryInfo: any = {
-    inside: false,
-    data: [],
-    name: ''
-  };
+  currentCategory: any = {};
 
   // shoppingCartInfo: any = {
   //   amount: 0,
@@ -45,16 +41,12 @@ export class SalesPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.getCategoriesData();
+    await this.productsSvc.getAllUserProducts();
     this.allProducts = this.productsSvc.getAllProducts();
   }
 
   ionViewWillEnter() {
     localStorage.setItem('redirectUrl', 'sales');
-  }
-
-  async getCategoriesData() {
-    await this.productsSvc.getAllUserProducts();
   }
 
   async addProduct() {
@@ -72,13 +64,15 @@ export class SalesPage implements OnInit {
     if(data) {
       this.productsSvc.setProduct(data);
       this.allProducts = this.productsSvc.getAllProducts();
+      
+      this.productsSvc.setNewProductInCurrentCategory(data);
+      this.currentCategory = this.productsSvc.getCurrentCategory();
     }
   }
 
   openCategory(categoryKey: string, categoryValue: any) {
-    this.categoryInfo.inside = true;
-    this.categoryInfo.data = categoryValue;
-    this.categoryInfo.name = categoryKey;
+    this.productsSvc.setCurrentCategory(categoryKey, categoryValue);
+    this.currentCategory = this.productsSvc.getCurrentCategory();
   }
 
   getString(input:any) {
@@ -86,11 +80,8 @@ export class SalesPage implements OnInit {
   }
 
   backToCategoriesSeccion() {
-    this.categoryInfo = {
-      inside: false,
-      data: [],
-      name: ''
-    };
+    this.productsSvc.deleteCurrentCategory();
+    this.currentCategory = this.productsSvc.getCurrentCategory();
   }
 
   async selectQuantityOfProduct(product: any) {

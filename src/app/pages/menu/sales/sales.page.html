@@ -13,7 +13,7 @@
       <!-- <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon> -->
   </div>
 
-  <div *ngIf="!categoryInfo.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
+  <div *ngIf="!currentCategory.inside && !querySearchBar" style="padding: 8px; margin: 0 1rem 0 1rem;">
     @if ((allProducts | products: true)?.hasCategories) {
       <ion-text>
         <h1 style="margin: 0px;">Categorias</h1>
@@ -21,7 +21,7 @@
     }
   </div>
 
-  <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem .5rem 1rem; padding: 0;">
+  <ion-grid *ngIf="!currentCategory.inside" style="margin: 0 1rem .5rem 1rem; padding: 0;">
 
     <!-- CATEGORIAS -->
     <ion-row *ngIf="!querySearchBar">
@@ -72,25 +72,25 @@
 
 
   <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
-  <div *ngIf="categoryInfo.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
+  <div *ngIf="currentCategory.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
     <div style="    align-self: flex-end;">
       <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
     </div>
     <div style="margin: 0 1rem 0 1rem;">
       <ion-text>
-        <h1 style="margin: 0px;">{{ categoryInfo.name }}</h1>
+        <h1 style="margin: 0px;">{{ currentCategory.nameCategory }}</h1>
       </ion-text>
     </div>
   </div>
 
-  <ion-grid *ngIf="categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
+  <ion-grid *ngIf="currentCategory.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
     <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;">
-      @for (product of categoryInfo.data; track $index) {
+      @for (product of currentCategory.data; track $index) {
         <ion-col size="auto">
           <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
         </ion-col>
       }
-      <!-- <ion-col *ngFor="let product of categoryInfo.data">
+      <!-- <ion-col *ngFor="let product of currentCategory.data">
         <ion-item style="cursor: pointer;" (click)="selectQuantityOfProduct(product)">
           <ion-thumbnail slot="start">
             <img alt="{{product.name}}" [src]="product.image_url" />

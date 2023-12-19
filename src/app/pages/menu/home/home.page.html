@@ -26,19 +26,21 @@
   </ion-content>
 </ion-menu>
 
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="screenWidth < 1000">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">{{currentPage}}</ion-title>
-    <ion-buttons color="primary" slot="end" class="shoppingCartSeccion" *ngIf="screenWidth < 1000">
-      <ion-text >{{shoppCartSvc.getShoppingCartInfo().totalProducts}}</ion-text>
-      <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
-    </ion-buttons>
-
-    <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()"  *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
-  </ion-toolbar>
-</ion-header>
+@if(toolbarSvc.getToolbar()) {
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start" *ngIf="screenWidth < 1000">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">{{currentPage}}</ion-title>
+      <ion-buttons color="primary" slot="end" class="shoppingCartSeccion" *ngIf="screenWidth < 1000">
+        <ion-text >{{shoppCartSvc.getShoppingCartInfo().totalProducts}}</ion-text>
+        <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
+      </ion-buttons>
+  
+      <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()"  *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
+    </ion-toolbar>
+  </ion-header>
+}
 
 <ion-router-outlet id="main-content" main></ion-router-outlet>

@@ -4,6 +4,7 @@ import { SupabaseService } from '../services/supabase.service';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
 import { CurrentSelectedTemplate } from 'src/app/interfaces/current-selected-template';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToolbarService } from '../services/toolbar.service';
 
 @Component({
   selector: 'app-templates',
@@ -597,7 +598,8 @@ export class TemplatesPage {
     private supabase: SupabaseService, 
     private loadingController: LoadingController,
     public auxFns: AuxFnsService,
-    private authSvc: AuthService, 
+    private authSvc: AuthService,
+    public toolbarSvc: ToolbarService
   ) { }
 
   ionViewWillEnter() {
@@ -616,6 +618,8 @@ export class TemplatesPage {
     this.setCacheDontShowTemplates();
     await this.setTemplateToSupabase();
     this.auxFns.navigateTo('/home/sales');
+    //TODO - Se vuelve a activar porque en home se desactiva para que en template no salga
+    this.toolbarSvc.activeToolbar();
 
     await loading.dismiss();
   }

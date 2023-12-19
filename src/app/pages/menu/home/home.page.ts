@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
 import { SupabaseService } from '../services/supabase.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ToolbarService } from '../services/toolbar.service';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,8 @@ export class HomePage implements OnInit {
     private modalController: ModalController,
     public auxFns: AuxFnsService,
     private supabase: SupabaseService,
-    public shoppCartSvc: ShoppingCartService
+    public shoppCartSvc: ShoppingCartService,
+    public toolbarSvc: ToolbarService,
   ) { 
     this.screenWidth = window.innerWidth;
   }
@@ -44,9 +46,12 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     const currentUserId = this.authSvc.getCurrentUserId();
-    // localStorage.setItem(currentUserId + '/selectedTemplate', '');
+    localStorage.setItem(currentUserId + '/selectedTemplate', '');
     this.template = localStorage.getItem(currentUserId + '/selectedTemplate') || await this.supabase.getSelectedTemplate();
     if(!this.template) {
+      //TODO - Cuando continue sin plantilla o eliga una plantilla se tiene que volver a activar
+      this.toolbarSvc.desactivateToolbar();
+      setTimeout(() => {}, 0); // Sirve para que primero espere a que se desactive y ya luego cargue templates
       this.auxFns.navigateTo('/home/templates');
       // this.selectTemplate();
     }
@@ -89,4 +94,4 @@ export class HomePage implements OnInit {
   
     await modal.present();
   }
-} 
+}

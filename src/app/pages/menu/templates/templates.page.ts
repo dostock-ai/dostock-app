@@ -14,6 +14,7 @@ import { ToolbarService } from '../services/toolbar.service';
 export class TemplatesPage {
   templatesSeccion = true;
   currentSelectedTemplate:CurrentSelectedTemplate = {};
+  currentCategories: any = [];
 
   templates = [
     {
@@ -28,7 +29,7 @@ export class TemplatesPage {
             sale_price: 10,
             buy_price: 5,
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -42,7 +43,7 @@ export class TemplatesPage {
             buy_price: 7,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -55,7 +56,7 @@ export class TemplatesPage {
             buy_price: 15,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -68,7 +69,7 @@ export class TemplatesPage {
             buy_price: 20,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -81,7 +82,7 @@ export class TemplatesPage {
             buy_price: 25,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -94,7 +95,7 @@ export class TemplatesPage {
             buy_price: 30,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -107,7 +108,7 @@ export class TemplatesPage {
             buy_price: 40,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -120,7 +121,7 @@ export class TemplatesPage {
             buy_price: 50,
             description: 'La malteada de pay de limón no es màs que una versión en bebida del conocido postre llamado "Carlota". Se trata de una mezcla de todo lo que lleva la receta original, pero que en este caso se licúa la leche evaporada, las galletas, el jugo de limón, etc.',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: true,
             current_stock: 50,
@@ -135,7 +136,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -148,7 +149,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -161,7 +162,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -174,7 +175,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -187,7 +188,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -200,7 +201,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -213,7 +214,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -226,7 +227,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -239,7 +240,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -252,7 +253,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -265,7 +266,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -278,7 +279,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -291,7 +292,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -306,7 +307,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -319,7 +320,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -332,7 +333,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -345,7 +346,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -358,7 +359,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -371,7 +372,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -384,7 +385,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -397,7 +398,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -410,7 +411,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -423,7 +424,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -436,7 +437,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -451,7 +452,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -464,7 +465,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -477,7 +478,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -490,7 +491,7 @@ export class TemplatesPage {
             buy_price: 5,
             description: '',
             barcode: '',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             control_stock: false,
             current_stock: null,
@@ -503,7 +504,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Agua purificada',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: true,
             control_stock: true,
@@ -516,7 +517,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Leche lala',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: true,
             control_stock: true,
@@ -529,7 +530,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Vainilla en bote',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: false,
             control_stock: true,
@@ -542,7 +543,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Agua purificada',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: false,
             control_stock: true,
@@ -555,7 +556,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Agua purificada',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: true,
             control_stock: true,
@@ -568,7 +569,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Agua purificada',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             category: null,
             available_for_sale: true,
             control_stock: true,
@@ -581,7 +582,7 @@ export class TemplatesPage {
             buy_price: 8,
             description: 'Agua purificada',
             barcode: '9823748232',
-            type_sale: 'Unidad',
+            type_sale: 'unidad',
             available_for_sale: true,
             category: null,
             control_stock: true,
@@ -589,7 +590,8 @@ export class TemplatesPage {
             image_url: 'https://wuifdiobrwfkybbamllq.supabase.co/storage/v1/object/public/templates/coffee-shop/default/chocolate.jpg?t=2023-12-03T21%3A36%3A31.492Z'
           }
         ]
-      }
+      },
+      categoriesArray: ['Bebidas frías', 'Bebidas calientes', 'Bocadillos', 'Postres']
     },
   ]
 
@@ -609,19 +611,28 @@ export class TemplatesPage {
   showTemplateData(template: any) {
     this.templatesSeccion = false;
     this.currentSelectedTemplate = template.categories;
+    this.currentCategories = template.categoriesArray;
   }
 
   async setTemplate() {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.setCacheDontShowTemplates();
+    await this.setCategoriesOfTemplate();
     await this.setTemplateToSupabase();
+    this.setCacheDontShowTemplates();
+    
     this.auxFns.navigateTo('/home/sales');
     //TODO - Se vuelve a activar porque en home se desactiva para que en template no salga
     this.toolbarSvc.activeToolbar();
 
     await loading.dismiss();
+  }
+
+  async setCategoriesOfTemplate() {
+    let categories = await this.supabase.getCategories();
+    categories = categories ? [...categories, ...this.currentCategories] : this.currentCategories;
+    await this.supabase.setCategories(categories);
   }
 
   setCacheDontShowTemplates() {

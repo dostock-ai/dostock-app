@@ -1,11 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'products'
+  name: 'products',
+  pure: false
 })
 export class ProductsPipe implements PipeTransform {
 
   transform(products: any, withCategory: Boolean) {
+    if (!products) {
+      return { data: {}, hasCategories: false };
+    }
+
     const result: any = { data: {}, hasCategories: false };
 
     if (withCategory) {

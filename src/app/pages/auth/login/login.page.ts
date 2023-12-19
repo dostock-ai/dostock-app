@@ -4,6 +4,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AuxFnsService } from 'src/app/services/aux-fns.service';
+import { ToolbarService } from '../../menu/services/toolbar.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginPage implements OnInit {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private router: Router,
-    public auxFns: AuxFnsService
+    public auxFns: AuxFnsService,
+    private toolbarSvc: ToolbarService
     ) {
       this.authSvc.getCurrentUser().subscribe((user) => {
         if(user) {
@@ -32,6 +34,9 @@ export class LoginPage implements OnInit {
           console.log('redirectUrl', redirectUrl);
           
           this.router.navigateByUrl('/home/' + redirectUrl, { replaceUrl: true });
+          if(redirectUrl === 'templates') {
+            this.toolbarSvc.desactivateToolbar();
+          }
         }
       });
   }

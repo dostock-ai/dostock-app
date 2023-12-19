@@ -21,7 +21,7 @@
     }
   </div>
 
-  <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem 0 1rem; padding: 0;">
+  <ion-grid *ngIf="!categoryInfo.inside" style="margin: 0 1rem .5rem 1rem; padding: 0;">
 
     <!-- CATEGORIAS -->
     <ion-row *ngIf="!querySearchBar">
@@ -47,7 +47,7 @@
       <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;" >
         @for (product of (allProducts | products: false)?.data; track $index) {
           <ion-col size="auto">
-            <app-product-card 
+            <app-product-card
               [productName]="product.name" 
               [productImageURL]="product.image_url"
               (click)="selectQuantityOfProduct(product)"

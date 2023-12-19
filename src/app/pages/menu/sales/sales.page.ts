@@ -41,11 +41,12 @@ export class SalesPage implements OnInit {
     private scanSvc: ScanService,
     private readonly dialogService: DialogService,
     public shoppCartSvc: ShoppingCartService,
-    public productsSvc: ProductsService
+    public productsSvc: ProductsService,
   ) { }
 
   async ngOnInit() {
     await this.getCategoriesData();
+    this.allProducts = this.productsSvc.getAllProducts();
   }
 
   ionViewWillEnter() {
@@ -53,7 +54,7 @@ export class SalesPage implements OnInit {
   }
 
   async getCategoriesData() {
-    this.allProducts = await this.productsSvc.getAllUserProducts();
+    await this.productsSvc.getAllUserProducts();
   }
 
   async addProduct() {
@@ -66,17 +67,18 @@ export class SalesPage implements OnInit {
     });
 
     await modal.present();
-    // const { data } = await modal.onDidDismiss();
-    // Aquí puedes manejar los datos que puedan devolverse cuando se cierre el modal (si lo necesitas)
-    // Ejemplo: const resultado = data.resultado;
+
+    const { data } = await modal.onDidDismiss();
+    if(data) {
+      this.productsSvc.setProduct(data);
+      this.allProducts = this.productsSvc.getAllProducts();
+    }
   }
 
   openCategory(categoryKey: string, categoryValue: any) {
     this.categoryInfo.inside = true;
     this.categoryInfo.data = categoryValue;
     this.categoryInfo.name = categoryKey;
-
-    console.log(categoryValue, this.categoryInfo.data);
   }
 
   getString(input:any) {

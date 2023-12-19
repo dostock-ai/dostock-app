@@ -54,8 +54,11 @@ export class AddProductComponent  implements OnInit {
     if (error) {
       this.auxFns.showAlert('Error', 'Ocurrió un error al guardar el producto');
     } else {
-      this.auxFns.showAlert('Producto guardado', 'El producto se guardó correctamente');
-      this.closeModal();
+      // this.auxFns.showAlert('Producto guardado', 'El producto se guardó correctamente');
+      if(this.productData.category == undefined) {
+        this.productData.category = null;
+      }
+      this.closeModal(this.productData);
     }
 
     this.productData = {
@@ -64,8 +67,8 @@ export class AddProductComponent  implements OnInit {
     await loading.dismiss();
   }
 
-  closeModal() {
-    this.modalController.dismiss();
+  closeModal(productData?: any) {
+    this.modalController.dismiss(productData);
   }
 
   async selectImage() {

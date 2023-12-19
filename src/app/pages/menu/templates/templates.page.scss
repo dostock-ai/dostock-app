@@ -17,12 +17,12 @@
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.3s, width 0.3s;
-  }
+}
   
-  .card-hover:hover::after {
-    width: 100%;
-    transform: scaleX(1);
-  }
+.card-hover:hover::after {
+  width: 100%;
+  transform: scaleX(1);
+}
 
 #confirmTemplate {
   padding-right: 1rem; 

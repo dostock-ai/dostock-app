@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     const currentUserId = this.authSvc.getCurrentUserId();
-    localStorage.setItem(currentUserId + '/selectedTemplate', '');
+    // localStorage.setItem(currentUserId + '/selectedTemplate', '');
     this.template = localStorage.getItem(currentUserId + '/selectedTemplate') || await this.supabase.getSelectedTemplate();
     if(!this.template) {
       //TODO - Cuando continue sin plantilla o eliga una plantilla se tiene que volver a activar

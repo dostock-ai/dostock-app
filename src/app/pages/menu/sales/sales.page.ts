@@ -4,7 +4,7 @@ import { AddProductComponent } from 'src/app/components/add-product/add-product.
 import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 import { ScanService } from 'src/app/services/scan.service';
-import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
+import { BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { DialogService } from 'src/app/core/dialog.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';

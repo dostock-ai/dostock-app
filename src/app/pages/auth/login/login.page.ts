@@ -31,9 +31,11 @@ export class LoginPage implements OnInit {
       this.authSvc.getCurrentUser().subscribe((user) => {
         if(user) {
           const redirectUrl = localStorage.getItem('redirectUrl') || 'sales';
-          console.log('redirectUrl', redirectUrl);
-          
           this.router.navigateByUrl('/home/' + redirectUrl, { replaceUrl: true });
+
+          this.toolbarSvc.setCurrentPage(redirectUrl);
+          
+
           if(redirectUrl === 'templates') {
             this.toolbarSvc.desactivateToolbar();
           }

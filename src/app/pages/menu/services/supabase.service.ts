@@ -25,7 +25,7 @@ export class SupabaseService {
 
     for (let index = 0; index < products.length; index++) {
       const product = products[index];
-      await this.authSvc.supabase.from('stock').insert({ user_id: user_id, ...product });
+      await this.authSvc.supabase.from('stock').insert({ user_id: user_id, ...product, template: true });
     }
   }
 

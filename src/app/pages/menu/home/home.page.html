@@ -13,7 +13,7 @@
   <ion-content>
     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
       <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" 
-        detail="false" routerLinkActive="selected" (click)="changeCurrentPage(p.title)">
+        detail="false" routerLinkActive="selected" (click)="changeCurrentPageAndTitle(p.currentPage, p.title)">
         <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
         <ion-label>{{ p.title }}</ion-label>
       </ion-item>
@@ -32,13 +32,14 @@
       <ion-buttons slot="start" *ngIf="screenWidth < 1000">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">{{currentPage}}</ion-title>
+      <!-- !En toolbarSvc crear un getCurrentTitle que retorne el titulo como deberia ser -->
+      <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">{{toolbarSvc.getCurrentPage()}}</ion-title>
       <ion-buttons color="primary" slot="end" class="shoppingCartSeccion" *ngIf="screenWidth < 1000">
         <ion-text >{{shoppCartSvc.getShoppingCartInfo().totalProducts}}</ion-text>
         <ion-icon name="cart-outline" style="font-size: 1.7rem; padding: 0 8px 0 4px;"></ion-icon>
       </ion-buttons>
   
-      <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()"  *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
+      <app-navigation-toolbar [shoppingCartInfo]="shoppCartSvc.getShoppingCartInfo()" *ngIf="screenWidth >= 1000"></app-navigation-toolbar>
     </ion-toolbar>
   </ion-header>
 }

@@ -1,8 +1,17 @@
 <ion-card class="card-hover">
   <img alt="{{productName}}" [src]="productImageURL"/>
-  <ion-card-header>
-    <ion-card-title>
-      {{ productName }}
-    </ion-card-title>
-  </ion-card-header>
+  @if(productPage) {
+    <ion-card-header style="display: flex; justify-content: space-between; align-items: center; flex-direction: row; width: 100%;">
+      <ion-card-title>
+        {{ productName }}
+      </ion-card-title>
+      <ion-icon name="trash-outline" color="danger" style="width: 32px; height: 32px; cursor: pointer;"></ion-icon>
+    </ion-card-header>
+  } @else {
+    <ion-card-header>
+      <ion-card-title>
+        {{ productName }}
+      </ion-card-title>
+    </ion-card-header>
+  }
 </ion-card>

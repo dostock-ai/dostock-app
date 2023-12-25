@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class ToolbarService {
   isToolbarActive:boolean = true;
   currentPage: string = '';
+  currentTilte: string = '';
 
   constructor() { }
  
@@ -24,9 +25,32 @@ export class ToolbarService {
 
   setCurrentPage(currentPage: string) {
     this.currentPage = currentPage;
+
+    this.setCurrentTitle(currentPage);
+  }
+
+  setCurrentTitle(currentPage: string) {
+    switch(currentPage) {
+      case 'sales': 
+        this.currentTilte = 'Ventas'
+        break;
+      case 'products': 
+        this.currentTilte = 'Productos'
+        break;
+      case 'chat-ai':
+        this.currentTilte = 'Chat-IA'
+        break;
+      case 'settings':
+        this.currentTilte = 'Configuración'
+        break;
+    }
   }
 
   getCurrentPage() {
     return this.currentPage;
+  }
+
+  getCurrentTitle() {
+    return this.currentTilte;
   }
 }

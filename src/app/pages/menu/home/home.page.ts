@@ -58,7 +58,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  changeCurrentPageAndTitle(currentPage: string, currentTitle: string) {
+  changeCurrentPage(currentPage: string) {
     this.toolbarSvc.setCurrentPage(currentPage);
     this.currentPage = currentPage;
   }

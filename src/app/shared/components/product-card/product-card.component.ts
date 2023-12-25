@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProductCardComponent {
   @Input() productName: string = '';
   @Input() productImageURL: string = '';
+  @Input() productPage: boolean = false;
 
   constructor() { }
 }

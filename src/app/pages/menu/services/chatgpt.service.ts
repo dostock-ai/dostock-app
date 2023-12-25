@@ -34,6 +34,6 @@ export class ChatgptService {
       console.log(error);
     }
 
-    return data.choices[0].message.content;
+    return data?.choices[0]?.message?.content || 'Network response wasnt ok';
   }
 }

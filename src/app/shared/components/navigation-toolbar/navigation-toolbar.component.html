@@ -1,17 +1,17 @@
 <ion-toolbar>
-    <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/sales')">
+    <ion-buttons slot="end" class="main-buttons-toolbar" [ngClass]="toolbarSvc.getCurrentPage() === 'sales' ? 'sales' : ''" (click)="navigateTo('sales')">
       Ventas
     </ion-buttons>
-  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/products')">
+  <ion-buttons slot="end" class="main-buttons-toolbar" [ngClass]="toolbarSvc.getCurrentPage() === 'products' ? 'products' : ''" (click)="navigateTo('products')">
     Productos
   </ion-buttons>
   <!-- <ion-buttons slot="end" (click)="navigateTo('/home/suppliers')">
     Proveedores
   </ion-buttons> -->
-  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/chat-ai')">
+  <ion-buttons slot="end" class="main-buttons-toolbar" [ngClass]="toolbarSvc.getCurrentPage() === 'chat-ai' ? 'chat-ai' : ''" (click)="navigateTo('chat-ai')">
     Chat AI Tory
   </ion-buttons>
-  <ion-buttons slot="end" class="main-buttons-toolbar" (click)="navigateTo('/home/settings')">
+  <ion-buttons slot="end" class="main-buttons-toolbar" [ngClass]="toolbarSvc.getCurrentPage() === 'settings' ? 'settings' : ''" (click)="navigateTo('settings')">
     Configuración
   </ion-buttons>
   <ion-buttons color="primary" slot="end" class="shoppingCartSeccion">

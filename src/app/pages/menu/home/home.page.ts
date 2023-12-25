@@ -16,13 +16,14 @@ export class HomePage implements OnInit {
   template: any;
   appMenuSwipeGesture: any;
   public appPages = [
-    { title: 'Venta', url: '/home/sales', icon: 'bag-check' },
-    { title: 'Productos', url: '/home/products', icon: 'cube' },
+    { title: 'Ventas', url: '/home/sales', icon: 'bag-check', currentPage: 'sales' },
+    { title: 'Productos', url: '/home/products', icon: 'cube', currentPage: 'products' },
     // { title: 'Proveedores', url: '/home/suppliers', icon: 'airplane' },
-    { title: 'Chat-IA (Tory)', url: '/home/chat-ai', icon: 'chatbox-ellipses' },
-    { title: 'Configuración', url: '/home/settings', icon: 'settings' },
+    { title: 'Chat-IA', url: '/home/chat-ai', icon: 'chatbox-ellipses', currentPage: 'chat-ai' },
+    { title: 'Configuración', url: '/home/settings', icon: 'settings', currentPage: 'settings' },
   ];
-  currentPage = 'Venta';
+  currentPage = 'Ventas';
+  currentTitle = 'Ventas';
 
   screenWidth: number;
 
@@ -58,6 +59,7 @@ export class HomePage implements OnInit {
   }
 
   changeCurrentPage(currentPage: string) {
+    this.toolbarSvc.setCurrentPage(currentPage);
     this.currentPage = currentPage;
   }
 

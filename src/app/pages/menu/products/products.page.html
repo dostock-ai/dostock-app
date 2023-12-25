@@ -50,6 +50,7 @@
             <app-product-card
               [productName]="product.name" 
               [productImageURL]="product.image_url"
+              [productPage]="true"
             >
             </app-product-card>
           </ion-col>
@@ -62,7 +63,12 @@
       <ion-row>
         @for (product of resultsSearchBar; track product) {
           <ion-col size="auto">
-            <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+            <app-product-card 
+              [productName]="product.name" 
+              [productImageURL]="product.image_url"
+              [productPage]="true"
+            >
+            </app-product-card>
           </ion-col>
         }
       </ion-row>
@@ -86,7 +92,12 @@
     <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;">
       @for (product of currentCategory.data; track $index) {
         <ion-col size="auto">
-          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+          <app-product-card 
+            [productName]="product.name" 
+            [productImageURL]="product.image_url"
+            [productPage]="true"
+          >
+          </app-product-card>
         </ion-col>
       }
       <!-- <ion-col *ngFor="let product of currentCategory.data">

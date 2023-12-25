@@ -6,7 +6,7 @@
       <ion-row *ngFor="let message of messages">
         <ion-col [ngClass]="message.sender === 'chat-user-message' ? 'chat-user-message' : 'chat-ai-message'">
           <div>
-            <ion-text> {{ message.sender === 'chat-user-message' ? 'Yo: ' : 'Tory AI' }}: {{ message.text }} </ion-text>
+            <ion-text> {{ message.sender === 'chat-user-message' ? 'Yo: ' : 'Tory' }}: {{ message.text }} </ion-text>
           </div>
         </ion-col>
       </ion-row>

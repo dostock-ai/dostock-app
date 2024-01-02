@@ -44,9 +44,9 @@
 
     <!-- PRODUCTOS SIN CATEGORIA -->
     @if (!querySearchBar) {
-      <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;" >
+      <ion-row style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 25px; justify-items: center;">
         @for (product of (allProducts | products: false)?.data; track $index) {
-          <ion-col size="auto">
+          <ion-col style="width: fit-content; display: flex; align-items: center; justify-content: center;"> 
             <app-product-card
               [productName]="product.name" 
               [productImageURL]="product.image_url"

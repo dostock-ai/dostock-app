@@ -1,22 +1,9 @@
-.search {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    padding: 0 1rem 0 1rem;
+ion-header {
+    min-height: 5rem;
+}
 
-    ion-searchbar {
-        padding-right: 0px;
-
-        &:hover {
-            box-shadow: 0px 2px 0px 0px #00ff00;
-        }
-    }
-
-    ion-icon {
-        margin: .5rem; 
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
+h2 {
+    margin: 0px;
 }
 
 .optionsSales {
@@ -24,13 +11,26 @@
     width: 100%; 
     justify-content: end; 
     align-items: center;
-    padding: .5rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+}
 
-    ion-icon {
-        font-size: 1.5rem;
-        margin: .5rem;
-        cursor: pointer;
+.search {
+    margin-bottom: 1rem;
+
+    ion-searchbar {
+        padding: 0;
+        margin: 0;
+
+        &:hover {
+            box-shadow: 0px 2px 0px 0px #00ff00;
+        }
     }
+}
+
+ion-icon {
+    margin-left: .5rem; 
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 // barcode scanner
@@ -50,6 +50,21 @@ body.barcode-scanner-active {
     background-color: #ccc; /* Color de la línea separadora */
     margin: 10px 0; /* Ajusta el margen según tus preferencias */
 }  
+
+ion-grid {
+    margin: 0 1rem .5rem 1rem; 
+    padding: 0;
+}
+
+ion-grid ion-row ion-col ion-item {
+    cursor: pointer;
+}
+
+ion-grid ion-row ion-col ion-item ion-label {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
 
 @media (prefers-color-scheme: dark) {
     .barcode-scanner-modal {

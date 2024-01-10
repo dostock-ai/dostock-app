@@ -19,9 +19,9 @@
   </div>
 
   @if(!currentCategory.inside && !querySearchBar) {
-    <div>
+    <div style="margin-bottom: 1rem; color: var(--ion-color-primary);">
       @if ((allProducts | products: true)?.hasCategories) {
-        <h2>Categorias</h2>
+        <h2 style="font-weight: 600;">Categorias</h2>
       }
     </div>
   }
@@ -30,23 +30,25 @@
     <ion-grid>
       <!-- CATEGORIAS -->
       @if(!querySearchBar) {
-        <ion-row>
+        <ion-row class="ca_box">
           @for(category of (allProducts | products: true)?.data | keyvalue; track $index) {
-            <ion-col>
-              <ion-item (click)="openCategory(getString(category.key), category.value)">
-                <ion-label>
-                  <ion-text>
-                    {{ category.key }}
-                  </ion-text>
-                </ion-label>
-              </ion-item>
+            <ion-col class="ca_item">
+              <!-- color="secondary" -->
+              <ion-card class="ca-item_link" (click)="openCategory(getString(category.key), category.value)">
+                <div class="ca-item_bg"></div>
+                <ion-card-header>
+                  <ion-card-title class="ca-item_title">{{ category.key }}</ion-card-title>
+                </ion-card-header>
+              </ion-card>
             </ion-col>
           }
         </ion-row>
       }
-  
-      @if(!querySearchBar) {
-        <ion-row><ion-col><div class="separator"></div></ion-col></ion-row>
+
+      @if(((allProducts | products: false)?.data).length > 0) {
+        <div style="margin: 1rem 0; color: var(--ion-color-primary);">
+          <h2 style="font-weight: 600;">Productos sin categoría</h2>
+        </div>
       }
   
       <!-- PRODUCTOS SIN CATEGORIA -->

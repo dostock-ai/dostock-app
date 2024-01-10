@@ -19,7 +19,7 @@ ion-card {
 }
   
 .card-hover:hover {
-    transform: scale(1.05); /* Hace zoom al 105% */
+    transform: scale(1.05);
 }
 
 .card-hover::after {
@@ -27,9 +27,9 @@ ion-card {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 100%; /* Ancho completo del card */
-    height: 3px; /* Altura del borde inferior */
-    background: #00ff00; /* Borde que brilla en verde (#00ff00) */
+    width: 100%;
+    height: 3px;
+    background: #00ff00;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.3s, width 0.3s;

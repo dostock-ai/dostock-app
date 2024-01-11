@@ -1,6 +1,6 @@
 <ion-header></ion-header>
 
-<ion-content class="ion-padding" force-overscroll="false">
+<ion-content class="ion-padding">
   <div class="optionsSales">
     <ion-icon name="add-outline" (click)="addProduct()"></ion-icon>
     <ion-icon name="scan-outline" (click)="scan()"></ion-icon>
@@ -53,13 +53,14 @@
   
       <!-- PRODUCTOS SIN CATEGORIA -->
       @if (!querySearchBar) {
-        <ion-row style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 25px; justify-items: center;">
+        <ion-row style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 25px; justify-items: center; padding: 0 10px;">
           @for (product of (allProducts | products: false)?.data; track $index) {
-            <ion-col style="width: fit-content; display: flex; align-items: center; justify-content: center;"> 
+            <ion-col style="display: flex; align-items: center; justify-content: center; padding: 0; margin: 0;"> 
               <app-product-card
                 [productName]="product.name" 
                 [productImageURL]="product.image_url"
                 (click)="selectQuantityOfProduct(product)"
+                style="width: 100%;"
               >
               </app-product-card>
             </ion-col>

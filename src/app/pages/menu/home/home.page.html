@@ -32,7 +32,6 @@
       <ion-buttons slot="start" *ngIf="screenWidth < 1000">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <!-- !En toolbarSvc crear un getCurrentTitle que retorne el titulo como deberia ser -->
       <ion-title style="width: auto; margin: 0;"  *ngIf="screenWidth < 1000">{{toolbarSvc.getCurrentTitle()}}</ion-title>
       <ion-buttons color="primary" slot="end" class="shoppingCartSeccion" *ngIf="screenWidth < 1000">
         <ion-text >{{shoppCartSvc.getShoppingCartInfo().totalProducts}}</ion-text>

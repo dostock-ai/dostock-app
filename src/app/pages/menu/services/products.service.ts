@@ -9,7 +9,8 @@ export class ProductsService {
   currentCategory: any = {
     inside: false,
     data: [],
-    nameCategory: ''
+    nameCategory: '',
+    class: ''
   };
 
   constructor(private supabaseSvc: SupabaseService) { }
@@ -33,6 +34,7 @@ export class ProductsService {
     this.currentCategory.inside = true;
     this.currentCategory.data = categoryValue;
     this.currentCategory.nameCategory = categoryKey;
+    this.currentCategory.class = 'selected_item_card';
   }
 
   getCurrentCategory() {
@@ -43,7 +45,8 @@ export class ProductsService {
     this.currentCategory = {
       inside: false,
       data: [],
-      nameCategory: ''
+      nameCategory: '',
+      class: ''
     };
   }
 

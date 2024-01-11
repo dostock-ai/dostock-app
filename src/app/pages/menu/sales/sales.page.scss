@@ -70,22 +70,20 @@ ion-grid {
 }
 
 .ca_item {
-    // height: 5rem;
     overflow: hidden;
     padding: 0;
 }
 
-.ca-item_link {
+.ca-item_card {
     display: block;
     padding: 30px 20px;
-    // background-color: #121212;
     overflow: hidden;
     position: relative;
     border-radius: 28px;
     cursor: pointer;
 }
 
-.ca-item_link ion-card-header .ca-item_title {
+.ca-item_card ion-card-header .ca-item_title {
     color: var(--ion-color-primary);
     overflow: hidden;
     z-index: 2;
@@ -96,14 +94,14 @@ ion-grid ion-row ion-col ion-card ion-icon {
     margin-right: 1rem;
 }
 
-.ca-item_link:hover .ca-item_bg {
+.ca-item_card:hover .ca-item_bg {
     -webkit-transform: scale(10);
     -ms-transform: scale(10);
     transform: scale(10);
 }
 
-.ca-item_link:hover ion-card-header .ca-item_title {
-  color: white;
+.ca-item_card:hover ion-card-header .ca-item_title {
+  color: var(--ion-color-light);
 }
 
 .ca-item_bg {
@@ -121,6 +119,16 @@ ion-grid ion-row ion-col ion-card ion-icon {
     -webkit-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
+}
+
+.selected_item_card {
+    -webkit-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+}
+
+.selected_item_card ~ ion-card-header .ca-item_title {
+    color: var(--ion-color-light); 
 }
 
 @media (prefers-color-scheme: dark) {

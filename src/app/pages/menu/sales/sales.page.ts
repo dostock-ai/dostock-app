@@ -20,7 +20,12 @@ export class SalesPage implements OnInit {
   productsWithoutCategory: any = {}
 
   allProducts: any = [];
-  currentCategory: any = {};
+  currentCategory: any = {
+    inside: false,
+    data: [],
+    nameCategory: '',
+    class: ''
+  };
 
   // shoppingCartInfo: any = {
   //   amount: 0,
@@ -71,6 +76,13 @@ export class SalesPage implements OnInit {
   }
 
   openCategory(categoryKey: string, categoryValue: any) {
+    const nameCategoryHasValue = this.currentCategory.nameCategory != '';
+    const equalNameCategory = this.currentCategory.nameCategory === categoryKey;
+    if(nameCategoryHasValue && equalNameCategory) {
+      this.backToCategoriesSeccion();
+      return;
+    }
+
     this.productsSvc.setCurrentCategory(categoryKey, categoryValue);
     this.currentCategory = this.productsSvc.getCurrentCategory();
   }
@@ -182,5 +194,13 @@ export class SalesPage implements OnInit {
         await modal.present();
       }
     });
+  }
+
+  checkCardClass() {
+    return this.currentCategory.class || '';
+  }
+
+  getCurrentCategoryName() {
+    return this.currentCategory.nameCategory || '';
   }
 }

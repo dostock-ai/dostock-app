@@ -1,6 +1,6 @@
 <ion-header></ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <div class="optionsSales">
     <ion-icon name="add-outline" (click)="addProduct()"></ion-icon>
     <ion-icon name="scan-outline" (click)="scan()"></ion-icon>
@@ -33,7 +33,6 @@
         <ion-row class="ca_box">
           @for(category of (allProducts | products: true)?.data | keyvalue; track $index) {
             <ion-col class="ca_item">
-              <!-- color="secondary" -->
               <ion-card class="ca-item_link" (click)="openCategory(getString(category.key), category.value)">
                 <div class="ca-item_bg"></div>
                 <ion-card-header>

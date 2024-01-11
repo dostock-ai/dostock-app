@@ -7,6 +7,13 @@ ion-header {
     min-height: 5rem;
 }
 
+ion-content {
+    --padding-bottom: 2rem;
+    --padding-end: 2rem;
+    --padding-start: 2rem;
+    --padding-top: 2rem;
+}
+
 h2 {
     margin: 0px;
 }

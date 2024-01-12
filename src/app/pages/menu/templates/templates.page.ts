@@ -340,7 +340,7 @@ export class TemplatesPage {
           },
           {
             name: "Hamburguesas",
-            image_url: 'https://wuifdiobrwfkybbamllq.supabase.co/storage/v1/object/public/templates/coffee-shop/sandwiches/sincronizada.jpg?t=2023-12-03T21%3A00%3A29.400Z',
+            image_url: 'https://wuifdiobrwfkybbamllq.supabase.co/storage/v1/object/public/templates/coffee-shop/sandwiches/hamburguesa.jpg',
             sale_price: 10,
             category: 'Bocadillos',
             buy_price: 5,

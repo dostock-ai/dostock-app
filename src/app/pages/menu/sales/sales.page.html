@@ -21,7 +21,7 @@
   @if(!querySearchBar) {
     <div class="content_title">
       @if ((allProducts | products: true)?.hasCategories) {
-        <h2 style="font-weight: 600;">Categorias</h2>
+        <h2>Categorías</h2>
       }
     </div>
   }
@@ -37,10 +37,15 @@
               (click)="openCategory(getString(category.key), category.value)"
             >
               <div
-                [ngClass]="[isTouch ? 'ca-item_bg_touch' : 'ca-item_bg', (getCurrentCategoryName() === category.key) ? checkCardClass() : '']"
-              ></div>
+                [ngClass]="
+                  [isTouch ? 'ca-item_bg_touch' : 'ca-item_bg', 
+                  (getCurrentCategoryName() === category.key) ? checkCardClass() : '']"
+              >
+              </div>
               <ion-card-header>
-                <ion-card-title [ngClass]="isTouch ? 'ca-item_title_touch' : 'ca-item_title'">{{ category.key }}</ion-card-title>
+                <ion-card-title [ngClass]="isTouch ? 'ca-item_title_touch' : 'ca-item_title'">
+                  {{ category.key }}
+                </ion-card-title>
               </ion-card-header>
             </ion-card>
           </ion-col>
@@ -51,18 +56,17 @@
     <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
     @if(currentCategory.inside) {
       <div class="content_title insideCategory">
-        <ion-text style="font-weight: 600; font-size: 1.5rem;">{{ currentCategory.nameCategory }}</ion-text>  
-        <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
+        <ion-text class="h2">{{ currentCategory.nameCategory }}</ion-text>  
+        <ion-icon name="close-outline" id="closeCategory" (click)="backToCategoriesSeccion()"></ion-icon>
       </div>
     }
 
-    <ion-row style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 25px; justify-items: center; padding: 0 10px;">
+    <ion-row class="products_ca_row">
       @for (product of currentCategory.data; track $index) {
-        <ion-col style="display: flex; align-items: center; justify-content: center; padding: 0; margin: 0;">
+        <ion-col class="products_ca_col">
           <app-product-card 
             [productName]="product.name" 
             [productImageURL]="product.image_url"
-            style="width: 100%;"
           >
           </app-product-card>
         </ion-col>
@@ -71,20 +75,19 @@
 
     <!-- PRODUCTOS SIN CATEGORIA -->
     @if(((allProducts | products: false)?.data).length > 0 && !querySearchBar) {
-      <div style="margin: 1rem 0; color: var(--ion-color-primary);">
-        <h2 style="font-weight: 600;">Productos sin categoría</h2>
+      <div class="content_title margin">
+        <h2>Productos sin categoría</h2>
       </div>
-    }
+    } 
 
     @if (!querySearchBar) {
-      <ion-row style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 25px; justify-items: center; padding: 0 10px;">
+      <ion-row class="products_ca_row">
         @for (product of (allProducts | products: false)?.data; track $index) {
-          <ion-col style="display: flex; align-items: center; justify-content: center; padding: 0; margin: 0;"> 
+          <ion-col class="products_ca_col">
             <app-product-card
               [productName]="product.name" 
               [productImageURL]="product.image_url"
               (click)="selectQuantityOfProduct(product)"
-              style="width: 100%;"
             >
             </app-product-card>
           </ion-col>
@@ -94,10 +97,14 @@
 
     <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE BUSCA ALGUN PRODUCTO -->
     @if (querySearchBar) {
-      <ion-row>
+      <ion-row class="products_ca_row">
         @for (product of resultsSearchBar; track product) {
-          <ion-col size="auto">
-            <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
+          <ion-col class="products_ca_col">
+            <app-product-card 
+              [productName]="product.name" 
+              [productImageURL]="product.image_url"
+            >
+            </app-product-card>
           </ion-col>
         }
       </ion-row>

@@ -6,6 +6,7 @@ import { DialogService } from 'src/app/core/dialog.service';
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { ModalController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
+import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 
 @Component({
   selector: 'app-products',
@@ -18,6 +19,7 @@ export class ProductsPage implements OnInit {
 
   querySearchBar: string = '';
   resultsSearchBar: any = [];
+  isTouch: boolean = false;
 
   constructor(
     public shoppCartSvc: ShoppingCartService, 
@@ -29,6 +31,10 @@ export class ProductsPage implements OnInit {
   async ngOnInit() {
     await this.productsSvc.getAllUserProducts();
     this.allProducts = this.productsSvc.getAllProducts();
+
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      this.isTouch = true;
+    }
   }
 
   ionViewWillEnter() {
@@ -117,5 +123,38 @@ export class ProductsPage implements OnInit {
         await modal.present();
       }
     });
+  }
+
+  async selectQuantityOfProduct(product: any) {
+    const modal = await this.modalController.create({
+      component: SelectQuantityOfProductComponent,
+      cssClass: 'modal-select-quantity-product',
+      componentProps: {
+        // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
+        // Ejemplo: data: { prop1: valor1, prop2: valor2 }
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        const numberOfProducts = data['data'];
+        if(numberOfProducts > 0) {
+          this.addProductToShoppingCart(product, numberOfProducts);
+        }
+    });
+  
+    await modal.present();
+  }
+
+  addProductToShoppingCart(product: any, numberOfProducts: number) {
+    this.shoppCartSvc.addProductToShoppingCart(product, numberOfProducts);
+  }
+
+  checkCardClass() {
+    return this.currentCategory.class || '';
+  }
+
+  getCurrentCategoryName() {
+    return this.currentCategory.nameCategory || '';
   }
 }

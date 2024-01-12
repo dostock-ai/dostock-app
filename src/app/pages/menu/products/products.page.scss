@@ -1,22 +1,45 @@
-.search {
+* {
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+ion-header {
+    min-height: 5rem;
+}
+
+ion-content {
+    --padding-bottom: 2rem;
+    --padding-end: 2rem;
+    --padding-start: 2rem;
+    --padding-top: 2rem;
+}
+
+h2 {
+    margin: 0px;
+    font-weight: 600;
+}
+
+.h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+#closeCategory {
+    font-size: 2rem; 
+    cursor: pointer;
+}
+
+.content_title {
+    color: var(--ion-color-primary);
+}
+
+.content_title.insideCategory {
     display: flex; 
-    justify-content: center;
-    align-items: center;
-    padding: 0 1rem 0 1rem;
+    justify-content: space-between;
+}
 
-    ion-searchbar {
-        padding-right: 0px;
-
-        &:hover {
-            box-shadow: 0px 2px 0px 0px #00ff00;
-        }
-    }
-
-    ion-icon {
-        margin: .5rem; 
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
+.content_title.margin {
+    margin: 1rem 0;
 }
 
 .optionsSales {
@@ -24,13 +47,26 @@
     width: 100%; 
     justify-content: end; 
     align-items: center;
-    padding: .5rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+}
 
-    ion-icon {
-        font-size: 1.5rem;
-        margin: .5rem;
-        cursor: pointer;
+.search {
+    margin-bottom: 1rem;
+
+    ion-searchbar {
+        padding: 0;
+        margin: 0;
+
+        &:hover {
+            box-shadow: 0px 2px 0px 0px var(--ion-color-secondary);
+        }
     }
+}
+
+ion-icon {
+    margin-left: .5rem; 
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 // barcode scanner
@@ -45,11 +81,129 @@ body.barcode-scanner-active {
     visibility: visible;
 }
 
-.separator {
-    height: 1px;
-    background-color: #ccc; /* Color de la línea separadora */
-    margin: 10px 0; /* Ajusta el margen según tus preferencias */
-}  
+ion-grid {
+    margin: 0;
+    padding: 0;
+}
+
+.products_ca_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 25px;
+    justify-items: center; 
+    padding: 0 10px;
+}
+
+.products_ca_col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+app-product-card {
+    width: 100%;
+}
+
+.ca_box {
+    padding: 0;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    // grid-gap: 25px;
+    margin: 0.5rem 0;
+}
+
+.ca_item {
+    overflow: hidden;
+    padding: 0;
+}
+
+.ca-item_card {
+    display: block;
+    padding: 30px 20px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 28px;
+    cursor: pointer;
+}
+
+.ca-item_card ion-card-header .ca-item_title {
+    color: var(--ion-color-primary);
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
+
+.ca-item_card ion-card-header .ca-item_title_touch {
+    color: var(--ion-color-primary);
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
+
+ion-grid ion-row ion-col ion-card ion-icon {
+    margin-right: 1rem;
+}
+
+.ca-item_card:hover .ca-item_bg {
+    -webkit-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+}
+
+.ca-item_card:hover ion-card-header .ca-item_title {
+  color: var(--ion-color-light);
+}
+
+.ca-item_bg {
+    height: 128px;
+    width: 128px;
+    background-color: var(--ion-color-secondary);
+
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+
+    border-radius: 50%;
+
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.ca-item_bg_touch {
+    height: 128px;
+    width: 128px;
+    background-color: var(--ion-color-secondary);
+
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+
+    border-radius: 50%;
+
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+
+.selected_item_card {
+    -webkit-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+}
+
+.selected_item_card ~ ion-card-header .ca-item_title {
+    color: var(--ion-color-light);
+}
+
+.selected_item_card ~ ion-card-header .ca-item_title_touch {
+    color: var(--ion-color-light);
+}
 
 @media (prefers-color-scheme: dark) {
     .barcode-scanner-modal {

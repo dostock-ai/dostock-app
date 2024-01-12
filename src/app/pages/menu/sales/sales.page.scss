@@ -16,6 +16,17 @@ ion-content {
 
 h2 {
     margin: 0px;
+    font-weight: 600;
+}
+
+.h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+#closeCategory {
+    font-size: 2rem; 
+    cursor: pointer;
 }
 
 .content_title {
@@ -25,6 +36,10 @@ h2 {
 .content_title.insideCategory {
     display: flex; 
     justify-content: space-between;
+}
+
+.content_title.margin {
+    margin: 1rem 0;
 }
 
 .optionsSales {
@@ -69,6 +84,26 @@ body.barcode-scanner-active {
 ion-grid {
     margin: 0;
     padding: 0;
+}
+
+.products_ca_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 25px;
+    justify-items: center; 
+    padding: 0 10px;
+}
+
+.products_ca_col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+app-product-card {
+    width: 100%;
 }
 
 .ca_box {

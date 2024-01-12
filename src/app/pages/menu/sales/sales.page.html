@@ -7,7 +7,7 @@
   </div>
 
   <div class="search">
-      <ion-searchbar 
+      <ion-searchbar
         animated="true" 
         placeholder="Producto" 
         show-clear-button="focus" 
@@ -19,7 +19,7 @@
   </div>
 
   @if(!querySearchBar) {
-    <div style="margin-bottom: 1rem; color: var(--ion-color-primary);">
+    <div class="content_title">
       @if ((allProducts | products: true)?.hasCategories) {
         <h2 style="font-weight: 600;">Categorias</h2>
       }
@@ -32,10 +32,15 @@
       <ion-row class="ca_box">
         @for(category of (allProducts | products: true)?.data | keyvalue; track $index) {
           <ion-col class="ca_item">
-            <ion-card class="ca-item_card" (click)="openCategory(getString(category.key), category.value)">
-              <div class="ca-item_bg" [ngClass]="getCurrentCategoryName() === category.key ? checkCardClass() : ''"></div>
+            <ion-card 
+              class="ca-item_card"
+              (click)="openCategory(getString(category.key), category.value)"
+            >
+              <div
+                [ngClass]="[isTouch ? 'ca-item_bg_touch' : 'ca-item_bg', (getCurrentCategoryName() === category.key) ? checkCardClass() : '']"
+              ></div>
               <ion-card-header>
-                <ion-card-title class="ca-item_title">{{ category.key }}</ion-card-title>
+                <ion-card-title [ngClass]="isTouch ? 'ca-item_title_touch' : 'ca-item_title'">{{ category.key }}</ion-card-title>
               </ion-card-header>
             </ion-card>
           </ion-col>
@@ -45,7 +50,7 @@
 
     <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
     @if(currentCategory.inside) {
-      <div style="margin: 1rem 0; display: flex; justify-content: space-between; color: var(--ion-color-primary);">
+      <div class="content_title insideCategory">
         <ion-text style="font-weight: 600; font-size: 1.5rem;">{{ currentCategory.nameCategory }}</ion-text>  
         <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
       </div>
@@ -65,7 +70,7 @@
     </ion-row>
 
     <!-- PRODUCTOS SIN CATEGORIA -->
-    @if(((allProducts | products: false)?.data).length > 0) {
+    @if(((allProducts | products: false)?.data).length > 0 && !querySearchBar) {
       <div style="margin: 1rem 0; color: var(--ion-color-primary);">
         <h2 style="font-weight: 600;">Productos sin categoría</h2>
       </div>
@@ -98,25 +103,4 @@
       </ion-row>
     }
   </ion-grid>
-  
-
-  <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
-  <!-- <div *ngIf="currentCategory.inside" style="padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
-    <div style="align-self: flex-end;">
-      <ion-icon name="close-outline" (click)="backToCategoriesSeccion()" style="font-size: 2rem; cursor: pointer;"></ion-icon>
-    </div>
-    <div>
-        <h2>{{ currentCategory.nameCategory }}</h2>
-    </div>
-  </div>
-
-  <ion-grid *ngIf="currentCategory.inside">
-    <ion-row style="grid-gap: 20px 20px; display: flex; justify-content: start; align-items: center;">
-      @for (product of currentCategory.data; track $index) {
-        <ion-col size="auto">
-          <app-product-card [productName]="product.name" [productImageURL]="product.image_url"></app-product-card>
-        </ion-col>
-      }
-    </ion-row>
-  </ion-grid> -->
 </ion-content>

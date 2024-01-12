@@ -10,7 +10,6 @@ import { DialogService } from 'src/app/core/dialog.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { ProductsService } from '../services/products.service';
 
-
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.page.html',
@@ -35,6 +34,7 @@ export class SalesPage implements OnInit {
 
   querySearchBar: string = '';
   resultsSearchBar: any = [];
+  isTouch: boolean = false;
 
   constructor(
     private modalController: ModalController,
@@ -48,6 +48,10 @@ export class SalesPage implements OnInit {
   async ngOnInit() {
     await this.productsSvc.getAllUserProducts();
     this.allProducts = this.productsSvc.getAllProducts();
+
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      this.isTouch = true;
+    }
   }
 
   ionViewWillEnter() {

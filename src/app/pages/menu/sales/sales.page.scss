@@ -18,6 +18,15 @@ h2 {
     margin: 0px;
 }
 
+.content_title {
+    color: var(--ion-color-primary);
+}
+
+.content_title.insideCategory {
+    display: flex; 
+    justify-content: space-between;
+}
+
 .optionsSales {
     display: flex; 
     width: 100%; 
@@ -66,7 +75,8 @@ ion-grid {
     padding: 0;
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-    grid-gap: 25px;
+    // grid-gap: 25px;
+    margin: 0.5rem 0;
 }
 
 .ca_item {
@@ -88,7 +98,14 @@ ion-grid {
     overflow: hidden;
     z-index: 2;
     position: relative;
-  }
+}
+
+.ca-item_card ion-card-header .ca-item_title_touch {
+    color: var(--ion-color-primary);
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
 
 ion-grid ion-row ion-col ion-card ion-icon {
     margin-right: 1rem;
@@ -121,6 +138,24 @@ ion-grid ion-row ion-col ion-card ion-icon {
     transition: all .5s ease;
 }
 
+.ca-item_bg_touch {
+    height: 128px;
+    width: 128px;
+    background-color: var(--ion-color-secondary);
+
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+
+    border-radius: 50%;
+
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+
 .selected_item_card {
     -webkit-transform: scale(10);
     -ms-transform: scale(10);
@@ -128,7 +163,11 @@ ion-grid ion-row ion-col ion-card ion-icon {
 }
 
 .selected_item_card ~ ion-card-header .ca-item_title {
-    color: var(--ion-color-light); 
+    color: var(--ion-color-light);
+}
+
+.selected_item_card ~ ion-card-header .ca-item_title_touch {
+    color: var(--ion-color-light);
 }
 
 @media (prefers-color-scheme: dark) {

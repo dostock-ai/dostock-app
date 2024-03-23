@@ -1,6 +1,6 @@
-ion-menu::part(backdrop) {
-    background-color: rgba(10, 117, 12, 0.5);
-}
+// ion-menu::part(backdrop) {
+//     background-color: rgba(10, 117, 12, 0.5);
+// }
 
 .sing-out {
     cursor: pointer;
@@ -10,31 +10,36 @@ ion-menu::part(backdrop) {
     right: 0;
 }
 
+
 ion-toolbar {
-    --min-height: 5rem;
+    --height: 5rem;
+    padding-right: 2rem;
 }
 
 .shoppingCartSeccion{
     min-width: fit-content;
-    min-height: 4rem; // set the height of ion-buttons to 100%
-    padding: 0 .5rem;
     display: flex; 
     justify-content: center; 
     align-items: center; 
     cursor: pointer;
+    height: 5rem;
+    margin: 0;
+}
 
-    &:hover {
-        color: #00ff00;
-        
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #00ff00;
-            animation: line 0.3s forwards;
-        }
+.shoppingCartSeccion ion-text {
+    padding-left: 8px;
+}
+
+.shoppingCartSeccion ion-icon {
+    font-size: 1.7rem;
+    padding: 0 8px 0 4px;
+}
+
+
+.shoppingCartSeccion:hover {
+    background: var(--ion-color-secondary);
+
+    ion-text, ion-icon {
+        color: var(--ion-color-light);
     }
 }

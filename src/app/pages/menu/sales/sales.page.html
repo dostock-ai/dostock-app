@@ -18,17 +18,56 @@
       <!-- <ion-icon name="funnel-outline" (click)="openSalesFilterModal()"></ion-icon> -->
   </div>
 
-  @if(!querySearchBar) {
-    <div class="content_title">
-      @if ((allProducts | products: true)?.hasCategories) {
-        <h2>Categorías</h2>
-      }
-    </div>
+  @if(!querySearchBar && currentSection === 'home') {
+    <ion-grid>
+      <ion-row>
+        <ion-col class="home_item_box" sizeXl="2" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6" (click)="setSection('categories')">
+          <div class="home_item_bg">
+            @if((allProducts | products: true)?.hasCategories) {
+              <h2>Categorías</h2>
+            }
+          </div>
+        </ion-col>
+        
+        <ion-col class="home_item_box" sizeXl="2" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6" (click)="setSection('products')">
+          @if((allProducts | products: true)?.hasCategories || ((allProducts | products: false)?.data).length > 0) {
+            <div class="home_item_bg">
+              <h2>Productos</h2>
+            </div>
+          }
+        </ion-col>
+
+        <ion-col class="home_item_box" sizeXl="2" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+          <div class="home_item_bg">
+            <h2>Proovedores</h2>
+          </div>
+        </ion-col>
+
+        <ion-col class="home_item_box" sizeXl="2" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+          <div class="home_item_bg">
+            <h2>Ventas</h2>
+          </div>
+        </ion-col>
+
+        <ion-col class="home_item_box" sizeXl="2" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+          <div class="home_item_bg">
+            <h2>Admin</h2>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   }
 
   <ion-grid>
     <!-- CATEGORIAS -->
-    @if(!querySearchBar) {
+    @if(!querySearchBar && currentSection === 'categories') {
+      <div class="content_title insideSection">
+        @if ((allProducts | products: true)?.hasCategories) {
+          <h2>Categorías</h2>
+          <ion-icon name="close-outline" id="closeCategory" (click)="setSection('home')"></ion-icon>
+        }
+      </div>
+
       <ion-row class="ca_box">
         @for(category of (allProducts | products: true)?.data | keyvalue; track $index) {
           <ion-col class="ca_item">
@@ -54,7 +93,7 @@
     }
 
     <!-- PRODUCTOS QUE SE MUESTRAN CUANDO SE ENTRA A UNA CATEGORIA -->
-    @if(currentCategory.inside) {
+    @if(currentCategory.inside && currentSection === 'insideCategory') {
       <div class="content_title insideCategory">
         <ion-text class="h2">{{ currentCategory.nameCategory }}</ion-text>  
         <ion-icon name="close-outline" id="closeCategory" (click)="backToCategoriesSeccion()"></ion-icon>
@@ -67,6 +106,7 @@
           <app-product-card 
             [productName]="product.name" 
             [productImageURL]="product.image_url"
+            (click)="selectQuantityOfProduct(product)"
           >
           </app-product-card>
         </ion-col>
@@ -74,7 +114,7 @@
     </ion-row>
 
     <!-- PRODUCTOS SIN CATEGORIA -->
-    @if(((allProducts | products: false)?.data).length > 0 && !querySearchBar) {
+    <!-- @if(((allProducts | products: false)?.data).length > 0 && !querySearchBar) {
       <div class="content_title margin">
         <h2>Productos sin categoría</h2>
       </div>
@@ -83,6 +123,27 @@
     @if (!querySearchBar) {
       <ion-row class="products_ca_row">
         @for (product of (allProducts | products: false)?.data; track $index) {
+          <ion-col class="products_ca_col">
+            <app-product-card
+              [productName]="product.name" 
+              [productImageURL]="product.image_url"
+              (click)="selectQuantityOfProduct(product)"
+            >
+            </app-product-card>
+          </ion-col>
+        }
+      </ion-row>
+    } -->
+
+    <!-- TODOS LOS PRODUCTOS -->
+    @if(!querySearchBar && currentSection === 'products' && allProducts.length > 0) {
+      <div class="content_title insideSection">
+        <ion-text class="h2">Productos</ion-text>  
+        <ion-icon name="close-outline" id="closeCategory" (click)="setSection('home')"></ion-icon>
+      </div>
+
+      <ion-row class="products_ca_row">
+        @for (product of allProducts; track $index) {
           <ion-col class="products_ca_col">
             <app-product-card
               [productName]="product.name" 

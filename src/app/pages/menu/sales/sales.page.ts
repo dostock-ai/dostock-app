@@ -16,9 +16,11 @@ import { ProductsService } from '../services/products.service';
   styleUrls: ['./sales.page.scss'],
 })
 export class SalesPage implements OnInit {
+  allProducts: any = [];
   productsWithoutCategory: any = {}
 
-  allProducts: any = [];
+  // home, categories, insideCategory, products, admin
+  currentSection: string = 'home';
   currentCategory: any = {
     inside: false,
     data: [],
@@ -26,14 +28,9 @@ export class SalesPage implements OnInit {
     class: ''
   };
 
-  // shoppingCartInfo: any = {
-  //   amount: 0,
-  //   products: {},
-  //   totalProducts: 0,
-  // }
-
   querySearchBar: string = '';
   resultsSearchBar: any = [];
+
   isTouch: boolean = false;
 
   constructor(
@@ -56,6 +53,10 @@ export class SalesPage implements OnInit {
 
   ionViewWillEnter() {
     localStorage.setItem('redirectUrl', 'sales');
+  }
+
+  setSection(section: string) {
+    this.currentSection = section;
   }
 
   async addProduct() {
@@ -87,6 +88,7 @@ export class SalesPage implements OnInit {
       return;
     }
 
+    this.setSection('insideCategory');
     this.productsSvc.setCurrentCategory(categoryKey, categoryValue);
     this.currentCategory = this.productsSvc.getCurrentCategory();
   }
@@ -96,6 +98,7 @@ export class SalesPage implements OnInit {
   }
 
   backToCategoriesSeccion() {
+    this.setSection('categories');
     this.productsSvc.deleteCurrentCategory();
     this.currentCategory = this.productsSvc.getCurrentCategory();
   }

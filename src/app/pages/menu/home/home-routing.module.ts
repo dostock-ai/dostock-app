@@ -42,7 +42,12 @@ const routes: Routes = [
         path: 'templates',
         loadChildren: () => import('../templates/templates.module').then( m => m.TemplatesPageModule),
         canActivate: [AuthGuard]
-      }
+      },
+      {
+        path: 'shopping',
+        loadChildren: () => import('../shopping/shopping.module').then( m => m.ShoppingPageModule),
+        canActivate: [AuthGuard]
+      },
     ]
   }
 ];

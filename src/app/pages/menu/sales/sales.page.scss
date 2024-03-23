@@ -8,10 +8,35 @@ ion-header {
 }
 
 ion-content {
-    --padding-bottom: 2rem;
-    --padding-end: 2rem;
-    --padding-start: 2rem;
-    --padding-top: 2rem;
+    --padding-bottom: 1rem;
+    --padding-end: 1rem;
+    --padding-start: 1rem;
+    --padding-top: 1rem;
+}
+
+// .home_items_row {
+//     grid-gap: 25px;
+// }
+
+.home_item_box {
+    padding: 0;
+    margin: 0;
+    width: 250px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_item_bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: var(--ion-color-secondary);
+    color: var(--ion-color-light);
+    width: 90%;
+    height: 90%;
 }
 
 h2 {
@@ -31,6 +56,11 @@ h2 {
 
 .content_title {
     color: var(--ion-color-primary);
+}
+
+.content_title.insideSection {
+    display: flex; 
+    justify-content: space-between;
 }
 
 .content_title.insideCategory {

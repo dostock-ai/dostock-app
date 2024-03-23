@@ -58,6 +58,11 @@ export class HomePage implements OnInit {
     }
   }
 
+  navigateTo(page: string) {
+    this.auxFns.navigateTo('/home/' + page);
+    this.toolbarSvc.setCurrentPage(page);
+  }
+
   changeCurrentPage(currentPage: string) {
     this.toolbarSvc.setCurrentPage(currentPage);
     this.currentPage = currentPage;

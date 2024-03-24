@@ -118,8 +118,8 @@ ion-grid {
 
 .products_ca_row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 5px;
     justify-items: center; 
     padding: 0 10px;
 }
@@ -151,11 +151,19 @@ app-product-card {
 
 .ca-item_card {
     display: block;
-    padding: 30px 20px;
     overflow: hidden;
     position: relative;
-    border-radius: 28px;
+    border-radius: 12px;
     cursor: pointer;
+    height: 3rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.ca_item_card_header {
+    padding: 0;
 }
 
 .ca-item_card ion-card-header .ca-item_title {
@@ -239,5 +247,19 @@ ion-grid ion-row ion-col ion-card ion-icon {
     .barcode-scanner-modal {
         --background: transparent;
         --ion-background-color: transparent;
+    }
+}
+
+/* Estilos específicos para tamaños de pantalla más pequeños */
+@media screen and (max-width: 400px) {
+    .home_item_bg h2 {
+        font-size: 1.2rem; /* Reducir tamaño de fuente para pantallas más pequeñas */
+    }
+}
+
+  /* Estilos específicos para tamaños de pantalla más pequeños */
+@media screen and (max-width: 330px) {
+    .home_item_bg h2 {
+        font-size: 1rem; /* Reducir tamaño de fuente para pantallas más pequeñas */
     }
 }

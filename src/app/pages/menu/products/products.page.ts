@@ -6,7 +6,7 @@ import { DialogService } from 'src/app/core/dialog.service';
 import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode-scanning-modal/barcode-scanning-modal.component';
 import { ModalController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
-import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
+import { ProductDetailsComponent } from 'src/app/components/product-details/product-details.component';
 
 @Component({
   selector: 'app-products',
@@ -127,11 +127,12 @@ export class ProductsPage implements OnInit {
 
   async selectQuantityOfProduct(product: any) {
     const modal = await this.modalController.create({
-      component: SelectQuantityOfProductComponent,
-      cssClass: 'modal-select-quantity-product',
+      component: ProductDetailsComponent,
+      // cssClass: 'modal-select-quantity-product',
       componentProps: {
-        // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
-        // Ejemplo: data: { prop1: valor1, prop2: valor2 }
+        product: product
+        // propiedades o datos adicionales
+        // data: { prop1: valor1, prop2: valor2 }
       }
     });
 

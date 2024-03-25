@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+ion-header {
+    min-height: 5rem;
+}
+
+ion-img {
+    height: 250px;
+    padding-inline: 1rem;
+}
+
+.image-product-seccion {
+    width: 100%;
+    padding-top: 1rem;
+}
+
+.input_amount-seccion {
+    margin: 1rem;
+}
+
+ion-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}

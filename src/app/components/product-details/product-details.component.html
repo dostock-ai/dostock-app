@@ -1,0 +1,27 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="closeModal()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>
+    {{ product.name }}
+  </ion-title>
+</ion-toolbar>
+
+<ion-content>
+    <div class="image-product-seccion">
+      <ion-img src="{{ product.image_url  }}"></ion-img>
+    </div>
+    <div class="input_amount-seccion">
+      <ion-item>
+        <ion-input label="Cantidad: " type="number" placeholder="1" value="{{ amount }}" [(ngModel)]="amount"></ion-input>
+      </ion-item>  
+    </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button color="secondary" [disabled]="amount < 0 || !amount">
+    Añadir {{ amount }} al carrito
+  </ion-button>
+</ion-footer>

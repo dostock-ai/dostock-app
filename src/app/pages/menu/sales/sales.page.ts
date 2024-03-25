@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
-import { SelectQuantityOfProductComponent } from 'src/app/components/select-quantity-of-product/select-quantity-of-product.component';
 import { SalesFilterComponent } from 'src/app/components/sales-filter/sales-filter.component';
 import { ScanService } from 'src/app/services/scan.service';
 import { BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
@@ -9,6 +8,7 @@ import { BarcodeScanningModalComponent } from 'src/app/shared/components/barcode
 import { DialogService } from 'src/app/core/dialog.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { ProductsService } from '../services/products.service';
+import { ProductDetailsComponent } from 'src/app/components/product-details/product-details.component';
 
 @Component({
   selector: 'app-sales',
@@ -105,9 +105,10 @@ export class SalesPage implements OnInit {
 
   async selectQuantityOfProduct(product: any) {
     const modal = await this.modalController.create({
-      component: SelectQuantityOfProductComponent,
-      cssClass: 'modal-select-quantity-product',
+      component: ProductDetailsComponent,
+      // cssClass: 'modal-select-quantity-product',
       componentProps: {
+        product: product
         // Aquí puedes pasar propiedades o datos adicionales al modal si es necesario
         // Ejemplo: data: { prop1: valor1, prop2: valor2 }
       }
